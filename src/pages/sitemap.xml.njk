@@ -1,0 +1,38 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+{%- set routes = [
+  { route: "", lastmod: "" },
+  { route: "about/", lastmod: "" },
+  { route: "projects/", lastmod: (projects[0].date | isoDate) if projects.length else "" },
+  { route: "news/", lastmod: (news[0].date | isoDate) if news.length else "" },
+  { route: "donate/", lastmod: "" },
+  { route: "contact/", lastmod: "" },
+  { route: "privacy/", lastmod: "" }
+] -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for r in routes %}{% for l in langs %}
+  <url>
+    <loc>{{ r.route | langUrl(l) | absUrl }}</loc>
+    {%- if r.lastmod %}
+    <lastmod>{{ r.lastmod }}</lastmod>
+    {%- endif %}
+    {%- for a in langs %}
+    <xhtml:link rel="alternate" hreflang="{{ a }}" href="{{ r.route | langUrl(a) | absUrl }}"/>
+    {%- endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ r.route | langUrl('ka') | absUrl }}"/>
+  </url>
+{%- endfor %}{% endfor %}
+{%- for e in projectPages.concat(newsPages) %}
+  <url>
+    <loc>{{ e.route | langUrl(e.lang) | absUrl }}</loc>
+    <lastmod>{{ (e.item.updated or e.item.date) | isoDate }}</lastmod>
+    {%- for a in langs %}
+    <xhtml:link rel="alternate" hreflang="{{ a }}" href="{{ e.route | langUrl(a) | absUrl }}"/>
+    {%- endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ e.route | langUrl('ka') | absUrl }}"/>
+  </url>
+{%- endfor %}
+</urlset>

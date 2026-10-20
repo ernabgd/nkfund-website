@@ -1,0 +1,15 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+{%- if env.preview -%}
+# Preview build: keep it out of search engines (every page also carries <meta name="robots" content="noindex">).
+# Note: crawlers only read robots.txt at the host root, so for a project-site preview the noindex meta tag is what counts.
+User-agent: *
+Disallow: /
+{%- else -%}
+User-agent: *
+Allow: /
+
+Sitemap: {{ "/sitemap.xml" | absUrl }}
+{%- endif %}

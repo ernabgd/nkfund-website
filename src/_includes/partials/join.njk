@@ -1,0 +1,30 @@
+{#- "Join us" band at the end of every page except Donate. Online payment is closed: the band shows the bank
+    details, a beneficiary's own words, the Donate page and the bank's PDF. Home gets the full card (all three
+    currencies); inner pages a compact one (IBAN + copy, bank, links), so the end of every page stays short. -#}
+{%- import "macros.njk" as jm with context -%}
+{%- set fullCard = (route == "") -%}
+<section class="join on-dark{% if not fullCard %} join--compact{% endif %}" id="join" aria-labelledby="join-heading">
+  <div class="join__frame" aria-hidden="true"></div>
+  <svg class="join__moon" aria-hidden="true"><use href="#mark"/></svg>
+  <div class="wrap join__grid">
+    <div class="join__intro reveal">
+      {{ jm.eyebrow(ui.join.eyebrow | t(lang), class="eyebrow--light") }}
+      <h2 class="join__title" id="join-heading">{{ ui.join.heading | t(lang) }}</h2>
+      <p class="join__text">{{ ui.join.text | t(lang) }}</p>
+      {{ jm.testimonial(pages.join.testimonial, lang, "testimonial--dark", route) }}
+    </div>
+    <div class="join__card reveal reveal-d1">
+      {%- set actions %}
+      <div class="bank__actions">
+        <a class="btn btn--light" href="{{ 'donate/' | langUrl(lang) }}">{{ ui.buttons.all_bank_details | t(lang) }} <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost-light" href="{{ bank.pdf }}" download>PDF<span class="visually-hidden"> — {{ ui.buttons.download_details | t(lang) }}</span> <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></a>
+      </div>
+      {%- endset %}
+      {%- if fullCard %}
+      {%- call jm.bankCard(lang, "join", 3, "join") %}{{ actions | safe }}{% endcall %}
+      {%- else %}
+      {%- call jm.bankCompact(lang, "join", 3) %}{{ actions | safe }}{% endcall %}
+      {%- endif %}
+    </div>
+  </div>
+</section>

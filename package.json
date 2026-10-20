@@ -1,0 +1,35 @@
+{
+  "name": "nkfund-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website of the Nico Kvaratskhelia Fund (nkfund.world), built with Eleventy",
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "build:preview": "PATH_PREFIX=/nkfund-website/ PREVIEW=true SITE_URL=https://ernabgd.github.io eleventy",
+    "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\"",
+    "test": "npm run test:ci && npm run test:migration",
+    "test:ci": "node --test \"tests/*.test.mjs\"",
+    "test:migration": "node --test \"tests/migration/*.test.mjs\"",
+    "fb:sync": "node scripts/facebook-sync.mjs",
+    "check": "node scripts/check-site.mjs _site && html-validate --config .htmlvalidate.json \"_site/**/*.html\"",
+    "cms:config": "node scripts/generate-pages-yml.mjs",
+    "check:links": "node scripts/check-site.mjs _site"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.1.7",
+    "@11ty/eleventy-img": "7.0.0",
+    "js-yaml": "4.3.2",
+    "markdown-it": "14.3.3",
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "html-validate": "11.16.1"
+  }
+}

@@ -1,0 +1,44 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ 'projects/' | langUrl(lang) }}"
+layout: base.njk
+route: projects/
+section: projects
+bodyClass: projects
+pageKey: projects
+---
+{%- import "macros.njk" as m with context -%}
+{%- set p = pages.projects -%}
+<header class="page-head ruled">
+  <div class="wrap">
+    {#- The h1 names the page; the slogan (also the home tagline) is a display line, not the heading. -#}
+    {{ m.eyebrow(p | loc("label", lang), "h1") }}
+    {{ m.text(p, "title", lang, "p", "page-head__title", true) }}
+  </div>
+</header>
+<section class="section section--list ruled" aria-label="{{ p | loc('label', lang) }}">
+  <div class="wrap">
+    {%- if projects.length %}
+    <ol class="rows" role="list">
+      {%- for item in projects %}
+      <li class="row card reveal">
+        <span class="row__index" aria-hidden="true">{{ "0" if loop.index < 10 }}{{ loop.index }}</span>
+        {%- if item.cover %}
+        <div {{ m.mediaAttrs(item, "row__media") }}>{{ m.img(item.cover, item | loc("cover_alt", lang), "(min-width: 1200px) 340px, (min-width: 760px) 260px, calc(100vw - 72px)" | scaleSizes(imageMeta[item.cover], (4 / 3), item.cover_crop), "480,800,1200") }}</div>
+        {%- endif %}
+        <div class="row__body">
+          {{ m.meta(item, lang, true) }}
+          <h2 class="row__title"><a class="card__link" href="{{ m.itemUrl(item, lang) }}"{{ m.cleanLabel(item, lang) }}>{{ m.text(item, "title", lang, hyph=true) }}</a></h2>
+          {{ m.text(item, "summary", lang, "p", "row__excerpt") }}
+        </div>
+        <span class="btn btn--outline btn--sm row__btn" aria-hidden="true">{{ ui.buttons.details | t(lang) }} <svg class="icon icon--arrow"><use href="#i-arrow"/></svg></span>
+      </li>
+      {%- endfor %}
+    </ol>
+    {%- endif %}
+  </div>
+</section>
+{% include "partials/join.njk" %}

@@ -1,0 +1,49 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ 'contact/' | langUrl(lang) }}"
+layout: base.njk
+route: contact/
+section: contact
+bodyClass: contact
+pageKey: contact
+---
+{%- import "macros.njk" as m with context -%}
+{%- set p = pages.contact -%}
+<header class="page-head ruled">
+  <div class="wrap">
+    {{ m.eyebrow(ui.contact.heading | t(lang)) }}
+    {{ m.text(p, "title", lang, "h1", "page-head__title") }}
+    {{ m.prose(p, "intro", lang, "lead page-head__lead") }}
+  </div>
+</header>
+<section class="section section--list ruled" aria-labelledby="contact-list">
+  <div class="wrap">
+    <h2 class="visually-hidden" id="contact-list">{{ ui.contact.write_to_us | t(lang) }}</h2>
+    <ul class="contact-tiles" role="list">
+      <li class="contact-tile contact-tile--mail card">
+        <svg class="icon contact-tile__icon" aria-hidden="true"><use href="#i-mail"/></svg>
+        <p class="contact-tile__label">{{ ui.contact.email | t(lang) }}</p>
+        {#- A line may break only after the @ (never inside „nkfund.world“). -#}
+        <p class="contact-tile__value"><a class="card__link" href="mailto:{{ site.email }}">{{ site.email | escape | replace("@", "@<wbr>") | safe }}</a></p>
+        <svg class="icon contact-tile__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </li>
+      <li class="contact-tile card">
+        <svg class="icon icon--fill contact-tile__icon" aria-hidden="true"><use href="#i-facebook"/></svg>
+        <p class="contact-tile__label">{{ ui.contact.social | t(lang) }}</p>
+        <p class="contact-tile__value"><a class="card__link" href="{{ site.social.facebook }}" rel="noopener">Facebook<span class="visually-hidden"> — {{ ui.facebook.page_suffix | t(lang) }}</span></a></p>
+        <svg class="icon contact-tile__arrow" aria-hidden="true"><use href="#i-external"/></svg>
+      </li>
+      <li class="contact-tile card">
+        <svg class="icon contact-tile__icon" aria-hidden="true"><use href="#i-instagram"/></svg>
+        <p class="contact-tile__label">{{ ui.contact.social | t(lang) }}</p>
+        <p class="contact-tile__value"><a class="card__link" href="{{ site.social.instagram }}" rel="noopener">Instagram {{ site.social.instagram_handle }}<span class="visually-hidden"> — {{ ui.facebook.page_suffix | t(lang) }}</span></a></p>
+        <svg class="icon contact-tile__arrow" aria-hidden="true"><use href="#i-external"/></svg>
+      </li>
+    </ul>
+    <p class="contact__support"><svg class="icon" aria-hidden="true"><use href="#i-bank"/></svg><a href="{{ 'donate/' | langUrl(lang) }}">{{ ui.contact.support_note | t(lang) }}</a></p>
+  </div>
+</section>
+{% include "partials/join.njk" %}

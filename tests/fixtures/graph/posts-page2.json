@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": "100089583201087_900000000000001",
+      "message": "A post with one photo whose download fails.",
+      "created_time": "2026-09-01T20:30:00+0000",
+      "permalink_url": "https://www.facebook.com/100089583201087/posts/900000000000001",
+      "attachments": {
+        "data": [
+          { "type": "photo", "media": { "image": { "src": "https://scontent.example.fbcdn.net/v/t39/expired.jpg?oh=x", "width": 720, "height": 720 } } }
+        ]
+      }
+    },
+    {
+      "id": "100089583201087_900000000000000",
+      "created_time": "2026-08-20T10:00:00+0000",
+      "permalink_url": "https://www.facebook.com/100089583201087/posts/900000000000000",
+      "full_picture": "https://scontent.example.fbcdn.net/v/t39/shared-link.jpg?oh=s"
+    }
+  ],
+  "paging": { "cursors": { "before": "b2", "after": "a2" } }
+}

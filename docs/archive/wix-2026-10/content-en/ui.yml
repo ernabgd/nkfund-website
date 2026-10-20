@@ -1,0 +1,1026 @@
+# nkfund.world - interface strings in Georgian (ka, default, at /) and English (en, at /en/).
+# Written 2026-10-20 for the static rebuild.
+#
+# Format: every leaf string is a map with `ka` and `en`. Optional fields:
+#   src: old   = the Georgian string existed on the Wix site (exact text, spelling fixes applied)
+#   src: new   = Georgian written for the rebuild; a native Georgian proof-reader should check it
+#   note:      = guidance for builders (not shown on the site)
+# Placeholders in {curly braces} are filled by the templates: {year} {email} {title} {date} {label} {n} {total} {size}.
+# Typography: Georgian quotes are „…“, English quotes are “…” and ’ (typographic apostrophe).
+# English uses British spelling (realise, organise). Titles use sentence case.
+# The owner defaults from the project brief are already applied in this file (no online payment,
+# © 2022–{year}, contact email + Facebook + Instagram, privacy notice draft, publish the mission).
+
+site:
+  name:
+    ka: "ნიკო კვარაცხელიას ფონდი"
+    en: "Niko Kvaratskhelia Foundation"
+    src: old
+    note: "English name is the owner default (brand stays ‘nkfund.’); see GLOSSARY.md."
+  brand:
+    ka: "nkfund."
+    en: "nkfund."
+    src: old
+  legal_name:
+    ka: "ააიპ ნიკო კვარაცხელიას სახელობის ფონდი"
+    en: "NNLE Niko Kvaratskhelias Sakhelobis Phondi"
+    src: old
+    note: "Legal name from the bank PDF. The bank beneficiary for USD/EUR must be given exactly as in bank.yml (upper case)."
+  tagline:
+    ka: "ერთად განვახორციელოთ მომავლის პროექტები"
+    en: "Together, let’s bring the projects of the future to life"
+    src: old
+  slogan:
+    ka: "მომავალი თაობისთვის"
+    en: "For the next generation"
+    src: old
+    note: "Footer slogan next to the logo."
+
+a11y:
+  skip_link:
+    ka: "მთავარ შინაარსზე გადასვლა"
+    en: "Skip to main content"
+    src: new
+  main_nav:
+    ka: "მთავარი მენიუ"
+    en: "Main menu"
+    src: new
+  social_nav:
+    ka: "სოციალური ქსელები"
+    en: "Social media"
+    src: new
+  home_link:
+    ka: "nkfund. — მთავარი გვერდი"
+    en: "nkfund. — home page"
+    src: new
+    note: "Accessible name of the logo link."
+  logo_alt:
+    ka: "nkfund. — ნიკო კვარაცხელიას ფონდის ლოგო"
+    en: "nkfund. — Niko Kvaratskhelia Foundation logo"
+    src: new
+  menu:
+    ka: "მენიუ"
+    en: "Menu"
+    src: new
+  menu_open:
+    ka: "მენიუს გახსნა"
+    en: "Open menu"
+    src: new
+  menu_close:
+    ka: "მენიუს დახურვა"
+    en: "Close menu"
+    src: new
+  back_to_top:
+    ka: "ზემოთ დაბრუნება"
+    en: "Back to top"
+    src: new
+  external_link:
+    ka: "(გარე ბმული)"
+    en: "(external link)"
+    src: new
+    note: "Visually hidden suffix for links to other websites, if used."
+  opens_new_tab:
+    ka: "(იხსნება ახალ ჩანართში)"
+    en: "(opens in a new tab)"
+    src: new
+    note: "Only if a link really opens a new tab; prefer not to."
+
+lang_switch:
+  label:
+    ka: "ენა"
+    en: "Language"
+    src: new
+  note: "Each switch link is written in its TARGET language and needs lang + hreflang attributes: on Georgian pages show to_en (lang=\"en\"), on English pages show to_ka (lang=\"ka\")."
+  to_en:
+    text: "English"
+    short: "EN"
+    aria: "Read this page in English"
+  to_ka:
+    text: "ქართული"
+    short: "ქარ"
+    aria: "წაიკითხეთ ეს გვერდი ქართულად"
+  untranslated_notice:
+    ka: "ეს მასალა ქართულად ჯერ არ არის ხელმისაწვდომი, ამიტომ ნაჩვენებია ინგლისურად."
+    en: "This item is not yet available in English, so it is shown in Georgian."
+    src: new
+    note: "Fallback if an editor saves a CMS item in one language only. The two strings are mirror images (each describes a fallback on a page in its own language), not translations of each other."
+
+nav:
+  home:
+    ka: "მთავარი"
+    en: "Home"
+    src: new
+  about:
+    ka: "ჩვენ შესახებ"
+    en: "About us"
+    src: old
+  projects:
+    ka: "პროექტები"
+    en: "Projects"
+    src: old
+  news:
+    ka: "სიახლეები"
+    en: "News"
+    src: old
+  contact:
+    ka: "კონტაქტი"
+    en: "Contact"
+    src: new
+  privacy:
+    ka: "კონფიდენციალურობა"
+    en: "Privacy"
+    src: new
+  join:
+    ka: "შემოგვიერთდი"
+    en: "Join us"
+    src: old
+    note: "Header CTA and hero button -> /donate/ (bank details). Literal meaning ‘join us’. If a clearer donor label is wanted: ka „მხარი დაგვიჭირეთ“ / en “Support us” (or the noun pair „მხარდაჭერა“ / “Support”). Not the owner’s wording; owner to choose."
+
+buttons:
+  details:
+    ka: "დეტალურად"
+    en: "Read more"
+    src: old
+    note: "Card button. Literally ‘in detail’."
+  details_aria:
+    ka: "დეტალურად: {title}"
+    en: "Read more: {title}"
+    src: new
+    note: "Accessible name, so that repeated ‘Read more’ links are distinguishable."
+  all_projects:
+    ka: "ყველა პროექტი"
+    en: "All projects"
+    src: old
+  all_news:
+    ka: "ყველა სიახლე"
+    en: "All news"
+    src: new
+  previous:
+    ka: "წინა"
+    en: "Previous"
+    src: old
+  next:
+    ka: "შემდეგი"
+    en: "Next"
+    src: old
+  previous_aria:
+    ka: "წინა: {title}"
+    en: "Previous: {title}"
+    src: new
+  next_aria:
+    ka: "შემდეგი: {title}"
+    en: "Next: {title}"
+    src: new
+  back_to_projects:
+    ka: "პროექტების სია"
+    en: "Back to all projects"
+    src: new
+  back_to_news:
+    ka: "სიახლეების სია"
+    en: "Back to all news"
+    src: new
+  bank_details:
+    ka: "რეკვიზიტები"
+    en: "Bank details"
+    src: old
+  all_bank_details:
+    ka: "ყველა რეკვიზიტი"
+    en: "All bank details"
+    src: new
+  download_pdf:
+    ka: "რეკვიზიტების ჩამოტვირთვა (PDF)"
+    en: "Download bank details (PDF)"
+    src: new
+
+home:
+  hero_heading:
+    ka: "ნიკო კვარაცხელიას ფონდი"
+    en: "Niko Kvaratskhelia Foundation"
+    src: old
+  hero_subtitle:
+    ka: "ერთად განვახორციელოთ მომავლის პროექტები"
+    en: "Together, let’s bring the projects of the future to life"
+    src: old
+  hero_mission:
+    ka: "მივყვებით ნიკოს ხედვას და მხარს ვუჭერთ ახალგაზრდების ინოვაციურ პროექტებსა და საგანმანათლებლო ინიციატივებს — განსაკუთრებით რეგიონებში."
+    en: "We follow Niko’s vision by supporting innovative projects and education initiatives for young people — especially in Georgia’s regions."
+    src: new
+    note: "Optional one-line mission under the hero title (IMPROVEMENTS C.1). Built only from existing text: the aim ‘მიყვეს ნიკოს ხედვას’, ‘ინოვაციურ პროექტებსა და განათლებაზე ორიენტირებულ ინიციატივებს’ and Niko’s wish to involve young people in the regions. Owner to confirm."
+  hero_cta:
+    ka: "შემოგვიერთდი"
+    en: "Join us"
+    src: old
+  hero_secondary:
+    ka: "ჩვენი პროექტები"
+    en: "Our projects"
+    src: old
+    note: "Secondary text link -> /projects/."
+  video_pause:
+    ka: "ფონური ვიდეოს შეჩერება"
+    en: "Pause background video"
+    src: new
+  video_play:
+    ka: "ფონური ვიდეოს ჩართვა"
+    en: "Play background video"
+    src: new
+  quote_heading:
+    ka: "ნიკოს სიტყვები"
+    en: "In Niko’s words"
+    src: new
+    note: "Visually hidden heading for the quote section."
+  quote_attribution:
+    ka: "ნიკო კვარაცხელია"
+    en: "Niko Kvaratskhelia"
+    src: old
+  goal_heading:
+    ka: "ჩვენი მიზანი"
+    en: "Our goal"
+    src: old
+  mission_heading:
+    ka: "მისია"
+    en: "Mission"
+    src: old
+    note: "Owner default: publish the mission paragraph (home.md, section mission-hidden)."
+  film_title:
+    ka: "ფილმი ნიკოსა და ფონდზე"
+    en: "A film about Niko and the foundation"
+    src: new
+    note: "Replaces the Wix placeholder ‘Your Video Title’."
+  film_play:
+    ka: "ფილმის ჩართვა"
+    en: "Play the film"
+    src: new
+  film_length:
+    ka: "3 წთ 22 წმ"
+    en: "3 min 22 s"
+    src: new
+  film_subtitles:
+    ka: "ინგლისური სუბტიტრებით"
+    en: "With English subtitles"
+    src: new
+    note: "The film has English subtitles burned in (media/manifest.json)."
+  funded_heading:
+    ka: "დაფინანსებული პროექტები"
+    en: "Funded projects"
+    src: old
+
+lists:
+  projects_title:
+    ka: "ჩვენი პროექტები"
+    en: "Our projects"
+    src: old
+  news_title:
+    ka: "სიახლეები"
+    en: "News"
+    src: old
+  news_subtitle:
+    ka: "გაეცანით ფონდის სიახლეებს და ინიციატივებს"
+    en: "Discover the foundation’s news and initiatives"
+    src: old
+  no_projects:
+    ka: "პროექტები ჯერ არ არის დამატებული."
+    en: "No projects have been added yet."
+    src: new
+  no_news:
+    ka: "სიახლეები ჯერ არ არის დამატებული."
+    en: "No news has been added yet."
+    src: new
+  more_projects:
+    ka: "სხვა პროექტები"
+    en: "More projects"
+    src: new
+  more_news:
+    ka: "სხვა სიახლეები"
+    en: "More news"
+    src: new
+
+item:
+  published:
+    ka: "გამოქვეყნდა"
+    en: "Published"
+    src: new
+  date:
+    ka: "თარიღი"
+    en: "Date"
+    src: new
+  event_date:
+    ka: "ღონისძიების თარიღი"
+    en: "Event date"
+    src: new
+  project_date:
+    ka: "განხორციელდა"
+    en: "Carried out"
+    src: new
+    note: "Label before a project’s event month, e.g. „განხორციელდა: სექტემბერი, 2022“ / “Carried out: September 2022”. Owner default: show event dates where known."
+  category:
+    ka: "კატეგორია"
+    en: "Category"
+    src: new
+  gallery:
+    ka: "ფოტოგალერეა"
+    en: "Photo gallery"
+    src: new
+  photo_n_of_total:
+    ka: "ფოტო {n} / {total}"
+    en: "Photo {n} of {total}"
+    src: new
+  enlarge_photo:
+    ka: "ფოტოს გადიდება"
+    en: "Enlarge photo"
+    src: new
+  close:
+    ka: "დახურვა"
+    en: "Close"
+    src: new
+  previous_photo:
+    ka: "წინა ფოტო"
+    en: "Previous photo"
+    src: new
+  next_photo:
+    ka: "შემდეგი ფოტო"
+    en: "Next photo"
+    src: new
+
+categories:
+  scholarship:
+    ka: "სტიპენდია"
+    en: "Scholarship"
+    src: old
+  technology:
+    ka: "ტექნოლოგიები"
+    en: "Technology"
+    src: old
+  partnership:
+    ka: "პარტნიორობა"
+    en: "Partnership"
+    src: new
+    note: "NOT applied. Suggestion only, if the owner re-files the Supergmiri item (CONTENT_CHANGES §4.12)."
+
+cta_block:
+  heading:
+    ka: "შემოგვიერთდი"
+    en: "Join us"
+    src: old
+  text:
+    ka: "თუ გსურთ შემოგვიერთდეთ ფონდის მიერ მხარდაჭერილი პროექტების განხორციელებაში, იხილეთ ქვემოთ მოცემული რეკვიზიტები."
+    en: "If you would like to join us in carrying out the projects the foundation supports, please see the bank details below."
+    src: old
+  beneficiary:
+    ka: "მიმღები"
+    en: "Beneficiary"
+    src: new
+  bank:
+    ka: "ბანკი"
+    en: "Bank"
+    src: new
+  link_all:
+    ka: "ყველა რეკვიზიტი"
+    en: "All bank details"
+    src: new
+  note: "Closing dark band on every page: heading + text + a short summary (beneficiary, IBAN with copy button, bank + SWIFT) + link to /donate/. No ‘Online transfer’ button, no card logos."
+
+donate:
+  page_title:
+    ka: "შემოგვიერთდი"
+    en: "Join us"
+    src: old
+  headline:
+    ka: "ერთად განვახორციელოთ მომავლის პროექტები."
+    en: "Together, let’s bring the projects of the future to life."
+    src: old
+  intro:
+    ka: "თუ გსურთ შემოგვიერთდეთ ფონდის მიერ მხარდაჭერილი პროექტების განხორციელებაში, იხილეთ ქვემოთ მოცემული რეკვიზიტები."
+    en: "If you would like to join us in carrying out the projects the foundation supports, please see the bank details below."
+    src: old
+    note: "The old Donate intro also said „მიჰყევით ონლაინ გადარიცხვის ფორმას ან“ (use the online form or). That clause is dropped; what remains is the owner’s own shared sentence, unchanged (CONTENT_CHANGES §4.8)."
+  method:
+    ka: "შემოწირულობის გაკეთება შესაძლებელია საბანკო გადარიცხვით."
+    en: "Donations are made by bank transfer."
+    src: new
+  section_heading:
+    ka: "საბანკო რეკვიზიტები"
+    en: "Bank details"
+    src: new
+  steps_heading:
+    ka: "როგორ გადავრიცხოთ თანხა"
+    en: "How to make a transfer"
+    src: new
+  steps:
+    - ka: "აირჩიეთ ვალუტა."
+      en: "Choose a currency."
+    - ka: "გადაიტანეთ რეკვიზიტები თქვენი ბანკის აპლიკაციაში ან მიუთითეთ ისინი ბანკის ფილიალში."
+      en: "Copy the details into your banking app, or give them at a bank branch."
+    - ka: "გადახდის დანიშნულებაში მიუთითეთ „შემოწირულობა“."
+      en: "Enter “Donation” as the purpose of payment."
+  steps_src: new
+  currency:
+    ka: "ვალუტა"
+    en: "Currency"
+    src: new
+  currencies:
+    GEL:
+      tab:
+        ka: "ლარი (GEL)"
+        en: "Georgian lari (GEL)"
+      heading:
+        ka: "გადარიცხვა ლარში"
+        en: "Transfers in Georgian lari (GEL)"
+    USD:
+      tab:
+        ka: "აშშ დოლარი (USD)"
+        en: "US dollar (USD)"
+      heading:
+        ka: "გადარიცხვა აშშ დოლარში"
+        en: "Transfers in US dollars (USD)"
+    EUR:
+      tab:
+        ka: "ევრო (EUR)"
+        en: "Euro (EUR)"
+      heading:
+        ka: "გადარიცხვა ევროში"
+        en: "Transfers in euros (EUR)"
+  currencies_src: new
+  same_account_note:
+    ka: "ერთი და იგივე ანგარიშის ნომერი (IBAN) გამოიყენება ლარის, აშშ დოლარისა და ევროს გადარიცხვებისთვის."
+    en: "The same account number (IBAN) receives transfers in lari, US dollars and euros."
+    src: new
+  fields:
+    beneficiary:
+      ka: "მიმღების დასახელება"
+      en: "Beneficiary"
+      src: old
+      note: "Georgian label as printed in the bank PDF. Value: Georgian legal name on ka pages / GEL; NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI for USD and EUR."
+    iban:
+      ka: "ანგარიშის ნომერი (IBAN)"
+      en: "Account number (IBAN)"
+      src: new
+    beneficiary_bank:
+      ka: "მიმღები ბანკი"
+      en: "Beneficiary’s bank"
+      src: old
+      note: "The bank PDF’s English pages call this ‘Account With Institution’; it can be shown as a hint: en „Account with institution“."
+    swift:
+      ka: "ბანკის კოდი (SWIFT)"
+      en: "SWIFT / BIC"
+      src: new
+    bank_address:
+      ka: "ბანკის მისამართი"
+      en: "Bank address"
+      src: new
+    intermediary_bank:
+      ka: "შუამავალი ბანკი"
+      en: "Intermediary bank"
+      src: new
+    intermediary_swift:
+      ka: "შუამავალი ბანკის SWIFT კოდი"
+      en: "Intermediary bank SWIFT"
+      src: new
+    purpose:
+      ka: "გადახდის დანიშნულება"
+      en: "Purpose of payment"
+      src: new
+    account_type:
+      ka: "ანგარიშის ტიპი"
+      en: "Account type"
+      src: new
+  purpose_value:
+    ka: "შემოწირულობა"
+    en: "Donation"
+    src: new
+    note: "Owner decision. Copyable value."
+  account_type_value:
+    ka: "სტანდარტული მიმდინარე ანგარიში"
+    en: "Standard current account"
+    src: old
+  intermediary_disclosure:
+    ka: "შუამავალი ბანკი (საერთაშორისო გადარიცხვისთვის)"
+    en: "Intermediary bank (for international transfers)"
+    src: new
+  intermediary_hint:
+    ka: "საზღვარგარეთიდან გადარიცხვისას თქვენმა ბანკმა შეიძლება მოგთხოვოთ შუამავალი ბანკის მონაცემები — ისინი მითითებულია აშშ დოლარისა და ევროს რეკვიზიტებში."
+    en: "When you transfer from abroad, your bank may ask for an intermediary bank — it is listed in the US dollar and euro details."
+    src: new
+  gel_no_intermediary:
+    ka: "ლარში გადარიცხვისთვის შუამავალი ბანკი საჭირო არ არის."
+    en: "No intermediary bank is needed for transfers in lari."
+    src: new
+  pdf_label:
+    ka: "რეკვიზიტები PDF ფორმატში (საქართველოს ბანკი)"
+    en: "Bank details as a PDF (issued by Bank of Georgia)"
+    src: new
+  pdf_meta:
+    ka: "PDF, {size} · ქართულად და ინგლისურად"
+    en: "PDF, {size} · in Georgian and English"
+    src: new
+    note: "Page 1 of the PDF (GEL) is Georgian, pages 2–3 (USD, EUR) are English. {size} e.g. „1.4 MB“."
+  questions:
+    ka: "კითხვების შემთხვევაში მოგვწერეთ: {email}"
+    en: "If you have any questions, write to us at {email}."
+    src: new
+  thanks:
+    ka: "გმადლობთ მხარდაჭერისთვის!"
+    en: "Thank you for your support!"
+    src: new
+
+copy:
+  button:
+    ka: "კოპირება"
+    en: "Copy"
+    src: new
+  button_aria:
+    ka: "{label} — კოპირება"
+    en: "Copy {label}"
+    src: new
+  copied:
+    ka: "დაკოპირდა"
+    en: "Copied"
+    src: new
+    note: "Short visible feedback on the button, ~2 s."
+  copied_live:
+    ka: "{label} დაკოპირდა"
+    en: "{label} copied to the clipboard"
+    src: new
+    note: "Text for an aria-live=\"polite\" region."
+  failed:
+    ka: "კოპირება ვერ მოხერხდა. მონიშნეთ ტექსტი და დააკოპირეთ ხელით."
+    en: "Couldn’t copy. Please select the text and copy it yourself."
+    src: new
+  copy_all:
+    ka: "ყველა რეკვიზიტის კოპირება"
+    en: "Copy all details"
+    src: new
+  copied_all:
+    ka: "რეკვიზიტები დაკოპირდა"
+    en: "All details copied"
+    src: new
+
+facebook:
+  section_label:
+    ka: "Facebook-ის პოსტები"
+    en: "Facebook posts"
+    src: new
+  heading:
+    ka: "უახლესი პოსტები Facebook-ზე"
+    en: "Latest from Facebook"
+    src: new
+  intro:
+    ka: "ახალი ამბები ფონდის Facebook-გვერდიდან."
+    en: "Recent updates from the foundation’s Facebook page."
+    src: new
+  posted:
+    ka: "გამოქვეყნდა"
+    en: "Posted"
+    src: new
+    note: "Followed by the formatted date."
+  view_post:
+    ka: "Facebook-ზე ნახვა"
+    en: "View on Facebook"
+    src: new
+  view_post_aria:
+    ka: "პოსტის ნახვა Facebook-ზე ({date})"
+    en: "View the post on Facebook ({date})"
+    src: new
+  read_full:
+    ka: "სრულად წაკითხვა Facebook-ზე"
+    en: "Read the full post on Facebook"
+    src: new
+  see_all:
+    ka: "ყველა პოსტი Facebook-ზე"
+    en: "All posts on Facebook"
+    src: new
+  video_badge:
+    ka: "ვიდეო"
+    en: "Video"
+    src: new
+  photos_count:
+    ka: "{n} ფოტო"
+    en_one: "1 photo"
+    en: "{n} photos"
+    src: new
+    note: "Georgian uses the singular noun after numbers for every count."
+  image_alt_fallback:
+    ka: "ფოტო ფონდის Facebook-პოსტიდან"
+    en: "Photo from the foundation’s Facebook post"
+    src: new
+  original_language_note:
+    ka: "პოსტები ნაჩვენებია იმ ენაზე, რომელზეც გამოქვეყნდა."
+    en: "Posts are shown in the language in which they were published."
+    src: new
+    note: "Show on /en/ (posts are usually in Georgian; mark the post text lang=\"ka\")."
+  follow_card:
+    heading:
+      ka: "გამოგვყევით"
+      en: "Follow us"
+    text:
+      ka: "ფონდის სიახლეებსა და ღონისძიებებს თვალი ადევნეთ Facebook-სა და Instagram-ზე."
+      en: "Follow the foundation’s news and events on Facebook and Instagram."
+    facebook_aria:
+      ka: "ნიკო კვარაცხელიას ფონდი Facebook-ზე"
+      en: "Niko Kvaratskhelia Foundation on Facebook"
+    instagram_aria:
+      ka: "ნიკო კვარაცხელიას ფონდი Instagram-ზე"
+      en: "Niko Kvaratskhelia Foundation on Instagram"
+    src: new
+    note: "Shown instead of the posts when no post is visible. Never show sample posts in production. Brand names Facebook / Instagram are not translated."
+
+social:
+  facebook:
+    label: "Facebook"
+    url: "https://www.facebook.com/profile.php?id=100089583201087"
+  instagram:
+    label: "Instagram"
+    handle: "@nicokfund"
+    url: "https://www.instagram.com/nicokfund/"
+  email: "hello@nkfund.world"
+  note: "Owner decision (project brief). No phone, address or legal ID was provided: leave them out."
+
+footer:
+  copyright:
+    ka: "© 2022–{year} ნიკო კვარაცხელიას ფონდი"
+    en: "© 2022–{year} Niko Kvaratskhelia Foundation"
+    src: old
+    note: "Owner default: year range; {year} = current year at build time."
+  slogan:
+    ka: "მომავალი თაობისთვის"
+    en: "For the next generation"
+    src: old
+  menu_heading:
+    ka: "მენიუ"
+    en: "Menu"
+    src: new
+  contact_heading:
+    ka: "კონტაქტი"
+    en: "Contact"
+    src: new
+  email_label:
+    ka: "ელ. ფოსტა"
+    en: "Email"
+    src: new
+  follow_heading:
+    ka: "გამოგვყევით"
+    en: "Follow us"
+    src: new
+  privacy_link:
+    ka: "კონფიდენციალურობა"
+    en: "Privacy"
+    src: new
+  bank_details_link:
+    ka: "საბანკო რეკვიზიტები"
+    en: "Bank details"
+    src: new
+
+contact:
+  title:
+    ka: "კონტაქტი"
+    en: "Contact"
+    src: new
+  heading:
+    ka: "დაგვიკავშირდით"
+    en: "Get in touch"
+    src: new
+  intro:
+    ka: "კითხვების, თანამშრომლობისა თუ მხარდაჭერის შესახებ მოგვწერეთ ელ. ფოსტაზე ან სოციალურ ქსელებში."
+    en: "For questions, partnerships or support, write to us by email or on social media."
+    src: new
+  write_to_us:
+    ka: "მოგვწერეთ"
+    en: "Write to us"
+    src: new
+  email_label:
+    ka: "ელ. ფოსტა"
+    en: "Email"
+    src: new
+  support_note:
+    ka: "ფონდის მხარდასაჭერად იხილეთ საბანკო რეკვიზიტები."
+    en: "To support the foundation, see our bank details."
+    src: new
+
+privacy:
+  status: "DRAFT - written for the rebuild, not yet approved by the foundation. Show the draft banner until the owner approves it."
+  title:
+    ka: "კონფიდენციალურობის პოლიტიკა"
+    en: "Privacy notice"
+    src: new
+  draft_banner:
+    ka: "სამუშაო ვერსია — ტექსტი ფონდის მიერ ჯერ არ არის დამტკიცებული."
+    en: "Draft — this text has not yet been approved by the foundation."
+    src: new
+  intro:
+    ka: "ეს ვებგვერდი ისეა შექმნილი, რომ თქვენს შესახებ რაც შეიძლება ნაკლები ინფორმაცია დამუშავდეს."
+    en: "This website is designed to process as little information about you as possible."
+    src: new
+  sections:
+    - key: "who"
+      heading:
+        ka: "ვინ ვართ"
+        en: "Who we are"
+      text:
+        ka: "ამ საიტს მართავს ააიპ ნიკო კვარაცხელიას სახელობის ფონდი."
+        en: "This website is run by the Niko Kvaratskhelia Foundation (NNLE Niko Kvaratskhelias Sakhelobis Phondi)."
+    - key: "cookies"
+      heading:
+        ka: "ქუქი-ფაილები და თვალთვალი"
+        en: "Cookies and tracking"
+      text:
+        ka: "საიტი არ იყენებს ქუქი-ფაილებს (cookies), ვიზიტების ანალიტიკას, სარეკლამო ან თვალთვალის ხელსაწყოებს და არ ტვირთავს მესამე მხარის სკრიპტებს. შრიფტები, ფოტოები და ვიდეოები განთავსებულია თავად საიტზე. მთავარ გვერდზე ნაჩვენები Facebook-ის პოსტები ამ საიტზეა გადმოტანილი, ამიტომ მათი ნახვისას Facebook-იდან არაფერი იტვირთება."
+        en: "The site does not use cookies, visitor analytics, advertising or tracking tools, and it loads no third-party scripts. Fonts, photos and videos are served from the site itself. The Facebook posts shown on the home page are copied to this site, so viewing them loads nothing from Facebook."
+      note: "The last sentence is true only if imported post images are stored on the site (not hot-linked from Facebook). Remove it otherwise."
+    - key: "data"
+      heading:
+        ka: "რა მონაცემებს ვაგროვებთ"
+        en: "What we collect"
+      text:
+        ka: "საიტზე არ არის ფორმები, მომხმარებლის ანგარიშები ან საინფორმაციო ბიულეტენი, ამიტომ საიტის მეშვეობით პერსონალურ მონაცემებს არ ვაგროვებთ."
+        en: "The site has no forms, user accounts or newsletter, so we do not collect personal data through it."
+    - key: "hosting"
+      heading:
+        ka: "ჰოსტინგი"
+        en: "Hosting"
+      text:
+        ka: "საიტს მასპინძლობს GitHub Pages (GitHub, Inc.). ნებისმიერი ვებსერვერის მსგავსად, GitHub-ი უსაფრთხოების მიზნით ამუშავებს ტექნიკურ მონაცემებს, მაგალითად, თქვენს IP მისამართს. დაწვრილებით იხილეთ GitHub-ის კონფიდენციალურობის განცხადება."
+        en: "The site is hosted on GitHub Pages (GitHub, Inc.). Like any web server, GitHub processes technical data, such as your IP address, for security purposes. For details, see GitHub’s privacy statement."
+      link:
+        ka: "GitHub-ის კონფიდენციალურობის განცხადება"
+        en: "GitHub’s privacy statement"
+        url: "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+      optional_cloudflare:
+        ka: "საიტზე შემოსული მოთხოვნები Cloudflare-ის ქსელშიც გადის, რომელიც ასევე ამუშავებს ტექნიკურ მონაცემებს უსაფრთხოებისა და საიტის მიწოდების მიზნით."
+        en: "Requests to the site also pass through Cloudflare’s network, which likewise processes technical data for security and delivery."
+        note: "Add only if the domain is proxied through Cloudflare (orange cloud). DNS-only does not need it."
+    - key: "donations"
+      heading:
+        ka: "შემოწირულობები"
+        en: "Donations"
+      text:
+        ka: "შემოწირულობა შესაძლებელია მხოლოდ საბანკო გადარიცხვით. გადახდის მონაცემებს ამუშავებენ თქვენი და ფონდის ბანკები; ფონდი ხედავს მხოლოდ იმას, რაც მის საბანკო ამონაწერში აისახება (მაგალითად, გამგზავნის სახელს, თანხასა და გადახდის დანიშნულებას). ამ ინფორმაციას ვიყენებთ მხოლოდ შემოწირულობის აღრიცხვისა და კანონით დადგენილი ვალდებულებების შესასრულებლად."
+        en: "Donations are made by bank transfer only. Your bank and the foundation’s bank process the payment details; the foundation sees only what appears on its bank statement (such as the sender’s name, the amount and the purpose of payment). We use this information only to record the donation and to meet our legal obligations."
+      note: "Owner to confirm the last sentence describes what the foundation actually does."
+    - key: "email"
+      heading:
+        ka: "ელ. ფოსტა"
+        en: "Email"
+      text:
+        ka: "თუ მოგვწერთ მისამართზე {email}, თქვენს წერილსა და ელ. ფოსტის მისამართს გამოვიყენებთ მხოლოდ პასუხის გასაცემად."
+        en: "If you write to us at {email}, we use your message and email address only to reply to you."
+    - key: "social"
+      heading:
+        ka: "სოციალური ქსელები"
+        en: "Social media"
+      text:
+        ka: "Facebook-ისა და Instagram-ის ბმულები გადაგიყვანთ ამ სერვისებზე, რომლებსაც საკუთარი კონფიდენციალურობის წესები აქვთ."
+        en: "Links to Facebook and Instagram take you to those services, which have their own privacy policies."
+    - key: "rights"
+      heading:
+        ka: "თქვენი უფლებები"
+        en: "Your rights"
+      text:
+        ka: "შეგიძლიათ გვკითხოთ, რა ინფორმაციას ვინახავთ თქვენს შესახებ, და მოითხოვოთ მისი გასწორება ან წაშლა. მოგვწერეთ: {email}."
+        en: "You can ask us what information we hold about you and ask us to correct or delete it. Write to us at {email}."
+    - key: "changes"
+      heading:
+        ka: "ცვლილებები"
+        en: "Changes"
+      text:
+        ka: "ამ ტექსტს განვაახლებთ, თუ საიტის მუშაობაში რაიმე შეიცვლება."
+        en: "We will update this notice if anything about how the site works changes."
+  updated:
+    ka: "ბოლო განახლება: {date}"
+    en: "Last updated: {date}"
+    src: new
+  missing_for_final_version: "Registration (identification) code of the foundation - not provided; add it to section ‘who’ when available."
+
+not_found:
+  note: "GitHub Pages serves one /404.html for both languages, so show both blocks (Georgian first, then English with lang=\"en\")."
+  doc_title: "გვერდი ვერ მოიძებნა · Page not found | nkfund."
+  code: "404"
+  title:
+    ka: "გვერდი ვერ მოიძებნა"
+    en: "Page not found"
+    src: new
+  text:
+    ka: "შესაძლოა, გვერდი წაიშალა ან მისი მისამართი შეიცვალა."
+    en: "The page may have been removed, or its address may have changed."
+    src: new
+  home:
+    ka: "მთავარ გვერდზე დაბრუნება"
+    en: "Go to the home page"
+    src: new
+  projects:
+    ka: "პროექტები"
+    en: "Projects"
+    src: old
+  news:
+    ka: "სიახლეები"
+    en: "News"
+    src: old
+
+seo:
+  title_suffix: " | nkfund."
+  og_locale:
+    ka: "ka_GE"
+    en: "en_GB"
+  home_title:
+    ka: "ნიკო კვარაცხელიას ფონდი | nkfund."
+    en: "Niko Kvaratskhelia Foundation | nkfund."
+    src: new
+  descriptions_src: new
+  descriptions_item_fallback: "items use their own summary"
+  descriptions:
+    home:
+      ka: "ნიკო კვარაცხელიას ფონდი 2022 წელს ნიკოს ოჯახის წევრებმა და მეგობრებმა დააარსეს. ფონდი მხარს უჭერს ახალგაზრდების ინოვაციურ პროექტებსა და საგანმანათლებლო ინიციატივებს."
+      en: "Founded in 2022 by Niko’s family and friends, the Niko Kvaratskhelia Foundation supports innovative projects and education initiatives for young people in Georgia."
+    about:
+      ka: "ვინ დააარსა ნიკო კვარაცხელიას ფონდი, რას ემსახურება ის და როგორ იღებს გადაწყვეტილებებს."
+      en: "Who founded the Niko Kvaratskhelia Foundation, what it stands for and how it makes decisions."
+    projects:
+      ka: "ნიკო კვარაცხელიას ფონდის მიერ დაფინანსებული პროექტები ახალგაზრდებისთვის."
+      en: "Projects for young people funded by the Niko Kvaratskhelia Foundation."
+    news:
+      ka: "ნიკო კვარაცხელიას ფონდის სიახლეები და ინიციატივები."
+      en: "News and initiatives from the Niko Kvaratskhelia Foundation."
+    donate:
+      ka: "ნიკო კვარაცხელიას ფონდის საბანკო რეკვიზიტები ლარში, აშშ დოლარსა და ევროში გადარიცხვისთვის."
+      en: "Bank details for supporting the Niko Kvaratskhelia Foundation by transfer in Georgian lari, US dollars or euros."
+    contact:
+      ka: "დაგვიკავშირდით ელ. ფოსტით, Facebook-ზე ან Instagram-ზე."
+      en: "Get in touch by email, on Facebook or on Instagram."
+    privacy:
+      ka: "როგორ ეკიდება ეს საიტი თქვენს მონაცემებს: ქუქი-ფაილების, ანალიტიკისა და თვალთვალის გარეშე."
+      en: "How this website treats your data: no cookies, no analytics, no tracking."
+
+dates:
+  note: "Format with Intl.DateTimeFormat (Node has full ICU): ka-GE {day:'numeric',month:'long',year:'numeric'} -> „26 თებერვალი, 2023“; en-GB the same options -> „26 February 2023“. Month only: {month:'long',year:'numeric'} -> „სექტემბერი, 2022“ / „September 2022“. The lists below are a fallback."
+  months:
+    ka: ["იანვარი", "თებერვალი", "მარტი", "აპრილი", "მაისი", "ივნისი", "ივლისი", "აგვისტო", "სექტემბერი", "ოქტომბერი", "ნოემბერი", "დეკემბერი"]
+    en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  months_short:
+    ka: ["იან.", "თებ.", "მარ.", "აპრ.", "მაი.", "ივნ.", "ივლ.", "აგვ.", "სექ.", "ოქტ.", "ნოე.", "დეკ."]
+    en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  pattern_full:
+    ka: "{d} {month}, {yyyy}"
+    en: "{d} {month} {yyyy}"
+  pattern_month:
+    ka: "{month}, {yyyy}"
+    en: "{month} {yyyy}"
+  examples:
+    ka: ["26 თებერვალი, 2023", "სექტემბერი, 2022"]
+    en: ["26 February 2023", "September 2022"]
+
+sdg:
+  status: "CANDIDATE - owner default says: show the SDG grid only with the official UN Georgian goal names, otherwise omit it. Two UN sources in Georgian disagree (see GLOSSARY.md), so the owner must confirm before the grid is published."
+  heading:
+    ka: "მდგრადი განვითარების მიზნები"
+    en: "Sustainable Development Goals"
+    src: new
+  source_ka: "https://georgia.un.org/ka/sdgs (United Nations in Georgia, read 2026-10-20). Goal 8 is printed there as „ეკომომიკური“ (typo); given here as „ეკონომიკური“."
+  source_ka_alternative: "https://www.unicef.org/georgia/ka/მდგრადი-განვითარების-მიზნები (UNICEF Georgia) - different wording for goals 1, 2, 3, 7, 13, 14, 16, 17."
+  source_en: "Official UN short titles (sdgs.un.org/goals)."
+  goals:
+    - n: 1
+      ka: "არა სიღარიბეს"
+      en: "No poverty"
+    - n: 2
+      ka: "არა შიმშილს"
+      en: "Zero hunger"
+    - n: 3
+      ka: "ჯანმრთელობა და კეთილდღეობა"
+      en: "Good health and well-being"
+    - n: 4
+      ka: "ხარისხიანი განათლება"
+      en: "Quality education"
+    - n: 5
+      ka: "გენდერული თანასწორობა"
+      en: "Gender equality"
+    - n: 6
+      ka: "სუფთა წყალი და სანიტარია"
+      en: "Clean water and sanitation"
+    - n: 7
+      ka: "ხელმისაწვდომი და უსაფრთხო ენერგია"
+      en: "Affordable and clean energy"
+    - n: 8
+      ka: "ღირსეული სამუშაო და ეკონომიკური ზრდა"
+      en: "Decent work and economic growth"
+    - n: 9
+      ka: "მრეწველობა, ინოვაცია და ინფრასტრუქტურა"
+      en: "Industry, innovation and infrastructure"
+    - n: 10
+      ka: "შემცირებული უთანასწორობა"
+      en: "Reduced inequalities"
+    - n: 11
+      ka: "მდგრადი ქალაქები და დასახლებები"
+      en: "Sustainable cities and communities"
+    - n: 12
+      ka: "მდგრადი მოხმარება და წარმოება"
+      en: "Responsible consumption and production"
+    - n: 13
+      ka: "კლიმატის ცვლილების შედეგების დაძლევა"
+      en: "Climate action"
+    - n: 14
+      ka: "წყალქვეშა რესურსები"
+      en: "Life below water"
+    - n: 15
+      ka: "დედამიწის ეკოსისტემები"
+      en: "Life on land"
+    - n: 16
+      ka: "მშვიდობა, სამართლიანობა, ძლიერი ინსტიტუციები"
+      en: "Peace, justice and strong institutions"
+    - n: 17
+      ka: "გლობალური თანამშრომლობა"
+      en: "Partnerships for the goals"
+
+cms:
+  note: "Field labels for .pages.yml (Pages CMS). Editors are Georgian-speaking; use `ka` as the label and `en` in the description, or both as ‘ka / en’."
+  collections:
+    projects:
+      ka: "პროექტები"
+      en: "Projects"
+    news:
+      ka: "სიახლეები"
+      en: "News"
+    facebook_posts:
+      ka: "Facebook-ის პოსტები"
+      en: "Facebook posts"
+  fields:
+    title_ka:
+      ka: "სათაური (ქართულად)"
+      en: "Title (Georgian)"
+    title_en:
+      ka: "სათაური (ინგლისურად)"
+      en: "Title (English)"
+    summary:
+      ka: "მოკლე აღწერა"
+      en: "Summary"
+    body:
+      ka: "ტექსტი"
+      en: "Body text"
+    georgian_version:
+      ka: "ქართული ვერსია"
+      en: "Georgian version"
+    english_version:
+      ka: "ინგლისური ვერსია"
+      en: "English version"
+    date:
+      ka: "გამოქვეყნების თარიღი"
+      en: "Publication date"
+    event_date:
+      ka: "ღონისძიების თარიღი"
+      en: "Event date"
+    cover:
+      ka: "მთავარი ფოტო"
+      en: "Cover image"
+    alt:
+      ka: "ფოტოს აღწერა (უსინათლო და მცირემხედველი მომხმარებლებისთვის)"
+      en: "Image description (for blind and low-vision visitors)"
+    gallery:
+      ka: "ფოტოგალერეა"
+      en: "Gallery"
+    category:
+      ka: "კატეგორია"
+      en: "Category"
+    quote:
+      ka: "ციტატა"
+      en: "Quote"
+    quote_author:
+      ka: "ციტატის ავტორი"
+      en: "Quote author"
+    slug:
+      ka: "ბმულის ბოლო ნაწილი (ლათინური ასოებით, მაგ. jgali-school-it-lab)"
+      en: "Web address ending (Latin letters, e.g. jgali-school-it-lab)"
+    hidden:
+      ka: "საიტზე დამალვა"
+      en: "Hide on the website"
+    show_on_website:
+      ka: "საიტზე ჩვენება"
+      en: "Show on the website"
+    show_on_website_hint:
+      ka: "მოხსენით მონიშვნა, თუ ეს პოსტი საიტზე არ უნდა გამოჩნდეს."
+      en: "Untick to keep this post off the website."
+    facebook_link:
+      ka: "ბმული Facebook-ის პოსტზე"
+      en: "Link to the Facebook post"
+    post_text:
+      ka: "პოსტის ტექსტი"
+      en: "Post text"
+    imported_at:
+      ka: "იმპორტის თარიღი"
+      en: "Imported on"
+    image:
+      ka: "ფოტო"
+      en: "Image"
+    video:
+      ka: "ვიდეო"
+      en: "Video"
+    order:
+      ka: "რიგითობა"
+      en: "Order"
+  src: new
+
+misc:
+  draft:
+    ka: "სამუშაო ვერსია"
+    en: "Draft"
+    src: new
+    note: "Do not use „პროექტი“ for ‘draft’ on this site: it would read as ‘project’."
+  file_size_unit:
+    ka: "MB"
+    en: "MB"

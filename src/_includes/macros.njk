@@ -1,0 +1,278 @@
+{#- Shared template macros. Import with: {% import "macros.njk" as m with context %} -#}
+
+{#- Localised plain text with the "(in Georgian)" note when English is missing.
+    hyph=true: long Georgian words (headings) may break at a syllable, but only when wider than the line. -#}
+{% macro text(obj, field, lang, tag="span", class="", hyph=false, id="") -%}
+{%- set fb = obj | isFallback(field, lang) -%}
+{%- set value = obj | loc(field, lang) -%}
+{#- A heading with soft hyphens is read from a clean copy (some screen-reader voices read the syllables of
+    „ზოგად­სა­გან­…“ separately): the hyphenated text is aria-hidden, the clean copy visually hidden and left out of
+    text selection. Links get a clean aria-label from cleanLabel() instead. -#}
+{%- set clean = hyph and not fb and (tag in ["h1", "h2", "h3", "h4"]) and (value | hasShy) -%}
+<{{ tag }}{% if class %} class="{{ class }}"{% endif %}{% if id %} id="{{ id }}"{% endif %}{% if fb %} lang="ka"{% endif %}>{% if clean %}<span aria-hidden="true">{{ value | shyHtml | safe }}</span><span class="visually-hidden sr-copy">{{ value }}</span>{% elif hyph %}{{ value | shyHtml | safe }}{% else %}{{ value }}{% endif %}{% if fb %} <span class="fallback-note" lang="{{ lang }}">{{ ui.labels.in_georgian | t(lang) }}</span>{% endif %}</{{ tag }}>
+{%- endmacro %}
+
+{#- Localised Markdown block. -#}
+{% macro prose(obj, field, lang, class="prose") -%}
+{%- set fb = obj | isFallback(field, lang) -%}
+{%- set value = obj | loc(field, lang) -%}
+{%- if value %}
+{%- if fb %}<p class="fallback-note fallback-note--block">{{ ui.labels.in_georgian | t(lang) }}</p>{% endif %}
+<div class="{{ class }}"{% if fb %} lang="ka"{% endif %}>
+{{ value | md | safe }}
+</div>
+{%- endif %}
+{%- endmacro %}
+
+{#- Small label: blue star + text + hairline. Never uppercase (Mkhedruli has no case).
+    hidden=true hides it from screen readers when the heading right below says the same thing. -#}
+{% macro eyebrow(label, tag="p", id="", class="", hidden=false) -%}
+<{{ tag }} class="eyebrow{% if class %} {{ class }}{% endif %}"{% if id %} id="{{ id }}"{% endif %}{% if hidden %} aria-hidden="true"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><span>{{ label }}</span></{{ tag }}>
+{%- endmacro %}
+
+{#- Date of an item: event date when known, else publication date. -#}
+{% macro itemTime(item, lang) -%}
+{%- if item.event_date %}<time datetime="{{ item.event_date | isoDate }}">{{ item.event_date | formatEventDate(lang) }}</time>
+{%- else %}<time datetime="{{ item.date | isoDate }}">{{ item.date | formatDate(lang) }}</time>{% endif %}
+{%- endmacro %}
+
+{#- "<date> · <category>" line used on cards. -#}
+{% macro meta(item, lang, chip=false) -%}
+<p class="meta">
+  {%- if chip and item.category and ui.categories[item.category] %}<span class="chip">{{ ui.categories[item.category] | t(lang) }}</span>{% endif %}
+  {{- itemTime(item, lang) }}
+  {%- if not chip and item.category and ui.categories[item.category] %} <span class="meta__more">{{ ui.categories[item.category] | t(lang) }}</span>{% endif %}
+</p>
+{%- endmacro %}
+
+{% macro itemUrl(item, lang) -%}
+{{ (("projects/" if item.type == "project" else "news/") ~ item.slug ~ "/") | langUrl(lang) }}
+{%- endmacro %}
+
+{#- ` aria-label="…"` with the clean title for a link whose visible title carries soft hyphens (shyHtml), so the
+    accessible name never contains U+00AD. Nothing for titles without long words or shown in the fallback language. -#}
+{% macro cleanLabel(item, lang, prefix="") -%}
+{%- set title = item | loc("title", lang) -%}
+{%- if (title | hasShy) and not (item | isFallback("title", lang)) %} aria-label="{{ prefix }}{{ title }}"{% endif -%}
+{%- endmacro %}
+
+{#- Responsive image (processed at build time by eleventy-img into AVIF/WebP/JPEG). -#}
+{% macro img(src, alt, sizes, widths="480,800,1200", eager=false, class="") -%}
+<img src="{{ src }}" alt="{{ alt }}" sizes="{{ sizes }}" eleventy:widths="{{ widths }}"{% if class %} class="{{ class }}"{% endif %}{% if eager %} loading="eager" fetchpriority="high"{% endif %}>
+{%- endmacro %}
+
+{#- class + style of a cropped cover frame, from the item's "cover_crop" setting (content files / Pages CMS):
+    center (default) | top | bottom | left | right | none (whole image, for graphics with text: the empty bands
+    continue the picture's own edge colours, see wholeBg). box = the frame's aspect ratio (width / height). -#}
+{% macro mediaAttrs(item, class="", style="", box=4/3) -%}
+{%- set crop = item.cover_crop or "center" -%}
+{%- set positions = { "top": "50% 0%", "bottom": "50% 100%", "left": "0% 50%", "right": "100% 50%" } -%}
+{%- set css = [] -%}
+{%- if crop == "none" %}{% set _n = css.push("--media-bg: " ~ wholeBg(item.cover, box)) %}
+{%- elif positions[crop] %}{% set _n = css.push("--crop: " ~ positions[crop]) %}{% endif -%}
+{%- if style %}{% set _n = css.push(style) %}{% endif -%}
+class="media{% if class %} {{ class }}{% endif %}{% if crop == 'none' %} media--whole{% endif %}"{% if css.length %} style="{{ css | join('; ') }}"{% endif %}
+{%- endmacro %}
+
+{#- Background behind a "whole image" (object-fit: contain) in a frame of aspect ratio `box`: a picture wider than the
+    frame leaves bands above and below (its top/bottom rows are continued), a narrower one bands at the sides. -#}
+{% macro wholeBg(src, box=4/3) -%}
+{%- set im = imageMeta[src] -%}
+{%- if im and im.bandsH %}{{ (im.bandsH if (im.width / im.height) >= box else im.bandsV) }}{% else %}#1a1816{% endif -%}
+{%- endmacro %}
+
+{#- Card for a project or news item (home strip, donate page). The title link covers the whole card. -#}
+{% macro card(item, lang, headingLevel=3, sizes="(min-width: 760px) 30vw, 100vw", class="pcard", summary=false, widths="480,800,1200") -%}
+<article class="{{ class }} card">
+  {%- if item.cover %}
+  {%- set boxRatio = 4 / 3 if class == "mini" else 1.6 %}
+  <div {{ mediaAttrs(item, "", "", boxRatio) }}>{{ img(item.cover, item | loc("cover_alt", lang), sizes | scaleSizes(imageMeta[item.cover], boxRatio, item.cover_crop), widths) }}</div>
+  {%- endif %}
+  <div class="card__body">
+    {{ meta(item, lang) }}
+    <h{{ headingLevel }} class="{{ class }}__title"><a class="card__link" href="{{ itemUrl(item, lang) }}"{{ cleanLabel(item, lang) }}>{{ text(item, "title", lang, hyph=true) }}</a></h{{ headingLevel }}>
+    {%- if summary and item | loc("summary", lang) %}
+    {{ text(item, "summary", lang, "p", class ~ "__excerpt") }}
+    {%- endif %}
+  </div>
+</article>
+{%- endmacro %}
+
+{#- One imported Facebook post (only posts with show: true reach the templates). -#}
+{% macro fbPost(post, lang, headingLevel=3) -%}
+{%- set postLang = post.message | guessLang -%}
+{%- set alt = (post | loc("image_alt", lang)) or ((ui.facebook.image_alt | t(lang)) ~ ", " ~ (post.date | formatDate(lang))) -%}
+<article class="post card">
+  <div class="post__head">
+    <span class="post__avatar" aria-hidden="true"><svg><use href="#mark"/></svg></span>
+    <span class="post__who"><b>{{ site.brand }}</b><time datetime="{{ post.date | isoDate }}">{{ post.date | formatDate(lang) }}</time></span>
+  </div>
+  <h{{ headingLevel }} class="visually-hidden">{{ ui.facebook.from_facebook | t(lang) }}, {{ post.date | formatDate(lang) }}</h{{ headingLevel }}>
+  {%- if post.images.length %}
+  <div class="media">{{ img(post.images[0], alt, "(min-width: 1200px) 300px, (min-width: 760px) 45vw, 80vw", "480,800") }}</div>
+  {%- endif %}
+  {%- if post.message %}
+  <div class="post__text"{% if postLang %} lang="{{ postLang }}"{% endif %}>{{ post.message | fbText | safe }}</div>
+  {%- endif %}
+  <p class="post__foot"><a class="card__link" href="{{ post.link }}" rel="noopener">{{ ui.facebook.view | t(lang) }} <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></p>
+</article>
+{%- endmacro %}
+
+{#- Blue "Follow us" card: the fourth tile next to imported posts, or the full-width empty state. -#}
+{% macro followCard(lang, wide=false, headingLevel=3, headingId="") -%}
+<div class="follow{% if wide %} follow--wide{% endif %}">
+  <svg class="follow__mark" aria-hidden="true"><use href="#mark"/></svg>
+  <div class="follow__text">
+    <h{{ headingLevel }} class="follow__title"{% if headingId %} id="{{ headingId }}"{% endif %}>{{ ui.facebook.follow_heading | t(lang) }}</h{{ headingLevel }}>
+    <p>{{ ui.facebook.follow_text | t(lang) }}</p>
+  </div>
+  <div class="follow__links">
+    <a class="btn btn--light" href="{{ site.social.facebook }}" rel="noopener"><span class="btn__in"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-facebook"/></svg>Facebook<span class="visually-hidden"> — {{ ui.facebook.page_suffix | t(lang) }}</span></span><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+    <a class="btn btn--ghost-light" href="{{ site.social.instagram }}" rel="noopener"><span class="btn__in"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram<span class="visually-hidden"> — {{ ui.facebook.page_suffix | t(lang) }}</span></span><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+  </div>
+</div>
+{%- endmacro %}
+
+{#- Facebook block: up to `limit` visible posts + the follow tile, or the follow card alone. -#}
+{% macro facebookBlock(posts, lang, limit=3, emptyHeadingId="") -%}
+{%- if posts.length %}
+<div class="fb__track">
+  {%- for post in posts | limit(limit) %}
+  {{ fbPost(post, lang) }}
+  {%- endfor %}
+  {{ followCard(lang) }}
+</div>
+{%- if lang != "ka" %}<p class="meta fb__note">{{ ui.facebook.original_language | t(lang) }}</p>{% endif %}
+{%- else %}
+{{ followCard(lang, true, 2, emptyHeadingId) }}
+{%- endif %}
+{%- endmacro %}
+
+{#- Beneficiary quote (content/pages/join.yml → testimonial). Not shown on the page the quote comes from
+    (currentRoute = that page's route), where it is already part of the text. -#}
+{% macro testimonial(tm, lang, class="", currentRoute="") -%}
+{%- if tm and (tm | loc("quote", lang)) and not (currentRoute and tm.link and (tm.link | replace("/", "")) == (currentRoute | replace("/", ""))) %}
+<figure class="testimonial{% if class %} {{ class }}{% endif %}">
+  {%- if tm.image %}
+  <div class="testimonial__media">{{ img(tm.image, tm | loc("image_alt", lang), "160px", "160,320,480") }}</div>
+  {%- endif %}
+  <blockquote{% if tm | isFallback("quote", lang) %} lang="ka"{% endif %}><p>{{ "„" if lang == "ka" else "“" }}{{ tm | loc("quote", lang) }}{{ "“" if lang == "ka" else "”" }}</p></blockquote>
+  <figcaption><a href="{{ tm.link | langUrl(lang) }}">{{ tm | loc("name", lang) }}</a> · {{ tm | loc("role", lang) }}</figcaption>
+</figure>
+{%- endif %}
+{%- endmacro %}
+
+{#- ---------- Bank details ---------- -#}
+
+{#- One label/value row. The label is shown in the page language with the other language next to (or below) it,
+    so donors and bank clerks can match the fields of any bank form. The copy button sits inside the <dd>
+    (a <dl> group may only hold <dt>/<dd>). labelKey overrides the ui.donate key of the label. -#}
+{% macro bankRow(key, lang, value, display="", copy=false, valueLang="", extraClass="", labelKey="") -%}
+{%- set other = "en" if lang == "ka" else "ka" -%}
+{%- set lk = labelKey or key -%}
+{%- set label = ui.donate[lk] | t(lang) -%}
+<div class="bank__row{% if extraClass %} {{ extraClass }}{% endif %}">
+  <dt><span class="bank__label">{{ label }}</span> <span class="bank__alt" lang="{{ other }}">{{ ui.donate[lk] | t(other) }}</span></dt>
+  <dd><span class="bank__value"{% if valueLang and valueLang != lang %} lang="{{ valueLang }}"{% endif %} data-copy-source>{{ display or value }}</span>
+  {%- if copy %}{{ copyButton(value, label, lang) }}{% endif -%}
+  </dd>
+</div>
+{%- endmacro %}
+
+{#- Copy button of a bank row. Rendered visible (no layout shift when main.js loads); CSS hides it while <html> has
+    the no-js class, because only main.js can copy. Its accessible name is the visible word plus the field name
+    („კოპირება: მიმღების დასახელება“ / "Copy: Beneficiary"), so it starts with what voice-control users see and
+    follows the visible text when it changes to „დაკოპირდა“. In narrow cards the visible word is hidden (icon only). -#}
+{% macro copyButton(value, label, lang) -%}
+<button class="copy" type="button" data-copy="{{ value }}" data-copy-label="{{ label }}"><svg class="icon i-copy" aria-hidden="true"><use href="#i-copy"/></svg><svg class="icon i-check" aria-hidden="true"><use href="#i-check"/></svg><span class="copy__text" data-copy-text>{{ ui.donate.copy | t(lang) }}</span><span class="visually-hidden">: {{ label }}</span></button>
+{%- endmacro %}
+
+{#- The IBAN in 4-character groups that never break inside (it may wrap between groups with large text). -#}
+{% macro ibanGroups(iban) -%}
+{%- for g in (iban | groupIban).split(" ") %}<span class="nw">{{ g }}</span>{% if not loop.last %} {% endif %}{% endfor -%}
+{%- endmacro %}
+
+{#- The bank card: IBAN on top (one account for all currencies), then GEL / USD / EUR tabs.
+    Tabs are radio buttons, so they work without JavaScript and with the arrow keys.
+    idp = unique id prefix per card on a page. -#}
+{% macro bankCard(lang, idp, headingLevel=2, variant="", ibanTop=true) -%}
+{%- set ibanLabel = ui.donate.iban | t(lang) -%}
+<div class="bank{% if variant %} bank--{{ variant }}{% endif %}" role="group" aria-labelledby="{{ idp }}-title">
+  <div class="bank__head">
+    <h{{ headingLevel }} class="bank__title" id="{{ idp }}-title"><svg class="icon" aria-hidden="true"><use href="#i-bank"/></svg>{{ ui.donate.bank_heading | t(lang) }}</h{{ headingLevel }}>
+    <p class="bank__one">{{ ui.donate.one_account | t(lang) }}</p>
+  </div>
+  {%- if ibanTop %}
+  <div class="bank__iban">
+    <p class="bank__iban-label">{{ ibanLabel }}</p>
+    <p class="bank__iban-value" data-copy-source>{{ ibanGroups(bank.iban) }}</p>
+    <button class="btn btn--light bank__iban-copy" type="button" data-copy="{{ bank.iban }}" data-copy-label="IBAN"><svg class="icon i-copy" aria-hidden="true"><use href="#i-copy"/></svg><svg class="icon i-check" aria-hidden="true"><use href="#i-check"/></svg><span data-copy-text>{{ ui.donate.copy_iban | t(lang) }}</span></button>
+  </div>
+  {%- endif %}
+  <fieldset class="curset">
+    <legend class="visually-hidden">{{ ui.donate.choose_currency | t(lang) }}</legend>
+    {%- for c in bank.currencies %}
+    <input class="cur-radio" type="radio" name="{{ idp }}-currency" id="{{ idp }}-{{ c.code | lower }}" value="{{ c.code }}"{% if loop.first %} checked{% endif %}>
+    {%- endfor %}
+    <div class="tabs">
+      {%- for c in bank.currencies %}
+      <label for="{{ idp }}-{{ c.code | lower }}"><span class="tabs__sym" aria-hidden="true">{{ {"GEL": "₾", "USD": "$", "EUR": "€"}[c.code] }}</span>{{ ui.donate["tab_" ~ c.code] | t(lang) }}<span class="visually-hidden"> ({{ c.code }})</span></label>
+      {%- endfor %}
+    </div>
+    <div class="panels">
+      {%- for c in bank.currencies %}
+      {%- set domestic = (c.code == "GEL") %}
+      {#- Groups, not sections: three extra landmarks per card would clutter landmark navigation. The visible
+          caption names the selected currency, also where colours are forced (Windows High Contrast). -#}
+      <div class="panel" role="group" aria-labelledby="{{ idp }}-{{ c.code | lower }}-h">
+        <h{{ headingLevel + 1 }} class="panel__title" id="{{ idp }}-{{ c.code | lower }}-h">{{ ui.donate["currency_" ~ c.code] | t(lang) }}</h{{ headingLevel + 1 }}>
+        <dl class="bank__rows">
+          {#- GEL transfers are domestic: the beneficiary as printed in Georgian by the bank. International (SWIFT)
+              transfers need Latin letters: beneficiary and purpose in English. -#}
+          {{ bankRow("beneficiary", lang, bank.beneficiary_ka if domestic else bank.beneficiary_en, "", true, "ka" if domestic else "en", "bank__row--name") }}
+          {{ bankRow("iban", lang, bank.iban, bank.iban | groupIban, true, "", "bank__row--iban") }}
+          {%- if domestic %}
+          {{ bankRow("bank", lang, bank | loc("bank_name", lang)) }}
+          {%- else %}
+          {#- The bank's USD/EUR pages call this field "Account With Institution" (SWIFT field 57) and print
+              "Bank of Georgia" there: donors copy it into wire forms, so it is shown exactly as printed. -#}
+          {{ bankRow("bank", lang, bank.account_with_institution or bank.bank_name_en, "", false, "en", "", "bank_intl") }}
+          {%- endif %}
+          {{ bankRow("swift", lang, bank.bank_swift, "", true, "", "bank__row--code") }}
+          {%- if domestic %}
+          {{ bankRow("bank_address", lang, bank | loc("bank_address", lang), "", false, lang) }}
+          {%- else %}
+          {{ bankRow("bank_address", lang, bank.bank_address_en, "", false, "en") }}
+          {%- endif %}
+          {%- if c.intermediary_bank %}
+          {{ bankRow("intermediary", lang, c.intermediary_bank, "", false, "en") }}
+          {{ bankRow("intermediary_swift", lang, c.intermediary_swift, "", true, "", "bank__row--code") }}
+          {%- endif %}
+          {{ bankRow("purpose", lang, bank.purpose_ka if domestic else bank.purpose_en, "", true, "ka" if domestic else "en", "bank__row--purpose bank__row--code") }}
+        </dl>
+        <p class="panel__note">{% if domestic %}{{ ui.donate.gel_no_intermediary | t(lang) }}{% else %}{{ ui.donate.intermediary_hint | t(lang) }}{% endif %}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </fieldset>
+  {{ caller() if caller }}
+</div>
+{%- endmacro %}
+
+{#- Compact bank card (the "Join us" band on inner pages): the IBAN with its copy button, the bank and SWIFT, and links
+    to all details (Donate page) and the bank's PDF. The full card with the three currencies is on Home and Donate. -#}
+{% macro bankCompact(lang, idp, headingLevel=3) -%}
+<div class="bank bank--compact" role="group" aria-labelledby="{{ idp }}-title">
+  <div class="bank__head">
+    <h{{ headingLevel }} class="bank__title" id="{{ idp }}-title"><svg class="icon" aria-hidden="true"><use href="#i-bank"/></svg>{{ ui.donate.bank_heading | t(lang) }}</h{{ headingLevel }}>
+    <p class="bank__one">{{ ui.donate.one_account | t(lang) }}</p>
+  </div>
+  <div class="bank__iban">
+    <p class="bank__iban-label">{{ ui.donate.iban | t(lang) }}</p>
+    <p class="bank__iban-value" data-copy-source>{{ ibanGroups(bank.iban) }}</p>
+    <button class="btn btn--light bank__iban-copy" type="button" data-copy="{{ bank.iban }}" data-copy-label="IBAN"><svg class="icon i-copy" aria-hidden="true"><use href="#i-copy"/></svg><svg class="icon i-check" aria-hidden="true"><use href="#i-check"/></svg><span data-copy-text>{{ ui.donate.copy_iban | t(lang) }}</span></button>
+    <p class="bank__note">{{ bank | loc("bank_name", lang) }} · SWIFT {{ bank.bank_swift }} · <span class="nw">GEL · USD · EUR</span></p>
+  </div>
+  {{ caller() if caller }}
+</div>
+{%- endmacro %}

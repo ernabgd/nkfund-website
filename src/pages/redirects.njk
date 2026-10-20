@@ -1,0 +1,29 @@
+---
+pagination:
+  data: redirects.stubs
+  size: 1
+  alias: r
+permalink: "{{ r.from }}/index.html"
+eleventyExcludeFromCollections: true
+---
+{#- Static redirect stub for an old Wix URL (GitHub Pages cannot send real 301s).
+    Absolute URLs everywhere: the <base>/path-prefix plugin leaves them alone and they work at any depth. -#}
+{%- set target = r.to | absUrl -%}
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>→ {{ target }}</title>
+{%- if env.preview %}
+<meta name="robots" content="noindex">
+{%- endif %}
+<link rel="canonical" href="{{ target }}">
+<meta http-equiv="refresh" content="0; url={{ target }}">
+<script>location.replace({{ target | dump | safe }} + location.hash);</script>
+</head>
+<body style="font: 1.125rem/1.6 system-ui, sans-serif; margin: 2rem 1rem; overflow-wrap: anywhere">
+<p>{{ ui.redirect.text | t("ka") }} <a href="{{ target }}">{{ target }}</a></p>
+<p lang="en">{{ ui.redirect.text | t("en") }} <a href="{{ target }}">{{ target }}</a></p>
+</body>
+</html>

@@ -1,0 +1,86 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ 'donate/' | langUrl(lang) }}"
+layout: base.njk
+route: donate/
+section: donate
+bodyClass: donate
+headerTheme: dark
+pageKey: donate
+---
+{%- import "macros.njk" as m with context -%}
+{%- set p = pages.donate -%}
+{#- No online payment (the processor closed the account): bank transfer only.
+    Order on phones: title → IBAN + copy → steps → intro → full bank card → testimonial, PDF, e-mail. -#}
+<section class="donate on-dark" aria-labelledby="donate-heading">
+  <div class="cols6" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap donate__grid">
+    <div class="donate__head">
+      {#- The h1 names the page („შემოგვიერთდი“ / “Join us”); the slogan is a display line. -#}
+      {{ m.eyebrow(p | loc("label", lang), "h1", "donate-heading", "eyebrow--light") }}
+      {{ m.text(p, "title", lang, "p", "donate__title", true) }}
+    </div>
+
+    <div class="donate__iban" id="iban">
+      <p class="bank__iban-label">{{ ui.donate.iban | t(lang) }} <span class="bank__alt" lang="{{ 'en' if lang == 'ka' else 'ka' }}">{{ ui.donate.iban | t('en' if lang == 'ka' else 'ka') }}</span></p>
+      <p class="donate__iban-value" data-copy-source>{{ m.ibanGroups(bank.iban) }}</p>
+      <button class="btn btn--light btn--lg donate__iban-copy" type="button" data-copy="{{ bank.iban }}" data-copy-label="IBAN"><svg class="icon i-copy" aria-hidden="true"><use href="#i-copy"/></svg><svg class="icon i-check" aria-hidden="true"><use href="#i-check"/></svg><span data-copy-text>{{ ui.donate.copy_iban | t(lang) }}</span></button>
+      <p class="donate__iban-note"><strong>{{ ui.donate.one_account | t(lang) }}</strong><br>{{ bank | loc("bank_name", lang) }} · SWIFT {{ bank.bank_swift }} · {{ bank | loc("account_type", lang) }}</p>
+    </div>
+
+    <div class="donate__steps">
+      <ol class="steps" role="list" aria-label="{{ ui.donate.steps_label | t(lang) }}">
+        <li><span class="steps__n" aria-hidden="true">1</span>{{ ui.donate.step_1 | t(lang) }}</li>
+        <li><span class="steps__n" aria-hidden="true">2</span>{{ ui.donate.step_2 | t(lang) }}</li>
+        <li><span class="steps__n" aria-hidden="true">3</span>{{ ui.donate.step_3 | t(lang) }}</li>
+      </ol>
+      {{ m.text(p, "intro", lang, "p", "donate__intro") }}
+    </div>
+
+    <div class="donate__card" id="bank-details">
+      {{ m.bankCard(lang, "donate", 2, "big", false) }}
+      <p class="donate__honest"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span>{{ ui.donate.method | t(lang) }} {{ ui.donate.no_card | t(lang) }}</span></p>
+    </div>
+
+    <div class="donate__aside">
+      {%- if pages.join.testimonial | loc("quote", lang) %}
+      <div class="aside-card aside-card--quote">
+        {{ m.testimonial(pages.join.testimonial, lang) }}
+      </div>
+      {%- endif %}
+      <div class="aside-card">
+        <h2 class="aside-card__title"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>{{ ui.donate.pdf_note | t(lang) }}</h2>
+        <p>{{ ui.donate.pdf_meta | t(lang) | fill({ size: bank.pdf | fileSize(lang) }) }} · {{ bank.pdf_date | formatEventDate(lang) }}</p>
+        <a class="btn btn--ghost-light" href="{{ bank.pdf }}" download>{{ ui.buttons.download_pdf | t(lang) }} <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></a>
+      </div>
+      <div class="aside-card">
+        <h2 class="aside-card__title"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>{{ ui.donate.questions_heading | t(lang) }}</h2>
+        <p>{{ ui.donate.questions_text | t(lang) }}</p>
+        <a class="btn btn--ghost-light" href="mailto:{{ site.email }}">{{ site.email | escape | replace("@", "@<wbr>") | safe }}</a>
+      </div>
+      <p class="donate__thanks">{{ ui.donate.thanks | t(lang) }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section impact ruled" aria-labelledby="impact-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        {{ m.eyebrow(pages.projects | loc("label", lang)) }}
+        <h2 class="h2" id="impact-heading">{{ pages.home.projects | loc("heading", lang) }}</h2>
+      </div>
+      <a class="btn btn--outline section-head__more" href="{{ 'projects/' | langUrl(lang) }}">{{ ui.buttons.all_projects | t(lang) }} <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <ul class="impact__grid" role="list">
+      {%- for item in projects %}
+      <li class="reveal{% if loop.index > 1 %} reveal-d{{ loop.index - 1 if loop.index < 4 else 3 }}{% endif %}">{{ m.card(item, lang, 3, "(min-width: 1360px) 300px, (min-width: 1200px) 23vw, (min-width: 760px) 45vw, 96px", "mini") }}</li>
+      {%- endfor %}
+    </ul>
+    <a class="btn btn--outline section-foot__more" href="{{ 'projects/' | langUrl(lang) }}">{{ ui.buttons.all_projects | t(lang) }} <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>

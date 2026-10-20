@@ -1,0 +1,89 @@
+{#-
+  Base layout. Every page sets:
+    lang         "ka" | "en"
+    route        path below the language root, e.g. "" (home), "about/", "projects/<slug>/"
+    pageTitle    page title (without the site name); empty on the home page
+    description  optional meta description (plain text)
+    ogImage      optional root-relative image path for social previews
+    headerTheme  "dark" (transparent over a dark hero: home, donate) | "light" (white bar, default)
+    section      nav key to mark as current: about | projects | news | donate | contact
+    noAlternates true on pages without a language counterpart (404)
+    noindex      true → <meta name="robots" content="noindex"> in every build (404)
+    preloadImage optional root-relative image to preload (the hero poster)
+-#}
+{%- set siteName = site | loc("name", lang) -%}
+{%- set fullTitle = (pageTitle ~ " | " ~ site.brand) if pageTitle else (siteName ~ " | " ~ site.brand) -%}
+{%- set metaDescription = (description or (site | loc("description", lang))) | plain | excerpt(200) -%}
+{%- set canonical = route | langUrl(lang) | absUrl -%}
+{%- set shareImage = (ogImage or "/assets/img/og-default.jpg") | absUrl -%}
+{%- set shareAlt = ogImageAlt if ogImage else (site | loc("name", lang)) -%}
+{%- set theme = headerTheme or "light" -%}
+<!doctype html>
+<html lang="{{ lang }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ fullTitle }}</title>
+  <meta name="description" content="{{ metaDescription }}">
+  {%- if env.preview %}
+  <meta name="robots" content="noindex, nofollow">
+  {%- elif noindex %}
+  <meta name="robots" content="noindex">
+  {%- endif %}
+  {%- if not noAlternates %}
+  <link rel="canonical" href="{{ canonical }}">
+  {%- for l in langs %}
+  <link rel="alternate" hreflang="{{ l }}" href="{{ route | langUrl(l) | absUrl }}">
+  {%- endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ route | langUrl('ka') | absUrl }}">
+  {%- endif %}
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:site_name" content="{{ siteName }}">
+  <meta property="og:title" content="{{ pageTitle or siteName }}">
+  <meta property="og:description" content="{{ metaDescription }}">
+  {%- if not noAlternates %}
+  <meta property="og:url" content="{{ canonical }}">
+  {%- endif %}
+  <meta property="og:image" content="{{ shareImage }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {%- if shareAlt %}
+  <meta property="og:image:alt" content="{{ shareAlt }}">
+  {%- endif %}
+  <meta property="og:locale" content="{{ 'ka_GE' if lang == 'ka' else 'en_GB' }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="{{ '#0b0b0c' if theme == 'dark' else '#ffffff' }}">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/img/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preload" href="/assets/fonts/firago-400.woff2" as="font" type="font/woff2" crossorigin>
+  {%- if theme == "dark" %}
+  <link rel="preload" href="/assets/fonts/firago-300.woff2" as="font" type="font/woff2" crossorigin>
+  {%- else %}
+  <link rel="preload" href="/assets/fonts/noto-serif-georgian-var.woff2" as="font" type="font/woff2" crossorigin>
+  {%- endif %}
+  {%- if preloadImage %}
+  <link rel="preload" href="{{ preloadImage }}" as="image" fetchpriority="high">
+  {%- endif %}
+  <link rel="stylesheet" href="/assets/css/main.css?v={{ assetVersion }}">
+  {#- "js" only says that scripts run (it shows the copy buttons). Classes that HIDE content until main.js shows it
+      ("js-ready", "motion") are added by main.js itself. -#}
+  <script>document.documentElement.className=document.documentElement.className.replace("no-js","js");</script>
+  <script src="/assets/js/main.js?v={{ assetVersion }}" defer></script>
+  {%- if jsonLd %}
+  <script type="application/ld+json">{{ jsonLd | safe }}</script>
+  {%- endif %}
+</head>
+<body class="page page--{{ bodyClass or 'default' }} theme-{{ theme }}" id="top">
+  {% include "sprite.njk" %}
+  <a class="skip-link" href="#main">{{ ui.nav.skip | t(lang) }}</a>
+  {% include "partials/header.njk" %}
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  <p class="visually-hidden" aria-live="polite" data-live-region data-copy-i18n data-copied="{{ ui.donate.copied | t(lang) }}" data-copied-live="{{ ui.donate.copied_live | t(lang) }}" data-failed="{{ ui.donate.copy_failed | t(lang) }}"></p>
+</body>
+</html>

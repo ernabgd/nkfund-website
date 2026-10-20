@@ -1,0 +1,11 @@
+---
+pagination:
+  data: projectPages
+  size: 1
+  alias: entry
+permalink: "{{ entry.route | langUrl(entry.lang) }}"
+layout: item.njk
+section: projects
+bodyClass: item item--project
+pageKey: project
+---

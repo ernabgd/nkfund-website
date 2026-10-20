@@ -1,0 +1,44 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ 'about/' | langUrl(lang) }}"
+layout: base.njk
+route: about/
+section: about
+bodyClass: about
+pageKey: about
+---
+{%- import "macros.njk" as m with context -%}
+{%- set p = pages.about -%}
+{%- set q = pages.home.quote -%}
+{%- set body = p | loc("body", lang) -%}
+<header class="page-head ruled">
+  <div class="wrap">
+    {{ m.eyebrow(site | loc("name", lang)) }}
+    {{ m.text(p, "title", lang, "h1", "page-head__title", true) }}
+  </div>
+</header>
+{#- A <div>, not a <section>: the page's own h1 names this content (an unnamed section is an empty region). -#}
+<div class="section about ruled">
+  <div class="wrap about__grid">
+    <p class="statement about__lead"{% if p | isFallback("body", lang) %} lang="ka"{% endif %}>{{ body | firstParagraph | plain }}</p>
+    <figure class="about__portrait">
+      {#- 4:5 box (4:3 below 1000 px) with a 3:2 photo: sizes give the drawn width so a sharp file is chosen. -#}
+      <div class="media">{{ m.img(q.image, q | loc("image_alt", lang), "(min-width: 1000px) 64vw, calc(100vw - 40px)", "480,800,1200,1620") }}</div>
+      <figcaption><b>{{ q | loc("attribution", lang) }}</b>{% if q | loc("role", lang) %} · {{ q | loc("role", lang) }}{% endif %}</figcaption>
+    </figure>
+    <div class="prose about__prose"{% if p | isFallback("body", lang) %} lang="ka"{% endif %}>
+      {{ body | restParagraphs | md | safe }}
+    </div>
+  </div>
+  <div class="wrap">
+    <ul class="stats" role="list" aria-label="{{ ui.home.stats_label | t(lang) }}">
+      <li class="stat"><span class="stat__num">{{ site.founded | year }}</span><span class="stat__label"><strong>{{ ui.home.stat_founded | t(lang) }}</strong>{{ ui.home.stat_founded_note | t(lang) }}</span></li>
+      <li class="stat"><span class="stat__num">{{ projects.length }}</span><span class="stat__label"><strong>{{ ui.home.stat_projects | t(lang) }}</strong>{% for c in projects | uniqueCategories %}{{ ui.categories[c] | t(lang) }}{% if not loop.last %} · {% endif %}{% endfor %}</span></li>
+      <li class="stat stat--link"><a href="{{ 'projects/' | langUrl(lang) }}"><span>{{ ui.buttons.all_projects | t(lang) }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    </ul>
+  </div>
+</div>
+{% include "partials/join.njk" %}

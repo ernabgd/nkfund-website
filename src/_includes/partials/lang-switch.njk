@@ -1,0 +1,14 @@
+{#- Compact "ქარ / EN" switch (short forms from the reviewed translation, docs/archive/wix-2026-10/content-en/ui.yml → lang_switch).
+    Links to the same page in the other language (or that language's home page on the 404). The visible
+    abbreviation comes first in the accessible name (WCAG 2.5.3 Label in Name); the rest is visually hidden. -#}
+{%- set otherLang = "en" if lang == "ka" else "ka" -%}
+{%- set otherHref = ('' | langUrl(otherLang)) if noAlternates else (route | langUrl(otherLang)) -%}
+<div class="lang{% if langClass %} {{ langClass }}{% endif %}" role="group" aria-label="{{ ui.nav.language | t(lang) }}">
+  {%- if lang == "ka" %}
+  <span class="lang__item is-current" lang="ka" aria-current="true">ქარ<span class="visually-hidden"> — ქართული</span></span>
+  <a class="lang__item" href="{{ otherHref }}" hreflang="en" lang="en">EN<span class="visually-hidden"> — {{ ui.nav.switch_to_label | t('ka') }}</span></a>
+  {%- else %}
+  <a class="lang__item" href="{{ otherHref }}" hreflang="ka" lang="ka">ქარ<span class="visually-hidden"> — {{ ui.nav.switch_to_label | t('en') }}</span></a>
+  <span class="lang__item is-current" lang="en" aria-current="true">EN<span class="visually-hidden"> — English</span></span>
+  {%- endif %}
+</div>

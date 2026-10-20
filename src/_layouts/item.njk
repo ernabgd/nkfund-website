@@ -1,0 +1,129 @@
+---
+layout: base.njk
+---
+{#- Project or news item page. `entry` = { lang, item, route, prev (older), next (newer) } -#}
+{%- import "macros.njk" as m with context -%}
+{%- set item = entry.item -%}
+{%- set isProject = item.type == "project" -%}
+{%- set sectionPath = "projects/" if isProject else "news/" -%}
+{%- set title = item | loc("title", lang) -%}
+{%- set kind = "project" if isProject else "news" -%}
+{#- The frame lines (.ruled) run down the whole article: beside the cover, the text, the gallery and the pager. -#}
+<article class="article ruled">
+  <header class="article__head">
+    <div class="wrap">
+      <nav aria-label="{{ ui.nav.breadcrumb | t(lang) }}">
+        <ol class="crumbs" role="list">
+          <li><a href="{{ '' | langUrl(lang) }}">{{ ui.nav.home | t(lang) }}</a></li>
+          <li aria-hidden="true"><svg class="icon"><use href="#i-chevron"/></svg></li>
+          <li><a href="{{ sectionPath | langUrl(lang) }}">{{ ui.nav[section] | t(lang) }}</a></li>
+          <li aria-hidden="true"><svg class="icon"><use href="#i-chevron"/></svg></li>
+          <li class="crumbs__current"><span aria-current="page">{{ title }}</span></li>
+        </ol>
+      </nav>
+      <div class="article__headgrid">
+        <div class="article__titles">
+          {{ m.meta(item, lang, true) }}
+          {{ m.text(item, "title", lang, "h1", "article__title", true) }}
+          {%- if item | loc("summary", lang) %}
+          {{ m.text(item, "summary", lang, "p", "lead article__lead") }}
+          {%- endif %}
+        </div>
+        <aside class="facts" aria-labelledby="facts-heading">
+          {{ m.eyebrow(ui.labels.at_a_glance | t(lang), "h2", "facts-heading") }}
+          <dl>
+            {%- if isProject and item.category and ui.categories[item.category] %}
+            <div><dt>{{ ui.labels.category | t(lang) }}</dt><dd>{{ ui.categories[item.category] | t(lang) }}</dd></div>
+            {%- endif %}
+            {%- if item.event_date %}
+            <div><dt>{{ (ui.labels.carried_out if isProject else ui.labels.event_date) | t(lang) }}</dt><dd><time datetime="{{ item.event_date | isoDate }}">{{ item.event_date | formatEventDate(lang) }}</time></dd></div>
+            {%- endif %}
+            <div><dt>{{ ui.labels.published | t(lang) }}</dt><dd><time datetime="{{ item.date | isoDate }}">{{ item.date | formatDate(lang) }}</time></dd></div>
+            {%- if item.gallery.length %}
+            <div><dt>{{ ui.labels.gallery | t(lang) }}</dt><dd><a href="#gallery-heading">{{ ui.labels.photos_count | t(lang) | fill({ n: item.gallery.length }) }}</a></dd></div>
+            {%- endif %}
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  {%- if item.cover %}
+  {#- The cover frame has the picture's own aspect ratio (never cropped, never letterboxed): as wide as the column, but
+      no wider than its natural width (small files are not upscaled) and no taller than min(78vh, 820px). -#}
+  {%- set im = imageMeta[item.cover] %}
+  {%- set cw = im.width if im else 0 %}
+  <figure class="article__cover wrap">
+    {%- set small = cw and cw < 1274 %}
+    {%- set frame = ("aspect-ratio: " ~ im.width ~ " / " ~ im.height ~ "; max-width: min(" ~ (cw if small else 1274) ~ "px, calc(min(78vh, 820px) * " ~ ((im.width / im.height) | round(4)) ~ "))") if im else "" %}
+    <div {{ m.mediaAttrs(item, "", frame, (im.width / im.height) if im else 4 / 3) }}>{{ m.img(item.cover, (item | loc('cover_alt', lang)) or title, ("(min-width: 1360px) " ~ (cw if small else 1274) ~ "px, min(" ~ (cw if small else 1274) ~ "px, calc(100vw - 72px))"), "480,800,1200,1800,auto", true) }}</div>
+  </figure>
+  {%- endif %}
+
+  {%- if item | loc("body", lang) %}
+  <div class="article__body">
+    <div class="wrap">
+      {#- Heading navigation: the story gets its own (visually hidden) heading after "At a glance". -#}
+      <h2 class="visually-hidden">{{ (ui.item.about_project if isProject else ui.item.the_story) | t(lang) }}</h2>
+      {{ m.prose(item, "body", lang, "prose article__prose") }}
+    </div>
+  </div>
+  {%- endif %}
+
+  {%- if item.gallery.length %}
+  <section class="section gallery" aria-labelledby="gallery-heading">
+    <div class="wrap">
+      <h2 class="h3 gallery__heading" id="gallery-heading">{{ ui.labels.gallery | t(lang) }}</h2>
+      <ul class="gallery__grid" role="list" data-gallery data-label-close="{{ ui.item.close | t(lang) }}" data-label-prev="{{ ui.item.previous_photo | t(lang) }}" data-label-next="{{ ui.item.next_photo | t(lang) }}" data-label-dialog="{{ ui.labels.gallery | t(lang) }}">
+        {%- set n = item.gallery.length %}
+        {%- for g in item.gallery %}
+        {%- set galt = (g | loc('alt', lang)) or (title ~ ' — ' ~ (ui.labels.photo | t(lang)) ~ ' ' ~ loop.index) %}
+        {%- set gm = imageMeta[g.image] %}
+        {#- Portrait photos get a taller tile (4:5); a row of tiles is as tall as its tallest tile. -#}
+        {%- set tall = gm and g.crop != "none" and gm.height > gm.width * 1.05 %}
+        {#- `sizes` = the tile's real width: the grid is 2 columns on phones (the first photo full width when the count
+            is odd) and 3 per row from 760 px, with the first two (3n+2) or four (3n+1) photos two per row. -#}
+        {%- set wide = (n % 3 == 2 and loop.index <= 2) or (n % 3 == 1 and n > 1 and loop.index <= 4) %}
+        {%- set gsizes = ("(min-width: 1360px) 1274px, (min-width: 760px) calc(100vw - 166px), " if n == 1 else ("(min-width: 1360px) 630px, (min-width: 760px) 47vw, " if wide else "(min-width: 1360px) 414px, (min-width: 760px) 31vw, ")) ~ ("calc(100vw - 60px)" if (n % 2 == 1 and loop.first) else "47vw") %}
+        <li class="gallery__item{% if tall %} gallery__item--tall{% endif %}">
+          <a class="gallery__link{% if g.crop == 'none' %} media--whole{% endif %}" href="{{ g.image | lightboxSrc }}" data-lightbox{% if g.crop == 'none' %} style="--media-bg: {{ m.wholeBg(g.image, 0.8 if tall else 4 / 3) }}"{% endif %}>
+            {{ m.img(g.image, galt, gsizes, "480,800,1200") }}
+            <span class="visually-hidden">{{ ui.item.enlarge_photo | t(lang) }}</span>
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+  {%- endif %}
+
+  <nav class="pager-wrap wrap" aria-label="{{ ui.labels.pagination | t(lang) }}">
+    <div class="pager">
+      {%- if entry.prev %}
+      <a class="pager__prev" rel="prev" href="{{ m.itemUrl(entry.prev, lang) }}"{{ m.cleanLabel(entry.prev, lang, (ui.item["previous_" ~ kind] | t(lang)) ~ ": ") }}>
+        <svg class="icon pager__arrow" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+        {%- if entry.prev.cover %}<span {{ m.mediaAttrs(entry.prev, "pager__thumb") }}>{{ m.img(entry.prev.cover, "", "88px" | scaleSizes(imageMeta[entry.prev.cover], 4 / 3, entry.prev.cover_crop), "96,192,288") }}</span>{% endif %}
+        <span class="pager__text"><small>{{ ui.item["previous_" ~ kind] | t(lang) }}</small>{{ m.text(entry.prev, "title", lang, "b", "", true) }}</span>
+      </a>
+      {%- else %}
+      <span class="pager__prev pager__off"><span class="pager__text"><small>{{ ui.item["previous_" ~ kind] | t(lang) }}</small><b>{{ ui.item["first_" ~ kind] | t(lang) }}</b></span></span>
+      {%- endif %}
+      <a class="pager__all" href="{{ sectionPath | langUrl(lang) }}"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg><span>{{ (ui.buttons.all_projects if isProject else ui.buttons.all_news) | t(lang) }}</span></a>
+      {%- if entry.next %}
+      <a class="pager__next" rel="next" href="{{ m.itemUrl(entry.next, lang) }}"{{ m.cleanLabel(entry.next, lang, (ui.item["next_" ~ kind] | t(lang)) ~ ": ") }}>
+        <span class="pager__text"><small>{{ ui.item["next_" ~ kind] | t(lang) }}</small>{{ m.text(entry.next, "title", lang, "b", "", true) }}</span>
+        {%- if entry.next.cover %}<span {{ m.mediaAttrs(entry.next, "pager__thumb") }}>{{ m.img(entry.next.cover, "", "88px" | scaleSizes(imageMeta[entry.next.cover], 4 / 3, entry.next.cover_crop), "96,192,288") }}</span>{% endif %}
+        <svg class="icon pager__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      {%- else %}
+      <span class="pager__next pager__off"><span class="pager__text"><small>{{ ui.item["next_" ~ kind] | t(lang) }}</small><b>{{ ui.item["latest_" ~ kind] | t(lang) }}</b></span></span>
+      {%- endif %}
+    </div>
+  </nav>
+</article>
+
+{% include "partials/join.njk" %}
+
+{%- if item.type == "news" %}
+<script type="application/ld+json">{{ item | articleJsonLd(lang, site, ogImage) | safe }}</script>
+{%- endif %}

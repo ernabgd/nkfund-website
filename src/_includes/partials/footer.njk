@@ -1,0 +1,39 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="{{ '' | langUrl(lang) }}" aria-label="{{ ui.nav.home_link | t(lang) }}">{% include "logo.svg.njk" %}</a>
+        <p class="footer__slogan">{{ site | loc("slogan", lang) }}</p>
+      </div>
+      <nav class="footer__col" aria-labelledby="footer-nav">
+        <h2 id="footer-nav">{{ ui.footer.menu_heading | t(lang) }}</h2>
+        <ul role="list">
+          {%- for key in ["about", "projects", "news", "donate", "contact", "privacy"] %}
+          <li><a href="{{ (key ~ '/') | langUrl(lang) }}"{% if route == (key ~ '/') %} aria-current="page"{% endif %}>{{ ui.nav[key] | t(lang) }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+      <div class="footer__col footer__col--contact">
+        <h2 id="footer-contact">{{ ui.footer.contact_heading | t(lang) }}</h2>
+        <ul role="list" aria-labelledby="footer-contact">
+          <li><a href="mailto:{{ site.email }}"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>{{ site.email }}</a></li>
+          <li><a href="{{ site.social.facebook }}" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-facebook"/></svg>Facebook</a></li>
+          <li><a href="{{ site.social.instagram }}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2 id="footer-lang">{{ ui.nav.language | t(lang) }}</h2>
+        <ul role="list" aria-labelledby="footer-lang">
+          {%- for l in langs %}
+          {%- set href = ('' | langUrl(l)) if noAlternates else (route | langUrl(l)) %}
+          <li><a href="{{ href }}" lang="{{ l }}" hreflang="{{ l }}"{% if l == lang %} aria-current="true"{% endif %}>{{ "ქართული" if l == "ka" else "English" }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© {{ site.copyright_start }}–{{ env.buildYear }} {{ site | loc("name", lang) }}</p>
+    </div>
+  </div>
+  <div class="footer__wordmark" aria-hidden="true">{% include "wordmark.svg.njk" %}</div>
+</footer>

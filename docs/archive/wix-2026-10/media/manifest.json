@@ -1,0 +1,831 @@
+{
+ "generated": "2026-10-20",
+ "rule": "Only Wix media whose id starts with 3f8517_ (the foundation's own uploads) were downloaded. Ids starting 11062b_, 0446d4_, c837a6_, 84770f_ (and other Wix system/library prefixes such as 0da768_, 1d3a0b_ or no prefix) are Wix-licensed stock/template media and are listed under not_reusable only.",
+ "tools": {
+  "ffmpeg": "available at /opt/homebrew/bin/ffmpeg (ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers); ffprobe also available",
+  "sips": "used for pixel sizes"
+ },
+ "notes": [
+  "Original images are full-resolution uploads; the five Mother's Day PNGs are 13-15 MB each (phone photos saved as PNG) - convert to WebP/AVIF/JPEG for the web.",
+  "Generated video posters f001-f003 exist on Wix for both own videos but were never used, so only f000 was downloaded.",
+  "3f8517_ media ids found in the Wix data but used only by duplicate/template pages: none - every own upload referenced anywhere is in this manifest."
+ ],
+ "media": [
+  {
+   "id": "3f8517_71a9148a02ff43458806f6ece507c68f~mv2.jpg",
+   "file": "media/images/home-niko-portrait.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 474207,
+   "sha256": "18d0695b13c223d4c75ab53b1fd093898fedf265ff9853a2987a1a459a23d20c",
+   "width": 1620,
+   "height": 1080,
+   "source_url": "https://static.wixstatic.com/media/3f8517_71a9148a02ff43458806f6ece507c68f~mv2.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "7E69ACEC-C756-48FB-BEFC-0B2932D13325 2_edited.jpg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Portrait of Niko Kvaratskhelia: young man with glasses in a cream hoodie with the red Feedc \"F\" logo, plain pink background.",
+   "used_in": [
+    "home / section 2 \"niko-quote\" / portrait next to the quote"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_b4fdd6c7e2ff4ae4bd1249832379a5b6~mv2.jpg",
+   "file": "media/images/nkfund-cover-logo.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 16512,
+   "sha256": "7e33beada5997a326b743d64512dd099e28a6057a2f97e61a4f42085e702f9d0",
+   "width": 854,
+   "height": 570,
+   "source_url": "https://static.wixstatic.com/media/3f8517_b4fdd6c7e2ff4ae4bd1249832379a5b6~mv2.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "cover_edited.jpg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "nkfund. logo (blue crescent-and-star mark + black wordmark) on light grey.",
+   "used_in": [
+    "home (join-cta, left image)",
+    "about (join-cta)",
+    "projects index (join-cta)",
+    "news index (join-cta)",
+    "every project item page (join-cta)",
+    "every news item page (join-cta)",
+    "site-wide default og:image / twitter:image"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_c639f21d1fdd41e295176985b1840661~mv2.jpg",
+   "file": "media/images/project-supergmiri-cover.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 37395,
+   "sha256": "8b7dfac5c1d8d376020a0a27488975abf4317ab388667d1a7e9955d405b2baac",
+   "width": 828,
+   "height": 426,
+   "source_url": "https://static.wixstatic.com/media/3f8517_c639f21d1fdd41e295176985b1840661~mv2.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "330814287_895161078188765_8893122509349463667_n.jpg",
+   "alt_original": "თანამშრომლობა პლატფორა სუგერგმირთან (alt bound to the title, with its typos)",
+   "caption_original": "",
+   "description_en": "Supergmiri illustration: two caped adult \"superheroes\" holding a child's hands, text \"სუპერძალა ერთობაშია\", small \"i\" badge.",
+   "used_in": [
+    "project cooperation-with-supergmiri / cover",
+    "home / funded-projects card 1",
+    "projects index / card 1"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_f1149c552aa2459a94be9098a1422578~mv2.jpg",
+   "file": "media/images/project-graneli-scholarship-cover.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 330476,
+   "sha256": "ba11dd72ae8a52eefc46050bc49636c2c4026b60eb2abed3c539cb97f9413d3f",
+   "width": 2882,
+   "height": 1390,
+   "source_url": "https://static.wixstatic.com/media/3f8517_f1149c552aa2459a94be9098a1422578~mv2.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "Screenshot 2022-12-18 at 22.37_edited.jpg",
+   "alt_original": "ტერენტი გრენელის სახელობის სტიპენდია დაანონსდა (alt bound to the title, with its typo)",
+   "caption_original": "",
+   "description_en": "Video still: bearded young man (scholarship winner Saba Kalandia) in front of a wooden cabinet, Georgian name caption bottom right, nkfund. watermark.",
+   "used_in": [
+    "project terenti-graneli-scholarship / cover",
+    "home / funded-projects card 2",
+    "projects index / card 2"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_7ffbcd1bfed24396975053550286d10e~mv2.jpg",
+   "file": "media/images/project-batumi-scholarship-cover.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 175193,
+   "sha256": "5018d2a39bd7275ced1e002a486835a01f2bae16daa21dd0dd9aec70ccb3e4ac",
+   "width": 1200,
+   "height": 630,
+   "source_url": "https://static.wixstatic.com/media/3f8517_7ffbcd1bfed24396975053550286d10e~mv2.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "hd.jpg",
+   "alt_original": "ბათუმის 2021 წლის ტრაგედიის შედეგად დაზარალებული 2 არასრულწლოვანი ბავშვის სტიპენდია (alt bound to the title)",
+   "caption_original": "",
+   "description_en": "Black mourning ribbon over a grey photo of rescuers at the collapsed building, text \"ბათუმი 08.10.2021\".",
+   "used_in": [
+    "project batumi-tragedy-scholarship / cover",
+    "home / funded-projects card 3",
+    "projects index / card 3"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_8ccf60d3fce2447b89c02096255c45c4~mv2.jpg",
+   "file": "media/images/project-jgali-it-lab-cover.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 98346,
+   "sha256": "d38afe5307daccba9c57a342860b3f28ce869ea8cfd2cf23ecd5912babafa19d",
+   "width": 960,
+   "height": 721,
+   "source_url": "https://static.wixstatic.com/media/3f8517_8ccf60d3fce2447b89c02096255c45c4~mv2.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "PHOTO-2022-12-18-12-47-51_edited.jpg",
+   "alt_original": "IT ლაბორატორია სოფელ ჯგალის ზოგადსაგანმანათლებლო საჯარო სკოლაში (alt bound to the title)",
+   "caption_original": "",
+   "description_en": "Schoolchildren working at laptops along a row of desks in the new computer room.",
+   "used_in": [
+    "project jgali-school-it-lab / cover",
+    "projects index / card 4"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_31c51ccd58694eafba30f7eafc3d1526~mv2.png",
+   "file": "media/images/news-energia-cover.png",
+   "type": "image",
+   "mime": "image/png",
+   "bytes": 502411,
+   "sha256": "4f0041f991dee8bc86ed00b6b22a30ba545fe95d2ad9e293ee1f7b539a7e5785",
+   "width": 2940,
+   "height": 1636,
+   "source_url": "https://static.wixstatic.com/media/3f8517_31c51ccd58694eafba30f7eafc3d1526~mv2.png",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "Screenshot 2023-03-20 at 01.39.39.png",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Dark navy announcement card: \"nkfund. × ქართული საინვესტიციო ფონდი ენერგია\".",
+   "used_in": [
+    "news memorandum-with-energia / cover",
+    "news memorandum-with-energia / gallery position 6",
+    "news index / card 1"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_499fb09f61a040e882e3d93d8ed553f7~mv2.png",
+   "file": "media/images/news-energia-gallery-01.png",
+   "type": "image",
+   "mime": "image/png",
+   "bytes": 622648,
+   "sha256": "a263c6b8899e5259cbb0cfc49f5995b1f4b499af831c9c46f7a604069df62d18",
+   "width": 2932,
+   "height": 1646,
+   "source_url": "https://static.wixstatic.com/media/3f8517_499fb09f61a040e882e3d93d8ed553f7~mv2.png",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "screenshot-2023-03-20-at-02.34.30.png",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Quote card with the director's quote in Georgian and his small portrait (გალაქტიონ ბუაძე).",
+   "used_in": [
+    "news memorandum-with-energia / gallery position 1"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_9b0f471eb18447d5bd537c3e66226fbf~mv2.jpeg",
+   "file": "media/images/news-energia-gallery-02.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 182952,
+   "sha256": "69d737ea8e9110d63aa63ab9d2d511fbb3580ada2b6c8916fff7dcb2cedfa92d",
+   "width": 1024,
+   "height": 682,
+   "source_url": "https://static.wixstatic.com/media/3f8517_9b0f471eb18447d5bd537c3e66226fbf~mv2.jpeg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "whatsapp-image-2023-03-19-at-15.49.31.jpeg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Construction site in a rocky gorge: excavator and workers at a tunnel portal.",
+   "used_in": [
+    "news memorandum-with-energia / gallery position 2"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_17f54c8f6cab421eb482e96da4e6712b~mv2.jpeg",
+   "file": "media/images/news-energia-gallery-03.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 174490,
+   "sha256": "731e6d99c10c8078c9c262dfe189c7a10074c007f325b4d41b15b08859c43ecc",
+   "width": 1024,
+   "height": 682,
+   "source_url": "https://static.wixstatic.com/media/3f8517_17f54c8f6cab421eb482e96da4e6712b~mv2.jpeg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "whatsapp-image-2023-03-19-at-15.49.31-3.jpeg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "River in a gorge with a concrete structure under construction.",
+   "used_in": [
+    "news memorandum-with-energia / gallery position 3"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_39de89d75e1f4df4b98b433fe26ccfe2~mv2.jpeg",
+   "file": "media/images/news-energia-gallery-04.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 114029,
+   "sha256": "18c320c6ee58e48c97f394d1f922eb76bc8e4548677136bca58b98f24a79dc29",
+   "width": 1024,
+   "height": 682,
+   "source_url": "https://static.wixstatic.com/media/3f8517_39de89d75e1f4df4b98b433fe26ccfe2~mv2.jpeg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "whatsapp-image-2023-03-19-at-15.49.31-1.jpeg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Excavator and truck at an earthworks site, worker in hi-vis vest.",
+   "used_in": [
+    "news memorandum-with-energia / gallery position 4"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_7d2417e74663460eae62ea90b31d6ccd~mv2.jpeg",
+   "file": "media/images/news-energia-gallery-05.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 170441,
+   "sha256": "a4336eed1d84c4afe4bb1070b46358c3ca0fc12f344bee6f6aac263f85042352",
+   "width": 1024,
+   "height": 682,
+   "source_url": "https://static.wixstatic.com/media/3f8517_7d2417e74663460eae62ea90b31d6ccd~mv2.jpeg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "whatsapp-image-2023-03-19-at-15.49.31-2.jpeg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Orange excavator and workers on a large concrete foundation in a gorge.",
+   "used_in": [
+    "news memorandum-with-energia / gallery position 5",
+    "(also the image of the duplicate News1 / News copies)"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_8e06d8b9c7cc42958badf07a0d4db57b~mv2.png",
+   "file": "media/images/news-mothers-day-cover.png",
+   "type": "image",
+   "mime": "image/png",
+   "bytes": 14987314,
+   "sha256": "3668d07e52cfad13c6e7937977c7743ec59bcd4afd653ea8fe857d1044931078",
+   "width": 3024,
+   "height": 4032,
+   "source_url": "https://static.wixstatic.com/media/3f8517_8e06d8b9c7cc42958badf07a0d4db57b~mv2.png",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "IMG_4108.png",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Table setting with a card showing an illustrated portrait of a woman, tied with a ribbon.",
+   "used_in": [
+    "news mothers-day-event-2023 / cover",
+    "news mothers-day-event-2023 / gallery position 3",
+    "news index / card 2"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_06b49b76e4184ae2bda43f6bf84f202c~mv2.png",
+   "file": "media/images/news-mothers-day-gallery-01.png",
+   "type": "image",
+   "mime": "image/png",
+   "bytes": 14847945,
+   "sha256": "34a00f9711d7a6c7ce35c1a42ccad30ed974f0fee17cd9df95bd1ce095035302",
+   "width": 3024,
+   "height": 4032,
+   "source_url": "https://static.wixstatic.com/media/3f8517_06b49b76e4184ae2bda43f6bf84f202c~mv2.png",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "img_4115.png",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Event room: laid table and a screen on an easel showing the nkfund. presentation.",
+   "used_in": [
+    "news mothers-day-event-2023 / gallery position 1"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_465215f7f07648c7a3edb2ed276aec03~mv2.png",
+   "file": "media/images/news-mothers-day-gallery-02.png",
+   "type": "image",
+   "mime": "image/png",
+   "bytes": 13600587,
+   "sha256": "ed5471c815c0c7edb23c71ca99621d14e89e2212aca7aad3039f9d0c673a2613",
+   "width": 3022,
+   "height": 3762,
+   "source_url": "https://static.wixstatic.com/media/3f8517_465215f7f07648c7a3edb2ed276aec03~mv2.png",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "img_5035.png",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Rows of white gift boxes tied with lilac ribbons.",
+   "used_in": [
+    "news mothers-day-event-2023 / gallery position 2"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_550dc2121e5f4c6092538c53cbe2e26b~mv2.jpg",
+   "file": "media/images/news-mothers-day-gallery-04.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 52215,
+   "sha256": "2bbd733de2bf329eadd2ea1d5e113d95f4742770c7013106e28c00ab5f9d83be",
+   "width": 905,
+   "height": 1164,
+   "source_url": "https://static.wixstatic.com/media/3f8517_550dc2121e5f4c6092538c53cbe2e26b~mv2.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "img_5113.jpg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Greeting card in a Georgian script font: \"გილოცავთ დედის დღეს!\" (Happy Mother's Day!), signed \"ნიკო კვარაცხელიას სახელობის ფონდი\" with the nkfund logo.",
+   "used_in": [
+    "news mothers-day-event-2023 / gallery position 4"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_1971f6e3f5ab4a2ca3c211cc2159b5e7~mv2.png",
+   "file": "media/images/news-mothers-day-gallery-05.png",
+   "type": "image",
+   "mime": "image/png",
+   "bytes": 14182346,
+   "sha256": "141f55f018a13285066cceb51584dc96043442be4128ffca902bcd0327364268",
+   "width": 3024,
+   "height": 4032,
+   "source_url": "https://static.wixstatic.com/media/3f8517_1971f6e3f5ab4a2ca3c211cc2159b5e7~mv2.png",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "img_4112.png",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Long dinner table in a dim restaurant room, screen at the far end.",
+   "used_in": [
+    "news mothers-day-event-2023 / gallery position 5"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_e50d6f55d0114c7b8df79043f4032166~mv2.png",
+   "file": "media/images/news-mothers-day-gallery-06.png",
+   "type": "image",
+   "mime": "image/png",
+   "bytes": 13513493,
+   "sha256": "77d6d79ba4f14904cd3ea364b75b28430cc343107d5b87f818b7a1228089552d",
+   "width": 4032,
+   "height": 3024,
+   "source_url": "https://static.wixstatic.com/media/3f8517_e50d6f55d0114c7b8df79043f4032166~mv2.png",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "img_5005.png",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Many printed cards with the illustrated woman's portrait laid out on a table.",
+   "used_in": [
+    "news mothers-day-event-2023 / gallery position 6"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_7af606ad453c4df0bc60811808651484f000.jpg",
+   "file": "media/images/home-hero-video-poster.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 183016,
+   "sha256": "48ef8b72a33532c4ce93222bebea37d373d18a941a1a5021acf39c3d5e6d4313",
+   "width": 886,
+   "height": 646,
+   "source_url": "https://static.wixstatic.com/media/3f8517_7af606ad453c4df0bc60811808651484f000.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "generated poster f000",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "First frame of the hero clip: young man reaching for a book on library shelves.",
+   "used_in": [
+    "home / section 1 \"hero\" / poster of the background video"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_aaa04b6517db4ced8e6d40a2c849fcacf000.jpg",
+   "file": "media/images/home-goal-video-poster.jpg",
+   "type": "image",
+   "mime": "image/jpeg",
+   "bytes": 70586,
+   "sha256": "3faaa8415841b742b17dd1ef38002ebc47861916493aec97b6f33c56078d401b",
+   "width": 1920,
+   "height": 1080,
+   "source_url": "https://static.wixstatic.com/media/3f8517_aaa04b6517db4ced8e6d40a2c849fcacf000.jpg",
+   "resolution": "original upload (no Wix transform)",
+   "wix_file_name": "generated poster f000",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "First frame of the film: black nkfund. logo on a light grey vignette.",
+   "used_in": [
+    "home / section 3 \"our-goal\" / poster of the click-to-play film"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_55f365ccf67540feb56194c4829807dc.svg",
+   "file": "media/svg/logo-nkfund.svg",
+   "type": "svg",
+   "mime": "image/svg+xml",
+   "bytes": 4367,
+   "sha256": "c7935605b8e7e6a2aac87de7953a51b8f01b2c755f8e83cf92ca6ec6fe0e3871",
+   "viewBox": "0 0 246 73",
+   "source_url": "https://static.wixstatic.com/shapes/3f8517_55f365ccf67540feb56194c4829807dc.svg",
+   "wix_file_name": "Blue SVG.svg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "nkfund. logo: crescent-and-star mark + \"nkfund.\" wordmark (246x73 viewBox; the Wix theme recolours it white on dark headers).",
+   "used_in": [
+    "header (all pages, links home)",
+    "footer (all pages, links home)"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_523f228eb43c49ce8fb04d3f75fb1e4d.svg",
+   "file": "media/svg/favicon.svg",
+   "type": "svg",
+   "mime": "image/svg+xml",
+   "bytes": 1860,
+   "sha256": "4de0f0eccf8fe348220d39e88914e2ca554931239f2769cb7aafd5fda4cf7054",
+   "viewBox": "0 0 128 128",
+   "source_url": "https://static.wixstatic.com/shapes/3f8517_523f228eb43c49ce8fb04d3f75fb1e4d.svg",
+   "wix_file_name": "",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "nkfund. mark used as favicon.",
+   "used_in": [
+    "favicon / apple-touch-icon / mask-icon (all pages)"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_2046bb44eaac43308033406deb68d542.svg",
+   "file": "media/svg/payment-card-logos.svg",
+   "type": "svg",
+   "mime": "image/svg+xml",
+   "bytes": 1803,
+   "sha256": "4b0e50170234cbd3123aeb334dd94c94c9ce64ad666d37a21c62b1bb046ad492",
+   "viewBox": "0 0 176 42",
+   "source_url": "https://static.wixstatic.com/shapes/3f8517_2046bb44eaac43308033406deb68d542.svg",
+   "wix_file_name": "payment_logos_color.svg",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Visa, Mastercard and American Express brand marks in a row. OBSOLETE: online card payment is closed; card-brand logos are also third-party trademarks.",
+   "used_in": [
+    "CTA block on Home, About, Projects, News and all item pages (links to the bank PDF)"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_7af606ad453c4df0bc60811808651484",
+   "file": "media/video/home-hero-loop-480p.mp4",
+   "type": "video",
+   "mime": "video/mp4",
+   "bytes": 327413,
+   "sha256": "6c3f28d598783ad53815e316256779ad2c3499b786c4cda3bd970ba9a8692947",
+   "width": 886,
+   "height": 646,
+   "duration_s": 1.89,
+   "codecs": [
+    "h264",
+    "aac"
+   ],
+   "source_url": "https://video.wixstatic.com/video/3f8517_7af606ad453c4df0bc60811808651484/480p/mp4/file.mp4",
+   "quality_downloaded": "480p",
+   "variants_on_wix": {
+    "480p": {
+     "size": "886x646"
+    },
+    "storyboard": {
+     "size": "198x144"
+    }
+   },
+   "why_480p": "480p (886x646) is the highest quality Wix generated for this clip (720p/1080p return 403); it is the best available <= 1080p",
+   "wix_file_name": "RPReplay_Final1670002160 2.mov",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Screen-recording clip (1.9 s loop): young man reaching for a book on tall library shelves.",
+   "used_in": [
+    "home / section 1 \"hero\" / muted autoplay loop background, 30% opacity over a dark pattern"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_aaa04b6517db4ced8e6d40a2c849fcac",
+   "file": "media/video/home-goal-video-480p.mp4",
+   "type": "video",
+   "mime": "video/mp4",
+   "bytes": 28983598,
+   "sha256": "65523c7e593ba19dd4748ec438c75fc6e676e8a1c503079a1a35b2eb3386f0d9",
+   "width": 854,
+   "height": 480,
+   "duration_s": 202.58,
+   "codecs": [
+    "h264",
+    "aac"
+   ],
+   "source_url": "https://video.wixstatic.com/video/3f8517_aaa04b6517db4ced8e6d40a2c849fcac/480p/mp4/file.mp4",
+   "quality_downloaded": "480p",
+   "variants_on_wix": {
+    "1080p": {
+     "size": "1920x1080",
+     "bytes": 137596387,
+     "source_url": "https://video.wixstatic.com/video/3f8517_aaa04b6517db4ced8e6d40a2c849fcac/1080p/mp4/file.mp4",
+     "sha256": "a26ded19e68fea90d220e60ef495e33339c8295232db3eda4e13d0df10a2c6ed",
+     "checked": "2026-10-20: HTTP 200, 1920x1080 h264 ~5.2 Mbit/s + aac, 202.58 s; this is the highest-resolution copy of the film on Wix (the downloaded file is the 480p variant by an earlier task rule). Fetch the 1080p file as the master for any re-encode."
+    },
+    "720p": {
+     "size": "1280x720",
+     "bytes": 64427421
+    },
+    "480p": {
+     "size": "854x480",
+     "bytes": 28983598
+    }
+   },
+   "why_480p": "task rule: the 137 MB video is fetched only as the 480p variant; re-encode (or host on YouTube/Vimeo) for the new site",
+   "wix_file_name": "IMG_0721.MOV",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "3 min 22 s film about Niko and the foundation: interviews with family, friends, Forbes 30 Under 30 peers and Jgali school; English subtitles burned in; nkfund. watermark.",
+   "used_in": [
+    "home / section 3 \"our-goal\" / click-to-play video (player label was the Wix placeholder \"Your Video Title\")",
+    "home / same section, a hidden background-video copy"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  },
+  {
+   "id": "3f8517_b79d39693f294d9d862ff0cfbb0b4d8e.pdf",
+   "file": "media/docs/bank-requisites-2022-12.pdf",
+   "type": "pdf",
+   "mime": "application/pdf",
+   "bytes": 1439675,
+   "sha256": "20c4fbd15776ee9474d8777fa23d6ada74df72f2670e1bd46196c07a5f76056b",
+   "pages": 3,
+   "source_url": "https://www.nkfund.world/_files/ugd/3f8517_b79d39693f294d9d862ff0cfbb0b4d8e.pdf",
+   "wix_file_name": "NKfund.world.pdf",
+   "alt_original": "",
+   "caption_original": "",
+   "description_en": "Bank of Georgia requisites, 3 pages (GEL / USD / EUR); transcribed in bank.yml.",
+   "used_in": [
+    "\"რეკვიზიტები\" link + download icon + card logos on every page with the CTA block, and the Donate page"
+   ],
+   "reusable": true,
+   "licence_basis": "Wix owner prefix 3f8517_ = the foundation's own upload"
+  }
+ ],
+ "not_reusable": [
+  {
+   "id": "11062b_f452d5094c724b239043f2a01532d332",
+   "kind": "video (+ generated posters f000-f003)",
+   "what": "Wix stock (Getty Images) \"Fashion Designer\", 26.9 s, 1080p 20.5 MB",
+   "seen_on": "home / hidden \"mission\" section background (comp-lbp8zt9i)",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_f6724cd6c55343cbaf5a291912c524f2",
+   "kind": "video (+ generated posters f000-f003)",
+   "what": "Wix stock (Getty Images) \"Book Club\", 7.8 s",
+   "seen_on": "home / hidden SDG section background (comp-lbp8ztro3)",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_9b292a91e9104829834121f390a5ef84~mv2.jpg",
+   "kind": "image 4961x3508",
+   "what": "Wix stock \"Dark-Background\" (dark blue glow)",
+   "seen_on": "right-hand background of the join CTA on Home, About, Projects, News, all item pages; mobile menu panel background; /contact-1",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_63330aeb30c8488a9226f717267a21df~mv2.jpeg",
+   "kind": "image",
+   "what": "Wix stock \"Poor Kids Laughing\"",
+   "seen_on": "home / hidden SDG card 1",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_7683f8d0e4224aa396deaa3dc2efe5c6~mv2.jpg",
+   "kind": "image",
+   "what": "Wix stock \"Happy Dining\"",
+   "seen_on": "home / hidden SDG card 2",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_80049b6eac78423199903c89c49a4448~mv2.jpg",
+   "kind": "image",
+   "what": "Wix stock \"Adult Ballet Class\"",
+   "seen_on": "home / hidden SDG cards 3, 10, 11",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_62be8c88f38e40d3bf2e2c59ab2366b7~mv2.jpg",
+   "kind": "image",
+   "what": "Wix stock \"Woman in Library\"",
+   "seen_on": "home / hidden SDG card 4",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_6c828b2f26204541b03871ad2d19e4eb~mv2.jpeg",
+   "kind": "image",
+   "what": "Wix stock \"Enjoying Clean Water\"",
+   "seen_on": "home / hidden SDG card 6",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_f2b95b9a585c465cb32874fde7df77e8~mv2.jpg",
+   "kind": "image",
+   "what": "Wix stock \"Solar Panels\"",
+   "seen_on": "home / hidden SDG card 7",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_ded07f67954e47869af24c9be57d646d~mv2.jpg",
+   "kind": "image",
+   "what": "Wix stock \"Colleagues at Work\"",
+   "seen_on": "home / hidden SDG card 8",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_77c2f9c72ec545aca47e38b4d09a68e7~mv2.jpg",
+   "kind": "image",
+   "what": "Wix stock \"Electric Car Charging Station\"",
+   "seen_on": "home / hidden SDG card 9",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_a350751b1f38417197db3b8eea3b79a7~mv2.jpg",
+   "kind": "image",
+   "what": "Wix stock \"All Gender Restroom\"",
+   "seen_on": "home / hidden SDG card 5",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_5d1c6a21c4854eedae907cb106d52b91.svg",
+   "kind": "svg icon",
+   "what": "Wix stock \"Download\" icon",
+   "seen_on": "next to the \"რეკვიზიტები\" link in the CTA block and on Donate",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_099a271ce3574cd393e8edbf7553c9c1.svg",
+   "kind": "svg icon",
+   "what": "Wix stock arrow",
+   "seen_on": "home / hidden \"გაიგე მეტი\" link",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_97d2de8fb7cd4b09b150b8df44955f51.svg",
+   "kind": "svg icon",
+   "what": "Wix stock \"Menu\" (grid) icon",
+   "seen_on": "project and news item pages, between \"წინა\" and \"შემდეგი\" (link to the list)",
+   "downloaded": false
+  },
+  {
+   "id": "11062b_a4659c25757a4a12a37565b5601342f8.svg",
+   "kind": "svg icon",
+   "what": "Wix stock \"Hamburger Menu\"",
+   "seen_on": "header on tablet/mobile",
+   "downloaded": false
+  },
+  {
+   "id": "1d3a0b_97d72ad4c8dc4903bfb02b2baa7763ae.svg",
+   "kind": "svg icon",
+   "what": "Wix system icon \"newx.svg\" (close, alt \"Back to site\")",
+   "seen_on": "mobile menu panel",
+   "downloaded": false
+  },
+  {
+   "id": "3962b0f46b2341e4a021fcb37f5f4ee3.svg",
+   "kind": "svg vector art",
+   "what": "Wix vector-art library \"Quotation mark\" (no owner prefix)",
+   "seen_on": "home / niko-quote section",
+   "downloaded": false
+  },
+  {
+   "id": "0da768_95dbd595356148718d5876246a20fe90.png",
+   "kind": "image 256x256",
+   "what": "Wix pattern overlay",
+   "seen_on": "home / hero, overlay above the background video",
+   "downloaded": false
+  },
+  {
+   "id": "0da768_2a8395c630404213aaf6576ea1baaa70.svg, 0da768_4026746ebab74627a513aa0df1511dea.svg, 0da768_513035bd10774dcabdf6af1add823662.svg, 0da768_661bc0cafffa432db3753ad5d17e4f10.svg, 0da768_9c02fee4517e40e1bfe9581b4cfa3750.svg, 0da768_b94b0c8d9ad140b397386b0796eab836.svg, 0da768_c6d2d796452644a6a4a243c3afb7b781.svg",
+   "kind": "svg icons",
+   "what": "Wix media-player control icons (play, pause, volume on/off, fullscreen)",
+   "seen_on": "home / video players",
+   "downloaded": false
+  },
+  {
+   "id": "c837a6_11b93c2a47e8455886b2e5ce6f2a7a96~mv2.jpg",
+   "kind": "image 6402x3574",
+   "what": "Editor X template image \"fold imagesArtboard 3.jpg\"",
+   "seen_on": "home / hidden mission section",
+   "downloaded": false
+  },
+  {
+   "id": "c837a6_2745b67dfa984df2ba83f5f8c9d2b934~mv2.jpg",
+   "kind": "image 6402x3574",
+   "what": "Editor X template image \"fold imagesArtboard 11.jpg\"",
+   "seen_on": "about / hidden template team section",
+   "downloaded": false
+  },
+  {
+   "id": "c837a6_ecf878ab524a40a38d803369e703c460",
+   "kind": "image",
+   "what": "Editor X template image",
+   "seen_on": "/contact-1 (template page)",
+   "downloaded": false
+  },
+  {
+   "id": "84770f_b313302e436740449d14795a7ac0b832~mv2.jpg",
+   "kind": "image",
+   "what": "Editor X template background (dark blue glow; Wix title \"11062b_b9e4eaeea1e14361a9922299ada08703_mv2.jpg\")",
+   "seen_on": "donate page background; /contact-1",
+   "downloaded": false
+  },
+  {
+   "id": "84770f_e541d31138514a40aa9c6b425759d5fe~mv2.jpg",
+   "kind": "image",
+   "what": "Editor X template image",
+   "seen_on": "/contact-1 (template page)",
+   "downloaded": false
+  },
+  {
+   "id": "84770f_6ab55e3127c145ada703749530cca3d6.svg",
+   "kind": "svg",
+   "what": "Editor X badge \"Created on Editor X\"",
+   "seen_on": "/contact-1 (template page)",
+   "downloaded": false
+  },
+  {
+   "id": "0446d4_3f93ad71347541d1886b709641ab628d~mv2.png",
+   "kind": "image 2000x2000",
+   "what": "Wix CMS-preset placeholder image",
+   "seen_on": "project and news item templates (replaced at runtime by the CMS image)",
+   "downloaded": false
+  },
+  {
+   "id": "0446d4_a2d237075e624f5f84c4846c6f2262f4~mv2.png",
+   "kind": "image 2000x2000",
+   "what": "Wix CMS-preset placeholder image",
+   "seen_on": "news list template (replaced at runtime by the CMS image)",
+   "downloaded": false
+  },
+  {
+   "id": "0446d4_74f18f97fd954701b042b3c6eac70ea0~mv2.jpg, 0446d4_3f253a043fe846cca6ebc3e7482ef869~mv2.jpg, 0446d4_effd8c64aba54d7497dc4ad35a5b83ac~mv2.jpg, 0446d4_5457c8b1654648bdae95ea66b3734ee0~mv2.jpg, 0446d4_dddb06603b2f4f82914bca56efcfd455~mv2.jpg",
+   "kind": "images",
+   "what": "Wix CMS-preset placeholder photos (Unsplash / Shutterstock)",
+   "seen_on": "\"I am a title 01-05\" placeholder items in News1 / News (template junk)",
+   "downloaded": false
+  },
+  {
+   "id": "45d10e_d3f3e659607c4d3f9d5a4ad305efdf7b, 45d10e_413b7aef1e284184a0c2e90f2b24e065",
+   "kind": "videos (+ generated posters f000-f003)",
+   "what": "Wix stock (Getty Images) sample videos \"GettyImages-540873546 mp4.mp4\" and \"GettyImages-1176700193 color edited.mov\" - default sample items of the Wix Pro Gallery widget",
+   "seen_on": "news item template (/news/*), Pro Gallery comp-lffpsiqm; present only in the page data, replaced at runtime by the CMS mediagallery (never shown to visitors)",
+   "downloaded": false,
+   "added_by": "completeness check 2026-10-20"
+  },
+  {
+   "id": "45d10e_489ba60fc4444ab494127753b01af29f~mv2.jpg, 45d10e_bbae966776f14f88aa3fe466c9d8b47d~mv2.jpg, 45d10e_682abecc90a141f6aa3393b838ca6ab7~mv2.jpg, 45d10e_2f0ed764901d47729226114dc5888e98~mv2.jpg, 45d10e_d64346823ad0492ea84cccf58fb67544~mv2.jpg, 45d10e_fe8ac75ed18f458195fba05ce424a3f0~mv2.jpg, 45d10e_af4a258e3ce9432b9e67f9a19e1396f2~mv2.jpg, 45d10e_c6d0a38f962c442a9d4845f8fa571d85~mv2.jpg, 45d10e_08f663d4b5be47bc9b4bf2915eef77fe~mv2.jpg, 45d10e_88ed8a609c694f2dafc572b652b7354d~mv2.jpg",
+   "kind": "images",
+   "what": "Wix stock sample photos - default sample items of the Wix Pro Gallery widget",
+   "seen_on": "news item template (/news/*), Pro Gallery comp-lffpsiqm; present only in the page data, replaced at runtime by the CMS mediagallery (never shown to visitors)",
+   "downloaded": false,
+   "added_by": "completeness check 2026-10-20"
+  }
+ ]
+}

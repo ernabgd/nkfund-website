@@ -1,0 +1,28 @@
+---
+permalink: /404.html
+layout: base.njk
+lang: ka
+route: ""
+noAlternates: true
+noindex: true
+bodyClass: not-found
+pageTitle: "გვერდი ვერ მოიძებნა · Page not found"
+eleventyExcludeFromCollections: true
+---
+{#- GitHub Pages serves this for every unknown path, at any depth: all links are root-relative
+    (prefixed at build time), never relative. Bilingual because the language is unknown. -#}
+<section class="page-head not-found ruled">
+  <div class="wrap not-found__grid">
+    <p class="not-found__code" aria-hidden="true">404</p>
+    <div>
+      <h1 class="page-head__title">{{ ui.not_found.title | t("ka") }}</h1>
+      <p class="lead">{{ ui.not_found.text | t("ka") }}</p>
+      <p class="not-found__actions"><a class="btn btn--blue" href="/">{{ ui.not_found.home | t("ka") }}</a> <a class="link-arrow" href="/projects/"><span>{{ ui.nav.projects | t("ka") }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+    <div lang="en">
+      <h2 class="h3">{{ ui.not_found.title | t("en") }}</h2>
+      <p>{{ ui.not_found.text | t("en") }}</p>
+      <p class="not-found__actions"><a class="btn btn--outline" href="/en/">{{ ui.not_found.home | t("en") }}</a> <a class="link-arrow" href="/en/projects/"><span>{{ ui.nav.projects | t("en") }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+  </div>
+</section>

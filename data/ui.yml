@@ -1,0 +1,386 @@
+nav:
+  home:
+    ka: მთავარი
+    en: Home
+  about:
+    ka: ჩვენ შესახებ
+    en: About us
+  projects:
+    ka: პროექტები
+    en: Projects
+  news:
+    ka: სიახლეები
+    en: News
+  contact:
+    ka: კონტაქტი
+    en: Contact
+  donate:
+    ka: შემოგვიერთდი
+    en: Join us
+  privacy:
+    ka: კონფიდენციალურობა
+    en: Privacy
+  menu:
+    ka: მენიუ
+    en: Menu
+  close:
+    ka: მენიუს დახურვა
+    en: Close menu
+  main_label:
+    ka: მთავარი მენიუ
+    en: Main menu
+  skip:
+    ka: მთავარ შინაარსზე გადასვლა
+    en: Skip to main content
+  home_link:
+    ka: nkfund. — მთავარი გვერდი
+    en: nkfund. — home page
+  language:
+    ka: ენა
+    en: Language
+  switch_to_label:
+    ka: Read this page in English
+    en: წაიკითხეთ ეს გვერდი ქართულად
+  open:
+    ka: მენიუს გახსნა
+    en: Open menu
+  breadcrumb:
+    ka: ნავიგაციის ბილიკი
+    en: Breadcrumb
+buttons:
+  details:
+    ka: ვრცლად
+    en: Read more
+  all_projects:
+    ka: ყველა პროექტი
+    en: All projects
+  all_news:
+    ka: ყველა სიახლე
+    en: All news
+  download_pdf:
+    ka: რეკვიზიტების ჩამოტვირთვა (PDF)
+    en: Download bank details (PDF)
+  download_details:
+    ka: რეკვიზიტების ჩამოტვირთვა
+    en: download the bank details
+  pause_background:
+    ka: ფონური ვიდეოს შეჩერება
+    en: Pause background video
+  play_background:
+    ka: ფონური ვიდეოს ჩართვა
+    en: Play background video
+  all_bank_details:
+    ka: ყველა რეკვიზიტი
+    en: All bank details
+  our_projects:
+    ka: ჩვენი პროექტები
+    en: Our projects
+  film_play:
+    ka: ფილმის ჩართვა
+    en: Play the film
+labels:
+  in_georgian:
+    ka: ""
+    en: (in Georgian)
+  event_date:
+    ka: ღონისძიების თარიღი
+    en: Event date
+  published:
+    ka: გამოქვეყნების თარიღი
+    en: Published
+  category:
+    ka: კატეგორია
+    en: Category
+  photo:
+    ka: ფოტო
+    en: Photo
+  gallery:
+    ka: ფოტოგალერეა
+    en: Photo gallery
+  film:
+    ka: ფილმი ნიკოსა და ფონდზე
+    en: A film about Nico and the Fund
+  film_note:
+    ka: 3 წთ 22 წმ, ინგლისური სუბტიტრებით
+    en: 3 min 22 s, with English subtitles
+  pagination:
+    ka: სხვა ჩანაწერები
+    en: More entries
+  updated:
+    ka: ბოლო განახლება
+    en: Last updated
+  carried_out:
+    ka: განხორციელების თარიღი
+    en: Carried out
+  at_a_glance:
+    ka: მოკლედ
+    en: At a glance
+  photos_count:
+    ka: "{n} ფოტო"
+    en: "{n} photos"
+  transcript:
+    ka: ფილმის ტექსტი
+    en: Transcript of the film
+  in_english:
+    ka: ინგლისურად
+    en: in English
+categories:
+  scholarship:
+    ka: სტიპენდია
+    en: Scholarship
+  technology:
+    ka: ტექნოლოგიები
+    en: Technology
+home:
+  quote_heading:
+    ka: ნიკოს სიტყვები
+    en: In Nico’s words
+  stats_label:
+    ka: ფონდი ციფრებში
+    en: The Fund in numbers
+  stat_founded:
+    ka: დაარსდა
+    en: Founded
+  stat_founded_note:
+    ka: ნიკოს ოჯახისა და მეგობრების მიერ
+    en: by Nico’s family and friends
+  stat_projects:
+    ka: დაფინანსებული პროექტი
+    en: Projects funded
+join:
+  heading:
+    ka: შემოგვიერთდი
+    en: Join us
+  text:
+    ka: თუ გსურთ შემოგვიერთდეთ ფონდის მიერ მხარდაჭერილი პროექტების განხორციელებაში, იხილეთ ქვემოთ მოცემული რეკვიზიტები.
+    en: If you would like to join us in carrying out the projects the Fund supports, please see the bank details below.
+  eyebrow:
+    ka: მხარდაჭერა
+    en: Support
+donate:
+  bank_heading:
+    ka: საბანკო რეკვიზიტები
+    en: Bank details
+  currency_GEL:
+    ka: ლარი (GEL)
+    en: Georgian lari (GEL)
+  currency_USD:
+    ka: აშშ დოლარი (USD)
+    en: US dollar (USD)
+  currency_EUR:
+    ka: ევრო (EUR)
+    en: Euro (EUR)
+  beneficiary:
+    ka: მიმღების დასახელება
+    en: Beneficiary
+  iban:
+    ka: ანგარიშის ნომერი (IBAN)
+    en: Account number (IBAN)
+  bank:
+    ka: მიმღები ბანკი
+    en: Beneficiary’s bank
+  bank_intl:
+    ka: მიმღები ბანკი
+    en: Beneficiary’s bank (Account With Institution)
+  swift:
+    ka: ბანკის კოდი (SWIFT)
+    en: SWIFT / BIC
+  bank_address:
+    ka: ბანკის მისამართი
+    en: Bank address
+  intermediary:
+    ka: შუამავალი ბანკი
+    en: Intermediary bank
+  intermediary_swift:
+    ka: შუამავალი ბანკის SWIFT კოდი
+    en: Intermediary bank SWIFT
+  purpose:
+    ka: გადახდის დანიშნულება
+    en: Purpose of payment
+  copy:
+    ka: კოპირება
+    en: Copy
+  copied:
+    ka: დაკოპირდა
+    en: Copied
+  copy_failed:
+    ka: კოპირება ვერ მოხერხდა. მონიშნეთ ტექსტი და დააკოპირეთ ხელით.
+    en: Couldn’t copy. Please select the text and copy it yourself.
+  pdf_note:
+    ka: რეკვიზიტები PDF ფორმატში (საქართველოს ბანკი)
+    en: Bank details as a PDF (issued by Bank of Georgia)
+  pdf_meta:
+    ka: PDF, {size} · ქართულად და ინგლისურად
+    en: PDF, {size} · in Georgian and English
+  tab_GEL:
+    ka: ლარი
+    en: Lari
+  tab_USD:
+    ka: დოლარი
+    en: Dollar
+  tab_EUR:
+    ka: ევრო
+    en: Euro
+  choose_currency:
+    ka: აირჩიეთ ვალუტა
+    en: Choose a currency
+  one_account:
+    ka: ერთი ანგარიში სამივე ვალუტისთვის
+    en: One account for all three currencies
+  copy_iban:
+    ka: IBAN-ის კოპირება
+    en: Copy IBAN
+  copied_live:
+    ka: "{label} დაკოპირდა"
+    en: "{label} copied to the clipboard"
+  steps_label:
+    ka: როგორ გადავრიცხოთ თანხა
+    en: How to make a transfer
+  step_1:
+    ka: აირჩიეთ ვალუტა
+    en: Choose a currency
+  step_2:
+    ka: დააკოპირეთ რეკვიზიტები
+    en: Copy the details
+  step_3:
+    ka: დანიშნულებაში მიუთითეთ „შემოწირულობა“
+    en: Enter “Donation” as the purpose
+  method:
+    ka: შემოწირულობა შესაძლებელია მხოლოდ საბანკო გადარიცხვით.
+    en: Donations can be made by bank transfer only.
+  no_card:
+    ka: ბარათით ონლაინ გადახდა ამჟამად მიუწვდომელია. გადარიცხვა შეგიძლიათ ნებისმიერი ბანკიდან.
+    en: Online card payment is not available at the moment. You can make a transfer from any bank.
+  gel_no_intermediary:
+    ka: ლარში გადარიცხვისთვის შუამავალი ბანკი საჭირო არ არის.
+    en: No intermediary bank is needed for transfers in lari.
+  intermediary_hint:
+    ka: საზღვარგარეთიდან გადარიცხვისას თქვენმა ბანკმა შეიძლება შუამავალი ბანკის მონაცემები მოგთხოვოთ — ისინი ზემოთაა მითითებული.
+    en: When you transfer from abroad, your bank may ask for the intermediary bank; it is listed above.
+  questions_heading:
+    ka: კითხვები გაქვთ?
+    en: Any questions?
+  questions_text:
+    ka: მოგვწერეთ და გიპასუხებთ.
+    en: Write to us and we will reply.
+  thanks:
+    ka: გმადლობთ მხარდაჭერისთვის!
+    en: Thank you for your support!
+facebook:
+  heading:
+    ka: უახლესი პოსტები Facebook-ზე
+    en: Latest from Facebook
+  view:
+    ka: Facebook-ზე ნახვა
+    en: View on Facebook
+  follow_heading:
+    ka: გამოგვყევით
+    en: Follow us
+  follow_text:
+    ka: ფონდის სიახლეებსა და ღონისძიებებს თვალი ადევნეთ Facebook-სა და Instagram-ზე.
+    en: Follow the Fund’s news and events on Facebook and Instagram.
+  from_facebook:
+    ka: Facebook-დან
+    en: From Facebook
+  see_all:
+    ka: ყველა პოსტი Facebook-ზე
+    en: All posts on Facebook
+  image_alt:
+    ka: ფოტო ფონდის Facebook-პოსტიდან
+    en: Photo from the Fund’s Facebook post
+  original_language:
+    ka: პოსტები ნაჩვენებია იმ ენაზე, რომელზეც გამოქვეყნდა.
+    en: Posts are shown in the language in which they were published.
+  facebook_aria:
+    ka: ნიკო კვარაცხელიას ფონდი Facebook-ზე
+    en: Nico Kvaratskhelia Fund on Facebook
+  instagram_aria:
+    ka: ნიკო კვარაცხელიას ფონდი Instagram-ზე
+    en: Nico Kvaratskhelia Fund on Instagram
+  page_suffix:
+    ka: ფონდის გვერდი
+    en: the Fund’s page
+contact:
+  email:
+    ka: ელ. ფოსტა
+    en: Email
+  social:
+    ka: სოციალური ქსელები
+    en: Social media
+  heading:
+    ka: დაგვიკავშირდით
+    en: Get in touch
+  write_to_us:
+    ka: მოგვწერეთ
+    en: Write to us
+  support_note:
+    ka: ფონდის მხარდასაჭერად იხილეთ საბანკო რეკვიზიტები.
+    en: To support the Fund, see our bank details.
+item:
+  previous_project:
+    ka: წინა პროექტი
+    en: Previous project
+  next_project:
+    ka: შემდეგი პროექტი
+    en: Next project
+  previous_news:
+    ka: წინა სიახლე
+    en: Previous news
+  next_news:
+    ka: შემდეგი სიახლე
+    en: Next news
+  first_project:
+    ka: ეს პირველი პროექტია
+    en: This is the first project
+  latest_project:
+    ka: ეს უახლესი პროექტია
+    en: This is the latest project
+  first_news:
+    ka: ეს პირველი სიახლეა
+    en: This is the first news item
+  latest_news:
+    ka: ეს უახლესი სიახლეა
+    en: This is the latest news item
+  enlarge_photo:
+    ka: ფოტოს გადიდება
+    en: Enlarge photo
+  close:
+    ka: დახურვა
+    en: Close
+  previous_photo:
+    ka: წინა ფოტო
+    en: Previous photo
+  next_photo:
+    ka: შემდეგი ფოტო
+    en: Next photo
+  about_project:
+    ka: პროექტის შესახებ
+    en: About the project
+  the_story:
+    ka: სიახლის ტექსტი
+    en: The story
+footer:
+  menu_heading:
+    ka: მენიუ
+    en: Menu
+  contact_heading:
+    ka: კონტაქტი
+    en: Contact
+privacy:
+  draft_banner:
+    ka: სამუშაო ვერსია — ტექსტი ფონდის მიერ ჯერ არ არის დამტკიცებული.
+    en: Draft — this text has not yet been approved by the Fund.
+not_found:
+  title:
+    ka: გვერდი ვერ მოიძებნა
+    en: Page not found
+  text:
+    ka: შესაძლოა, გვერდი წაიშალა ან მისი მისამართი შეიცვალა.
+    en: The page may have been removed, or its address may have changed.
+  home:
+    ka: მთავარ გვერდზე დაბრუნება
+    en: Go to the home page
+redirect:
+  text:
+    ka: "გვერდი გადავიდა ახალ მისამართზე:"
+    en: "This page has moved to:"

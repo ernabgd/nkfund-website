@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "id": "100089583201087_900000000000003",
+      "message": "ნიკო კვარაცხელიას ფონდი გილოცავთ ახალ სასწავლო წელს!\n\nდეტალები: https://nkfund.world/news/",
+      "created_time": "2026-09-15T08:00:00+0000",
+      "permalink_url": "https://www.facebook.com/100089583201087/posts/900000000000003",
+      "full_picture": "https://scontent.example.fbcdn.net/v/t39/album-cover.jpg?oh=abc",
+      "attachments": {
+        "data": [
+          {
+            "type": "album",
+            "url": "https://www.facebook.com/media/set/?set=a.1",
+            "media": { "image": { "src": "https://scontent.example.fbcdn.net/v/t39/album-cover.jpg?oh=abc", "width": 720, "height": 540 } },
+            "subattachments": {
+              "data": [
+                { "type": "photo", "media": { "image": { "src": "https://scontent.example.fbcdn.net/v/t39/photo-1.jpg?oh=1", "width": 720, "height": 540 } } },
+                { "type": "photo", "media": { "image": { "src": "https://scontent.example.fbcdn.net/v/t39/photo-2.jpg?oh=2", "width": 720, "height": 540 } } }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "100089583201087_900000000000002",
+      "message": "Already imported and hidden by an editor.",
+      "created_time": "2026-09-10T08:00:00+0000",
+      "permalink_url": "https://www.facebook.com/100089583201087/posts/900000000000002"
+    }
+  ],
+  "paging": {
+    "cursors": { "before": "b1", "after": "a1" },
+    "next": "https://graph.facebook.com/v26.0/100089583201087/posts?after=a1&page=2"
+  }
+}

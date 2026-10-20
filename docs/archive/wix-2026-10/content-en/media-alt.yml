@@ -1,0 +1,93 @@
+# Alt texts (ka + en) for the foundation's own images (Wix ids 3f8517_ only), written 2026-10-20.
+# The Wix site had empty alts, or reused the item title as alt. These describe what is in each picture,
+# based on media/manifest.json -> description_en. Keyed by the file in source/media/.
+# decorative: true -> use alt="" (the image adds nothing that the surrounding text does not say).
+# Georgian strings are new: a native proof-reader should check them.
+images:
+  media/images/home-niko-portrait.jpg:
+    media_id: "3f8517_71a9148a02ff43458806f6ece507c68f~mv2.jpg"
+    ka: "ნიკო კვარაცხელიას პორტრეტი"
+    en: "Portrait of Niko Kvaratskhelia"
+  media/images/nkfund-cover-logo.jpg:
+    media_id: "3f8517_b4fdd6c7e2ff4ae4bd1249832379a5b6~mv2.jpg"
+    decorative: true
+    ka: "nkfund. — ფონდის ლოგო"
+    en: "nkfund. logo"
+    note: "Default share image (og:image). If shown on a page next to the name, use alt=\"\"."
+  media/images/project-supergmiri-cover.jpg:
+    media_id: "3f8517_c639f21d1fdd41e295176985b1840661~mv2.jpg"
+    ka: "პლატფორმა სუპერგმირის ილუსტრაცია: ყვითელ მოსასხამებში გამოწყობილი ორი ზრდასრული ბავშვს ხელს უჭერს; წარწერა „სუპერძალა ერთობაშია“"
+    en: "Illustration from the Supergmiri platform: two adults in yellow capes holding a child’s hands, with the words “The superpower is in unity”"
+  media/images/project-graneli-scholarship-cover.jpg:
+    media_id: "3f8517_f1149c552aa2459a94be9098a1422578~mv2.jpg"
+    ka: "საბა კალანდია — ტერენტი გრანელის სახელობის სტიპენდიანტი (კადრი ვიდეოდან)"
+    en: "Saba Kalandia, holder of the Terenti Graneli Scholarship (still from a video)"
+  media/images/project-batumi-scholarship-cover.jpg:
+    media_id: "3f8517_7ffbcd1bfed24396975053550286d10e~mv2.jpg"
+    ka: "გლოვის შავი ლენტი შავ-თეთრ ფოტოზე, რომელზეც მაშველები ბათუმში ჩანგრეული შენობის ნანგრევებში მუშაობენ; წარწერა „ბათუმი 08.10.2021“"
+    en: "Black mourning ribbon over a black-and-white photo of rescuers working in the rubble of the collapsed building in Batumi, with the text “Batumi 08.10.2021”"
+  media/images/project-jgali-it-lab-cover.jpg:
+    media_id: "3f8517_8ccf60d3fce2447b89c02096255c45c4~mv2.jpg"
+    ka: "მოსწავლეები ლეპტოპებთან ჯგალის სკოლის ახალ კომპიუტერულ ოთახში"
+    en: "Pupils working on laptops in the new computer room at the Jgali school"
+  media/images/news-energia-cover.png:
+    media_id: "3f8517_31c51ccd58694eafba30f7eafc3d1526~mv2.png"
+    ka: "მემორანდუმი, 2022 დეკემბერი: nkfund. × ქართული საინვესტიციო ფონდი ენერგია"
+    en: "Memorandum, December 2022: nkfund. × Georgian investment fund Energia"
+    note: "The Georgian alt repeats the words on the card exactly; the card says ‘fund’ (ფონდი), the article says ‘group’ (ჯგუფი)."
+  media/images/news-energia-gallery-01.png:
+    media_id: "3f8517_499fb09f61a040e882e3d93d8ed553f7~mv2.png"
+    ka: "ციტატის ბარათი: ჯგუფის დირექტორის, გალაქტიონ ბუაძის სიტყვები და მისი ფოტო"
+    en: "Quote card with the words of the group’s director, Galaktion Buadze, and his photo"
+  media/images/news-energia-gallery-02.jpg:
+    media_id: "3f8517_9b0f471eb18447d5bd537c3e66226fbf~mv2.jpeg"
+    ka: "სამშენებლო მოედანი კლდოვან ხეობაში: ექსკავატორი და მუშები გვირაბის შესასვლელთან"
+    en: "Construction site in a rocky gorge: an excavator and workers at a tunnel entrance"
+  media/images/news-energia-gallery-03.jpg:
+    media_id: "3f8517_17f54c8f6cab421eb482e96da4e6712b~mv2.jpeg"
+    ka: "მდინარე ხეობაში და მშენებარე ბეტონის ნაგებობა"
+    en: "A river in a gorge and a concrete structure under construction"
+  media/images/news-energia-gallery-04.jpg:
+    media_id: "3f8517_39de89d75e1f4df4b98b433fe26ccfe2~mv2.jpeg"
+    ka: "ექსკავატორი და მუშები სამშენებლო მოედანზე"
+    en: "An excavator and workers at the construction site"
+  media/images/news-energia-gallery-05.jpg:
+    media_id: "3f8517_7d2417e74663460eae62ea90b31d6ccd~mv2.jpeg"
+    ka: "ექსკავატორი და მუშები დიდ ბეტონის საძირკველზე ხეობაში"
+    en: "An excavator and workers on a large concrete foundation in a gorge"
+  media/images/news-mothers-day-cover.png:
+    media_id: "3f8517_8e06d8b9c7cc42958badf07a0d4db57b~mv2.png"
+    ka: "გაწყობილი სუფრა და ლენტით შეკრული ბარათი ქალის ფერწერული პორტრეტით"
+    en: "A table setting with a ribbon-tied card showing a painted portrait of a woman"
+  media/images/news-mothers-day-gallery-01.png:
+    media_id: "3f8517_06b49b76e4184ae2bda43f6bf84f202c~mv2.png"
+    ka: "ღონისძიების დარბაზი: გაშლილი სუფრა და ეკრანი nkfund.-ის პრეზენტაციით"
+    en: "The event room: a laid table and a screen showing the nkfund. presentation"
+  media/images/news-mothers-day-gallery-02.png:
+    media_id: "3f8517_465215f7f07648c7a3edb2ed276aec03~mv2.png"
+    ka: "იისფერი ლენტებით შეკრული თეთრი სასაჩუქრე ყუთები მოხატული ნამცხვრებით"
+    en: "White gift boxes of decorated biscuits, tied with lilac ribbons"
+  media/images/news-mothers-day-gallery-04.jpg:
+    media_id: "3f8517_550dc2121e5f4c6092538c53cbe2e26b~mv2.jpg"
+    ka: "მისალოცი ბარათი „გილოცავთ დედის დღეს!“ ნიკო კვარაცხელიას სახელობის ფონდის ხელმოწერით"
+    en: "Greeting card reading “Happy Mother’s Day!”, signed by the Niko Kvaratskhelia Foundation"
+  media/images/news-mothers-day-gallery-05.png:
+    media_id: "3f8517_1971f6e3f5ab4a2ca3c211cc2159b5e7~mv2.png"
+    ka: "გრძელი სადღესასწაულო სუფრა რესტორნის დარბაზში"
+    en: "A long dinner table in a restaurant room"
+  media/images/news-mothers-day-gallery-06.png:
+    media_id: "3f8517_e50d6f55d0114c7b8df79043f4032166~mv2.png"
+    ka: "მაგიდაზე გაშლილი ბარათები ქალის ფერწერული პორტრეტით"
+    en: "Cards with a painted portrait of a woman laid out on a table"
+  media/images/home-hero-video-poster.jpg:
+    media_id: "3f8517_7af606ad453c4df0bc60811808651484f000.jpg"
+    decorative: true
+    ka: ""
+    en: ""
+    note: "Hero background (video poster): decorative; the video itself gets aria-hidden=\"true\"."
+  media/images/home-goal-video-poster.jpg:
+    media_id: "3f8517_aaa04b6517db4ced8e6d40a2c849fcacf000.jpg"
+    decorative: true
+    ka: ""
+    en: ""
+    note: "Film poster: the player is labelled by ui.yml -> home.film_title."

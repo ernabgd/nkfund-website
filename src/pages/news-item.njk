@@ -1,0 +1,12 @@
+---
+pagination:
+  data: newsPages
+  size: 1
+  alias: entry
+permalink: "{{ entry.route | langUrl(entry.lang) }}"
+layout: item.njk
+section: news
+bodyClass: item item--news
+ogType: article
+pageKey: news-item
+---

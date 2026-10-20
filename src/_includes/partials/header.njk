@@ -1,0 +1,47 @@
+{%- set theme = headerTheme or "light" -%}
+{%- set otherLang = "en" if lang == "ka" else "ka" -%}
+<header class="site-header site-header--{{ theme }}" data-site-header>
+  <div class="site-header__inner wrap">
+    <a class="logo site-header__logo" href="{{ '' | langUrl(lang) }}" aria-label="{{ ui.nav.home_link | t(lang) }}">{% include "logo.svg.njk" %}</a>
+    <nav class="nav" aria-label="{{ ui.nav.main_label | t(lang) }}">
+      <ul class="nav__list" role="list">
+        {%- for key in ["about", "projects", "news"] %}
+        <li><a class="nav__link" href="{{ (key ~ '/') | langUrl(lang) }}"{% if section == key %} aria-current="{{ 'page' if route == (key ~ '/') else 'true' }}"{% endif %}>{{ ui.nav[key] | t(lang) }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    <div class="site-header__tools">
+      {% set langClass = "lang--header" %}{% include "partials/lang-switch.njk" %}
+      <a class="btn btn--pill site-header__cta" href="{{ 'donate/' | langUrl(lang) }}"{% if section == 'donate' %} aria-current="page"{% endif %}>{{ ui.nav.donate | t(lang) }}</a>
+      {#- The icon is an SVG stroke (currentColor), so it stays visible in Windows High Contrast, where CSS backgrounds
+          are replaced. aria-expanded and role=button are set by main.js (without it this is a plain #menu link). -#}
+      <a class="menu-btn" href="#menu" aria-controls="menu" data-menu-open>
+        <svg class="menu-btn__icon" viewBox="0 0 26 11" aria-hidden="true"><path class="menu-btn__l1" d="M1 1.5h24"/><path class="menu-btn__l2" d="M1 9.5h24"/></svg>
+        <span class="visually-hidden">{{ ui.nav.open | t(lang) }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{#- Full-screen menu for phones and tablets. Works without JavaScript through #menu:target (CSS then takes the page
+    behind it out of the tab order); main.js turns it into a modal dialog (role, aria-modal, label from data-label). -#}
+<div class="menu" id="menu" data-label="{{ ui.nav.menu | t(lang) }}" data-menu>
+  <div class="menu__top">
+    <a class="logo" href="{{ '' | langUrl(lang) }}" aria-label="{{ ui.nav.home_link | t(lang) }}">{% include "logo.svg.njk" %}</a>
+    <a class="menu__close" href="#top" data-menu-close aria-label="{{ ui.nav.close | t(lang) }}"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></a>
+  </div>
+  <ul class="menu__list" role="list">
+    {%- for key in ["about", "projects", "news", "contact"] %}
+    <li><a href="{{ (key ~ '/') | langUrl(lang) }}"{% if section == key and route == (key ~ '/') %} aria-current="page"{% endif %}>{{ ui.nav[key] | t(lang) }} <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    {%- endfor %}
+  </ul>
+  <a class="btn btn--light btn--lg menu__cta" href="{{ 'donate/' | langUrl(lang) }}">{{ ui.nav.donate | t(lang) }} <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  <div class="menu__foot">
+    {% set langClass = "lang--menu" %}{% include "partials/lang-switch.njk" %}
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <div class="menu__social">
+      <a class="icon-btn" href="{{ site.social.facebook }}" rel="noopener" aria-label="{{ ui.facebook.facebook_aria | t(lang) }}"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-facebook"/></svg></a>
+      <a class="icon-btn" href="{{ site.social.instagram }}" rel="noopener" aria-label="{{ ui.facebook.instagram_aria | t(lang) }}"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+    </div>
+  </div>
+</div>

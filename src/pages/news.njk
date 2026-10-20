@@ -1,0 +1,68 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ 'news/' | langUrl(lang) }}"
+layout: base.njk
+route: news/
+section: news
+bodyClass: news
+pageKey: news
+---
+{%- import "macros.njk" as m with context -%}
+{%- set p = pages.news -%}
+{%- set fbLimit = p.facebook_limit if (p.facebook_limit or p.facebook_limit === 0) else 24 -%}
+<header class="page-head ruled">
+  <div class="wrap">
+    {{ m.eyebrow(ui.nav.news | t(lang)) }}
+    {{ m.text(p, "title", lang, "h1", "page-head__title", true) }}
+    {{ m.text(p, "intro", lang, "p", "lead page-head__lead") }}
+  </div>
+</header>
+<section class="section section--list ruled" aria-label="{{ p | loc('title', lang) }}">
+  <div class="wrap">
+    <ol class="nlist" role="list">
+      {%- for item in news %}
+      {#- The big date is the date the list is sorted by, as on every card: the event date when known, otherwise the
+          publication date (which the item page lists under "At a glance"). A month without a day shows the year. -#}
+      {%- set when = item.event_date or item.date %}
+      {%- set day = when | dayOf %}
+      <li class="nrow card reveal">
+        <p class="nrow__date"><time datetime="{{ when | isoDate }}">
+          {%- if day %}<span class="nrow__day">{{ day }}</span> <span class="nrow__my">{{ when | monthYear(lang) }}</span>
+          {%- else %}<span class="nrow__day nrow__day--year">{{ when | year }}</span> <span class="nrow__my">{{ when | monthName(lang) }}</span>{% endif -%}
+        </time></p>
+        <div class="nrow__body">
+          <h2 class="nrow__title"><a class="card__link" href="{{ m.itemUrl(item, lang) }}"{{ m.cleanLabel(item, lang) }}>{{ m.text(item, "title", lang, hyph=true) }}</a></h2>
+          {{ m.text(item, "summary", lang, "p", "nrow__excerpt") }}
+          {%- if item.gallery.length %}
+          <p class="meta"><span>{{ ui.labels.photos_count | t(lang) | fill({ n: item.gallery.length }) }}</span></p>
+          {%- endif %}
+        </div>
+        {%- if item.cover %}
+        <div {{ m.mediaAttrs(item, "nrow__media") }}>{{ m.img(item.cover, item | loc("cover_alt", lang), "(min-width: 1000px) 320px, (min-width: 760px) calc(100vw - 240px), calc(100vw - 72px)" | scaleSizes(imageMeta[item.cover], (4 / 3), item.cover_crop), "480,800,1200") }}</div>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+{#- Facebook posts follow the foundation's own news. Only posts ticked "show on website" are listed. -#}
+{%- if fbLimit > 0 %}
+<section class="section section--mist fb ruled" aria-labelledby="facebook-heading">
+  <div class="wrap">
+    {%- if facebook.length %}
+    <div class="section-head">
+      <div>
+        <p class="eyebrow"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-facebook"/></svg><span>Facebook</span></p>
+        <h2 class="h2" id="facebook-heading">{{ ui.facebook.heading | t(lang) }}</h2>
+      </div>
+      <a class="btn btn--outline section-head__more" href="{{ site.social.facebook }}" rel="noopener">{{ ui.facebook.see_all | t(lang) }} <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </div>
+    {%- endif %}
+    {{ m.facebookBlock(facebook, lang, fbLimit, "facebook-heading") }}
+  </div>
+</section>
+{%- endif %}
+{% include "partials/join.njk" %}

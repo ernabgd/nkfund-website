@@ -1,0 +1,117 @@
+# Bank requisites of the foundation, transcribed EXACTLY from the Bank of Georgia PDF linked as "რეკვიზიტები" on the old site.
+source:
+  file: "media/docs/bank-requisites-2022-12.pdf"
+  original_url: "https://www.nkfund.world/_files/ugd/3f8517_b79d39693f294d9d862ff0cfbb0b4d8e.pdf"
+  wix_document_name: "NKfund.world.pdf"
+  pages: 3
+  pdf_info:
+    author: "Bank Of Georgia"
+    creator: "Bank Of Georgia"
+    producer: "iTextSharp 5.5.13"
+    created: "2022-11-30T15:54:22Z"
+    uploaded_to_wix_last_modified: "2022-12-18"
+  protection: "RC4-128 encrypted with an owner password and an empty user password; text copying and printing allowed"
+  extraction_method: "Text read twice independently - macOS PDFKit (page.string) and a pure-Python RC4 + ToUnicode decoder - with identical results; all three pages also rendered to PNG and checked visually character by character."
+verification:
+  iban: "GE93BG0000000533757447"
+  iban_length: 22
+  iban_mod97_check: "valid (remainder 1)"
+  iban_structure: "GE + 93 (check digits) + BG (Bank of Georgia) + 16-digit account 0000000533757447"
+  swift_codes_checked:
+    - "BAGAGE22 (JSC Bank of Georgia)"
+    - "CITIUS33 (Citibank N.A., New York)"
+    - "COBADEFF (Commerzbank AG, Frankfurt)"
+  still_valid: "UNKNOWN - the PDF dates from Nov/Dec 2022; the owner must confirm the account is still active before publishing."
+account:
+  beneficiary_ka: "ააიპ ნიკო კვარაცხელიას სახელობის ფონდი"
+  beneficiary_en: "NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI"
+  iban: "GE93BG0000000533757447"
+  iban_display_grouped: "GE93 BG00 0000 0533 7574 47"
+  account_type_ka: "სტანდარტული მიმდინარე ანგარიში"
+  account_type_en: "standard current account (translation; the PDF prints the Georgian phrase on every page)"
+  bank_name_ka: "სს \"საქართველოს ბანკი\""
+  bank_name_en: "JSC Bank of Georgia"
+  bank_swift: "BAGAGE22"
+  bank_address_ka: "გაგარინის ქ. 29ა, თბილისი, 0160, საქართველო"
+  bank_address_en: "29a Gagarin street, Tbilisi 0160, Georgia"
+  same_iban_for_all_currencies: true
+currencies:
+  GEL:
+    pdf_page: 1
+    pdf_heading_ka_verbatim: "\"სს \"\"საქართველოს ბანკში\" კლიენტის ანგარიშზე თანხების ეროვნულ ვალუტაში (ლარი) ჩარიცხვისთვის აუცილებელი საბანკო რეკვიზიტები"
+    pdf_heading_note: "the doubled quotation marks are printed that way in the PDF (Bank of Georgia template); meaning: bank details required to credit funds in national currency (lari) to the account of a JSC Bank of Georgia client"
+    fields_verbatim:
+      - label_ka: "მიმღები ბანკი"
+        value: "სს \"საქართველოს ბანკი\", ბანკის კოდი:BAGAGE22; გაგარინის ქ. 29ა, თბილისი, 0160, საქართველო"
+      - label_ka: "მიმღების დასახელება"
+        value: "ააიპ ნიკო კვარაცხელიას სახელობის ფონდი"
+      - label_ka: "მიმღების ანგარიშის ნომერი"
+        value: "GE93BG0000000533757447"
+      - label_ka: "ტელ"
+        value: "(+995 32) 2 444 444"
+      - label_ka: "ელ. ფოსტა"
+        value: "welcome@bog.ge"
+    footer_verbatim: "სტანდარტული მიმდინარე ანგარიში"
+    beneficiary_ka: "ააიპ ნიკო კვარაცხელიას სახელობის ფონდი"
+    iban: "GE93BG0000000533757447"
+    bank: "სს \"საქართველოს ბანკი\""
+    bank_code: "BAGAGE22"
+    bank_address: "გაგარინის ქ. 29ა, თბილისი, 0160, საქართველო"
+    intermediary_bank: null
+    intermediary_note: "none for GEL (domestic transfer)"
+  USD:
+    pdf_page: 2
+    pdf_heading_verbatim: "BANK DETAILS FOR TRANSFERS IN US DOLLAR IN FAVOUR OF CUSTOMER OF JSC BANK OF GEORGIA"
+    fields_verbatim:
+      - label_en: "Intermediary Bank"
+        value: "Citibank N.A., New York, USA; SWIFT: CITIUS33"
+      - label_en: "Account With Institution"
+        value: "Bank of Georgia, SWIFT: BAGAGE22; 29a Gagarin street, Tbilisi 0160, Georgia"
+      - label_en: "Beneficiary"
+        value: "NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI"
+      - label_en: "Account"
+        value: "GE93BG0000000533757447"
+      - label_en: "Tel"
+        value: "(+995 32) 2 444 444"
+      - label_en: "E-Mail"
+        value: "welcome@bog.ge"
+    footer_verbatim: "სტანდარტული მიმდინარე ანგარიში"
+    beneficiary_en: "NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI"
+    iban: "GE93BG0000000533757447"
+    account_with_institution: "Bank of Georgia"
+    account_with_institution_swift: "BAGAGE22"
+    account_with_institution_address: "29a Gagarin street, Tbilisi 0160, Georgia"
+    intermediary_bank: "Citibank N.A., New York, USA"
+    intermediary_swift: "CITIUS33"
+    intermediary_account: null
+    intermediary_account_note: "not given in the PDF (no correspondent account number printed)"
+  EUR:
+    pdf_page: 3
+    pdf_heading_verbatim: "BANK DETAILS FOR TRANSFERS IN EURO IN FAVOUR OF CUSTOMER OF JSC BANK OF GEORGIA"
+    fields_verbatim:
+      - label_en: "Intermediary Bank"
+        value: "Commerzbank, Frankfurt, Germany; SWIFT: COBADEFF"
+      - label_en: "Account With Institution"
+        value: "Bank of Georgia, SWIFT: BAGAGE22; 29a Gagarin street, Tbilisi 0160, Georgia"
+      - label_en: "Beneficiary"
+        value: "NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI"
+      - label_en: "Account"
+        value: "GE93BG0000000533757447"
+      - label_en: "Tel"
+        value: "(+995 32) 2 444 444"
+      - label_en: "E-Mail"
+        value: "welcome@bog.ge"
+    footer_verbatim: "სტანდარტული მიმდინარე ანგარიში"
+    beneficiary_en: "NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI"
+    iban: "GE93BG0000000533757447"
+    account_with_institution: "Bank of Georgia"
+    account_with_institution_swift: "BAGAGE22"
+    account_with_institution_address: "29a Gagarin street, Tbilisi 0160, Georgia"
+    intermediary_bank: "Commerzbank, Frankfurt, Germany"
+    intermediary_swift: "COBADEFF"
+    intermediary_account: null
+    intermediary_account_note: "not given in the PDF"
+notes:
+  - "Tel (+995 32) 2 444 444 and welcome@bog.ge are Bank of Georgia's call centre / email, NOT the foundation's contacts. Do not present them as foundation contacts."
+  - "The PDF contains no payment reference / purpose text and no foundation identification code; consider adding a suggested payment purpose (e.g. \"შემოწირულობა\") - owner decision."
+  - "Values in fields_verbatim are copied exactly as printed (including \"ბანკის კოდი:BAGAGE22\" without a space after the colon)."

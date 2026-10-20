@@ -1,0 +1,209 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ '' | langUrl(lang) }}"
+layout: base.njk
+route: ""
+headerTheme: dark
+bodyClass: home
+pageKey: home
+preloadImage: /assets/video/hero-poster.webp
+---
+{%- import "macros.njk" as m with context -%}
+{%- set p = pages.home -%}
+{%- set heroWords = p.hero | loc("title", lang) | words -%}
+{%- set featured = (projects | selectattr("featured") | first) or projects[0] -%}
+{%- set others = projects | without(featured) | limit(p.projects.count or 3) -%}
+
+{#- ============ HERO: the current site's composition — library clip, grain, frame lines, bottom-left title ============ -#}
+<section class="hero" aria-labelledby="hero-title" data-hero>
+  <div class="hero__media" aria-hidden="true">
+    {#- The foundation's own library clip (Wix 3f8517_7af606ad…), re-cut as a seamless half-speed loop.
+        No autoplay attribute: main.js starts it unless the visitor prefers reduced motion or Save-Data,
+        pauses it off-screen and offers a pause button (WCAG 2.2.2). Without JavaScript the poster stays. -#}
+    <video class="hero__video" muted loop playsinline preload="none" poster="/assets/video/hero-poster.webp" width="886" height="646" data-hero-video>
+      <source src="/assets/video/hero-loop.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i></div>
+  <div class="hero__inner wrap">
+    <h1 class="hero__title" id="hero-title"{% if p.hero | isFallback("title", lang) %} lang="ka"{% endif %}>
+      {%- if heroWords.length <= 4 %}{% for w in heroWords %}<span>{{ w }}</span>{% if not loop.last %} {% endif %}{% endfor %}{% else %}{{ p.hero | loc("title", lang) }}{% endif -%}
+    </h1>
+    {{ m.text(p.hero, "tagline", lang, "p", "hero__tagline") }}
+    <div class="hero__actions">
+      <a class="btn btn--ghost-light btn--lg" href="{{ 'donate/' | langUrl(lang) }}">{{ ui.nav.donate | t(lang) }}</a>
+      <a class="link-arrow link-arrow--light" href="{{ 'projects/' | langUrl(lang) }}"><span>{{ ui.buttons.our_projects | t(lang) }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="hero__pause" type="button" hidden data-hero-toggle
+      aria-label="{{ ui.buttons.pause_background | t(lang) }}"
+      data-label-pause="{{ ui.buttons.pause_background | t(lang) }}" data-label-play="{{ ui.buttons.play_background | t(lang) }}">
+      <svg class="icon i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+      <svg class="icon i-play" aria-hidden="true"><use href="#i-play"/></svg>
+    </button>
+  </div>
+</section>
+
+{#- ============ NIKO: portrait dissolving into its own backdrop + his words ============ -#}
+<section class="niko" id="niko" aria-labelledby="niko-heading">
+  <figure class="niko__portrait">
+    {#- sizes = the width the photo is DRAWN at: the 3:2 landscape is cover-cropped into a tall box (≈ the full
+        viewport wide on desktop, 1.35 × the viewport on phones), so the browser picks the 1620 px file. -#}
+    {{ m.img(p.quote.image, p.quote | loc("image_alt", lang), "(min-width: 1000px) 100vw, 135vw", "480,800,1200,1620") }}
+  </figure>
+  <div class="wrap niko__grid">
+    <div class="niko__text reveal">
+      {{ m.eyebrow(ui.home.quote_heading | t(lang), "h2", "niko-heading", "eyebrow--deep") }}
+      <figure class="quote">
+        <span class="quote__mark" aria-hidden="true">“</span>
+        <blockquote class="quote__text"{% if p.quote | isFallback("text", lang) %} lang="ka"{% endif %}>
+          {{ p.quote | loc("text", lang) | md | safe }}
+        </blockquote>
+        <figcaption class="quote__by">
+          <span class="quote__name">{{ p.quote | loc("attribution", lang) }}</span>
+          {%- if p.quote | loc("role", lang) %}<span class="quote__role">{{ p.quote | loc("role", lang) }}</span>{% endif %}
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+{#- ============ ABOUT + numbers ============ -#}
+<section class="section about-band ruled" id="about" aria-labelledby="about-heading">
+  <div class="wrap">
+    <div class="about-band__intro reveal">
+      {{ m.eyebrow(ui.nav.about | t(lang), "h2", "about-heading") }}
+      <p class="statement"{% if pages.about | isFallback("body", lang) %} lang="ka"{% endif %}>{{ pages.about | loc("body", lang) | firstParagraph | plain }}</p>
+    </div>
+    <ul class="stats" role="list" aria-label="{{ ui.home.stats_label | t(lang) }}">
+      <li class="stat reveal"><span class="stat__num">{{ site.founded | year }}</span><span class="stat__label"><strong>{{ ui.home.stat_founded | t(lang) }}</strong>{{ ui.home.stat_founded_note | t(lang) }}</span></li>
+      <li class="stat reveal reveal-d1"><span class="stat__num">{{ projects.length }}</span><span class="stat__label"><strong>{{ ui.home.stat_projects | t(lang) }}</strong>{% for c in projects | uniqueCategories %}{{ ui.categories[c] | t(lang) }}{% if not loop.last %} · {% endif %}{% endfor %}</span></li>
+      <li class="stat stat--link reveal reveal-d2"><a href="{{ 'about/' | langUrl(lang) }}"><span>{{ ui.nav.about | t(lang) }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
+{#- ============ OUR GOAL + FILM, then the mission as a full-width statement ============ -#}
+<section class="section section--mist goal ruled" id="goal" aria-labelledby="goal-heading">
+  <div class="wrap">
+    <div class="goal__grid">
+      <div class="goal__text reveal">
+        <h2 class="h2" id="goal-heading">{{ p.goal | loc("heading", lang) }}</h2>
+        {{ m.prose(p.goal, "body", lang, "prose prose--goal") }}
+      </div>
+      <div class="film reveal reveal-d1" id="film">
+      <figure class="film__figure">
+        <div class="film__frame">
+          <video controls preload="none" playsinline poster="{{ p.goal.poster }}" width="1280" height="720" aria-label="{{ ui.labels.film | t(lang) }}" data-film>
+            <source src="{{ p.goal.video }}" type="video/mp4">
+            {%- if p.goal.subtitles_en %}
+            {#- English subtitles are also burned into the picture, so the track is off by default (no double text);
+                viewers can switch it on to get resizable, restylable text. -#}
+            <track kind="subtitles" srclang="en" label="English" src="{{ p.goal.subtitles_en }}">
+            {%- endif %}
+            {%- if p.goal.captions_ka %}
+            {#- Georgian captions (what is said, with the speakers named): on by default on Georgian pages (WCAG 1.2.2). -#}
+            <track kind="captions" srclang="ka" label="ქართული" src="{{ p.goal.captions_ka }}"{% if lang == "ka" %} default{% endif %}>
+            {%- endif %}
+            <a href="{{ p.goal.video }}">{{ ui.labels.film | t(lang) }}</a>
+          </video>
+          <button class="film__cover" type="button" hidden data-film-play>
+            <span class="film__play"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span>
+            <span class="visually-hidden">{{ ui.buttons.film_play | t(lang) }}</span>
+          </button>
+        </div>
+        <figcaption><span>{{ ui.labels.film | t(lang) }}</span><span>{{ ui.labels.film_note | t(lang) }}</span></figcaption>
+      </figure>
+        {%- set tLang = "ka" if (lang == "ka" and p.goal.transcript_ka) else "en" %}
+        {%- if p.goal["transcript_" ~ tLang] %}
+        <details class="transcript">
+          <summary id="transcript-summary"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>{{ ui.labels.transcript | t(lang) }}{% if tLang != lang %} <span class="transcript__lang">({{ ui.labels.in_english | t(lang) }})</span>{% endif %}</summary>
+          {#- A scrolling box (keyboard-focusable, named by the summary) keeps the section compact when opened. -#}
+          <section class="transcript__text" tabindex="0" aria-labelledby="transcript-summary"{% if tLang != lang %} lang="{{ tLang }}"{% endif %}>{{ p.goal["transcript_" ~ tLang] | md | safe }}</section>
+        </details>
+        {%- endif %}
+      </div>
+    </div>
+    {%- if p.mission and (p.mission | loc("body", lang)) %}
+    <div class="mission reveal">
+      {{ m.eyebrow(p.mission | loc("heading", lang), "h2", "mission-heading") }}
+      <div class="mission__text"{% if p.mission | isFallback("body", lang) %} lang="ka"{% endif %}>{{ p.mission | loc("body", lang) | md | safe }}</div>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+{#- ============ FUNDED PROJECTS: one featured + cards ============ -#}
+<section class="section projects-band ruled" id="projects" aria-labelledby="projects-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        {{ m.eyebrow(pages.projects | loc("label", lang)) }}
+        <h2 class="h2" id="projects-heading">{{ p.projects | loc("heading", lang) }}</h2>
+      </div>
+      <a class="btn btn--outline section-head__more" href="{{ 'projects/' | langUrl(lang) }}">{{ ui.buttons.all_projects | t(lang) }} <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    {%- if featured %}
+    <article class="feature card reveal">
+      <div {{ m.mediaAttrs(featured, "feature__media") }}>{{ m.img(featured.cover, featured | loc("cover_alt", lang), "(min-width: 1360px) 700px, (min-width: 1200px) 54vw, (min-width: 1000px) 46vw, calc(100vw - 72px)" | scaleSizes(imageMeta[featured.cover], 4 / 3, featured.cover_crop), "480,800,1200,auto") }}</div>
+      <div class="feature__body">
+        {{ m.meta(featured, lang, true) }}
+        <h3 class="feature__title"><a class="card__link" href="{{ m.itemUrl(featured, lang) }}"{{ m.cleanLabel(featured, lang) }}>{{ m.text(featured, "title", lang, hyph=true) }}</a></h3>
+        {{ m.text(featured, "summary", lang, "p", "feature__excerpt") }}
+        <p class="link-arrow" aria-hidden="true"><span>{{ ui.buttons.details | t(lang) }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></p>
+      </div>
+    </article>
+    {%- endif %}
+    <ul class="pcards" role="list">
+      {%- for item in others %}
+      <li class="reveal{% if loop.index > 1 %} reveal-d{{ loop.index - 1 }}{% endif %}">{{ m.card(item, lang, 3, "(min-width: 1360px) 400px, (min-width: 1000px) 30vw, (min-width: 760px) 38vw, calc(100vw - 60px)") }}</li>
+      {%- endfor %}
+    </ul>
+    <a class="btn btn--outline section-foot__more" href="{{ 'projects/' | langUrl(lang) }}">{{ ui.buttons.all_projects | t(lang) }} <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+
+{#- ============ NEWS: two latest ============ -#}
+{%- if news.length %}
+<section class="section news-band ruled" id="news" aria-labelledby="news-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        {{ m.eyebrow(ui.nav.news | t(lang), hidden=((ui.nav.news | t(lang)) == (p.news | loc("heading", lang) if p.news else ""))) }}
+        <h2 class="h2" id="news-heading">{{ p.news | loc("heading", lang) if p.news else (ui.nav.news | t(lang)) }}</h2>
+      </div>
+      <a class="btn btn--outline section-head__more" href="{{ 'news/' | langUrl(lang) }}">{{ ui.buttons.all_news | t(lang) }} <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <ul class="news__grid" role="list">
+      {%- for item in news | limit((p.news.count if p.news) or 2) %}
+      <li class="reveal{% if loop.index > 1 %} reveal-d1{% endif %}">{{ m.card(item, lang, 3, "(min-width: 1360px) 616px, (min-width: 760px) 46vw, 100vw", "ncard", true) }}</li>
+      {%- endfor %}
+    </ul>
+    <a class="btn btn--outline section-foot__more" href="{{ 'news/' | langUrl(lang) }}">{{ ui.buttons.all_news | t(lang) }} <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+{%- endif %}
+
+{#- ============ LATEST FROM FACEBOOK: imported posts with show: true only; otherwise the follow card ============ -#}
+<section class="section section--mist fb ruled" id="facebook" aria-labelledby="facebook-heading">
+  <div class="wrap">
+    {%- if facebook.length %}
+    <div class="section-head">
+      <div>
+        <p class="eyebrow"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-facebook"/></svg><span>Facebook</span></p>
+        <h2 class="h2" id="facebook-heading">{{ ui.facebook.heading | t(lang) }}</h2>
+      </div>
+      <a class="btn btn--outline section-head__more" href="{{ site.social.facebook }}" rel="noopener">{{ ui.facebook.see_all | t(lang) }} <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </div>
+    {%- endif %}
+    {{ m.facebookBlock(facebook, lang, 3, "facebook-heading") }}
+  </div>
+</section>
+
+{% include "partials/join.njk" %}
+
+<script type="application/ld+json">{{ site | homeJsonLd(lang) | safe }}</script>

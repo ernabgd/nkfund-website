@@ -1,0 +1,25 @@
+pdf: /assets/docs/bank-requisites-2022-12.pdf
+pdf_date: 2022-11
+purpose_ka: შემოწირულობა
+purpose_en: Donation
+beneficiary_ka: ააიპ ნიკო კვარაცხელიას სახელობის ფონდი
+beneficiary_en: NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI
+iban: GE93BG0000000533757447
+account_type_ka: სტანდარტული მიმდინარე ანგარიში
+account_type_en: Standard current account
+bank_name_ka: 'სს "საქართველოს ბანკი"'
+bank_name_en: JSC Bank of Georgia
+account_with_institution: Bank of Georgia
+bank_swift: BAGAGE22
+bank_address_ka: გაგარინის ქ. 29ა, თბილისი, 0160, საქართველო
+bank_address_en: 29a Gagarin street, Tbilisi 0160, Georgia
+currencies:
+  - code: GEL
+    intermediary_bank: ""
+    intermediary_swift: ""
+  - code: USD
+    intermediary_bank: Citibank N.A., New York, USA
+    intermediary_swift: CITIUS33
+  - code: EUR
+    intermediary_bank: Commerzbank, Frankfurt, Germany
+    intermediary_swift: COBADEFF

@@ -1,0 +1,203 @@
+# Build and deploy nkfund.world to GitHub Pages.
+#
+# One run does everything, in this order: import new Facebook posts → commit them → test → build → deploy.
+# A separate job ("Facebook import health") fails visibly when the import has been failing for 7 days (for example an
+# expired Page token); it never blocks the deployment.
+# It must all happen in the same run: commits pushed with GITHUB_TOKEN do not trigger other workflow runs
+# (https://docs.github.com/en/actions/concepts/security/github_token), so a separate "build on push"
+# would never see the imported posts.
+#
+# Repository settings (see README.md → "Deploying"):
+#   Settings → Pages → Source: "GitHub Actions"
+#   Secrets (optional, enable the Facebook import): FB_PAGE_ID, FB_PAGE_TOKEN, FB_APP_SECRET (optional)
+#   Variables (optional, normally not needed):
+#     PREVIEW      default: "true" while the site lives under a sub-path (the ernabgd.github.io/nkfund-website/
+#                  preview) and "false" at the root of its own domain (nkfund.world). Set to override.
+#     PATH_PREFIX  default: the Pages base path ("/nkfund-website/" for the preview, "/" with a custom domain)
+#     SITE_URL     default: the Pages origin. Set it to https://nkfund.world when going live (docs/GO-LIVE.md):
+#                  canonical, hreflang, sitemap and social-preview URLs are built from it.
+#
+# Security: actions are pinned to commit SHAs; the Facebook secrets are given only to the import step; npm ci runs
+# without install scripts; the checkout does not keep the write token — it is passed to the push command only.
+name: Deploy site + Facebook sync
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      facebook_import:
+        description: "Facebook import: daily (default), initial (the newest 24 posts) or since (from the date below)"
+        type: choice
+        options: [daily, initial, since]
+        default: daily
+      facebook_since:
+        description: "Only for 'since': first day to import, YYYY-MM-DD"
+        type: string
+        required: false
+        default: ""
+  schedule:
+    # Every day at 05:00 UTC (09:00 in Tbilisi).
+    - cron: "0 5 * * *"
+
+permissions:
+  contents: read
+
+# One deployment at a time; a newer run waits instead of cancelling a deployment in progress.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write # commit imported Facebook posts and the heartbeat
+      pages: read
+    outputs:
+      facebook_stale: ${{ steps.fbhealth.outputs.stale }}
+      facebook_failing_since: ${{ steps.fbhealth.outputs.failing_since }}
+      facebook_days: ${{ steps.fbhealth.outputs.days }}
+      facebook_last_error: ${{ steps.fbhealth.outputs.last_error }}
+    env:
+      # Only a yes/no flag here; the secrets themselves are given to the import step alone.
+      HAS_FB: ${{ secrets.FB_PAGE_ID != '' && secrets.FB_PAGE_TOKEN != '' }}
+      # Facebook posts are imported and committed only on the default branch (schedule runs always use it).
+      # A manual run started from another branch skips the import (posts are never published without being
+      # committed) and builds the site, but its deploy job is refused: the "github-pages" environment that
+      # GitHub creates for Pages deployments only accepts the default branch.
+      CAN_PUSH: ${{ github.ref_name == github.event.repository.default_branch || github.event_name == 'schedule' }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js (version from .nvmrc)
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        # No install scripts: sharp ships prebuilt binaries as optional packages, so none are needed.
+        run: npm ci --ignore-scripts
+
+      - name: Import new Facebook posts
+        id: facebook
+        if: env.HAS_FB == 'true' && env.CAN_PUSH == 'true'
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          MODE: ${{ inputs.facebook_import || 'daily' }}
+          SINCE: ${{ inputs.facebook_since }}
+        # The script never fails the build: API errors become warnings and the site is built with the
+        # posts already in the repository. It records since when the import fails (data/facebook-sync.json).
+        run: |
+          case "$MODE" in
+            initial) node scripts/facebook-sync.mjs --initial ;;
+            since)   node scripts/facebook-sync.mjs "--since=$SINCE" ;;
+            *)       node scripts/facebook-sync.mjs ;;
+          esac
+
+      - name: Check how long the Facebook import has been failing
+        id: fbhealth
+        if: env.HAS_FB == 'true' && env.CAN_PUSH == 'true'
+        run: node scripts/ci/facebook-health.mjs
+
+      - name: Commit imported posts / keep-alive heartbeat
+        if: env.CAN_PUSH == 'true'
+        env:
+          HEARTBEAT: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+          # github.ref_name is the branch the run belongs to; for schedule runs that is the default branch.
+          # (github.event.repository.default_branch is EMPTY on schedule runs: that event has no payload.)
+          BRANCH: ${{ github.ref_name }}
+          TOKEN: ${{ github.token }}
+        # GitHub disables scheduled workflows in a public repository after 60 days without repository
+        # activity ("In a public repository, scheduled workflows are automatically disabled when no
+        # repository activity has occurred in 60 days." —
+        # https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows).
+        # So scheduled runs commit data/facebook-sync.json at least every 25 days even without new posts.
+        # scripts/ci/push.sh fails the run (with an error annotation) if the commit cannot be pushed.
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A content/facebook src/assets/facebook
+          if git diff --cached --quiet; then NEW=false; else NEW=true; fi
+          ARGS=("--new-posts=$NEW")
+          if [ "$HEARTBEAT" = "true" ]; then ARGS+=(--heartbeat); fi
+          DECISION=$(node scripts/ci/sync-commit.mjs "${ARGS[@]}")
+          if [ "$DECISION" = "commit" ]; then
+            git add data/facebook-sync.json
+            if [ "$NEW" = "true" ]; then MSG="Import new Facebook posts"; else MSG="Facebook sync state (heartbeat or import status)"; fi
+            git commit -m "$MSG [automated]"
+            GIT_AUTH_HEADER="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$TOKEN" | base64 | tr -d '\n')" \
+              BRANCH="$BRANCH" bash scripts/ci/push.sh
+          else
+            git restore --staged --worktree data/facebook-sync.json 2>/dev/null || true
+            echo "Nothing to commit."
+          fi
+
+      - name: Run tests
+        # Code and schema tests only. They pass after any edit made in Pages CMS; the snapshots of the migrated
+        # content (npm run test:migration) are for developers and never block a deployment.
+        run: npm run test:ci
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Build site
+        env:
+          # base_path is "/nkfund-website" for the project-site preview and "" once nkfund.world is set as custom domain.
+          PATH_PREFIX: ${{ vars.PATH_PREFIX || format('{0}/', steps.pages.outputs.base_path) }}
+          SITE_URL: ${{ vars.SITE_URL || steps.pages.outputs.origin }}
+          # Preview (noindex) while under a sub-path; production at the root of the custom domain.
+          PREVIEW: ${{ vars.PREVIEW || (steps.pages.outputs.base_path != '' && 'true' || 'false') }}
+        # npm run check fails a production build whose SITE_URL is not https:// (see docs/GO-LIVE.md step 5).
+        run: |
+          echo "PATH_PREFIX=$PATH_PREFIX SITE_URL=$SITE_URL PREVIEW=$PREVIEW"
+          npm run build
+          npm run check
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  # Fails (red run, and GitHub's e-mail about a failed run) when the Facebook import has been failing for 7 days or
+  # more, e.g. because the Page token expired. The site has already been built and is deployed regardless.
+  facebook-health:
+    name: Facebook import health
+    needs: build
+    if: always() && needs.build.outputs.facebook_stale == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Report a stalled Facebook import
+        env:
+          SINCE: ${{ needs.build.outputs.facebook_failing_since }}
+          DAYS: ${{ needs.build.outputs.facebook_days }}
+          LAST_ERROR: ${{ needs.build.outputs.facebook_last_error }}
+        run: |
+          echo "::error title=Facebook import::The Facebook import has been failing for $DAYS days (since $SINCE): $LAST_ERROR. The 'Latest from Facebook' section is not updating. Renew the Page token (docs/META_SETUP.md, Part 3) and run the workflow again."
+          exit 1

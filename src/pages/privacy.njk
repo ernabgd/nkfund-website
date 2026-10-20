@@ -1,0 +1,30 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+permalink: "{{ 'privacy/' | langUrl(lang) }}"
+layout: base.njk
+route: privacy/
+section: privacy
+bodyClass: privacy
+pageKey: privacy
+---
+{%- import "macros.njk" as m with context -%}
+{%- set p = pages.privacy -%}
+<header class="page-head ruled">
+  <div class="wrap">
+    {%- if p.draft %}
+    <p class="draft-banner"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span>{{ ui.privacy.draft_banner | t(lang) }}</span></p>
+    {%- endif %}
+    {{ m.text(p, "title", lang, "h1", "page-head__title", true) }}
+    {%- if p.updated %}
+    <p class="meta meta--inline">{{ ui.labels.updated | t(lang) }}: <time datetime="{{ p.updated | isoDate }}">{{ p.updated | formatDate(lang) }}</time></p>
+    {%- endif %}
+  </div>
+</header>
+<section class="section section--list ruled" aria-label="{{ p | loc('title', lang) }}">
+  <div class="wrap">
+    {{ m.prose(p, "body", lang, "prose prose--doc") }}
+  </div>
+</section>

@@ -1,0 +1,54 @@
+pages=3 encrypted=true locked=false
+page 1 595.2760000000001x325.89
+TEXT:მიმღები ბანკი
+მიმღების დასახელება
+მიმღების ანგარიშის ნომერი
+ტელ
+ელ. ფოსტა
+"სს ""საქართველოს ბანკში" კლიენტის
+ანგარიშზე თანხების ეროვნულ
+ვალუტაში (ლარი) ჩარიცხვისთვის
+აუცილებელი საბანკო რეკვიზიტები
+სს "საქართველოს ბანკი", ბანკის კოდი:BAGAGE22; გაგარინის ქ. 29ა, თბილისი, 0160,
+საქართველო
+ააიპ ნიკო კვარაცხელიას სახელობის ფონდი
+GE93BG0000000533757447
+(+995 32) 2 444 444
+welcome@bog.ge
+სტანდარტული მიმდინარე ანგარიში
+page 2 595.2760000000001x351.89
+TEXT:Intermediary Bank
+Account With Institution
+Beneficiary
+Account
+Tel
+E-Mail
+BANK DETAILS FOR TRANSFERS IN
+US DOLLAR
+IN FAVOUR OF
+CUSTOMER OF JSC BANK OF GEORGIA
+Citibank N.A., New York, USA; SWIFT: CITIUS33
+Bank of Georgia, SWIFT: BAGAGE22; 29a Gagarin street, Tbilisi 0160, Georgia
+NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI
+GE93BG0000000533757447
+(+995 32) 2 444 444
+welcome@bog.ge
+სტანდარტული მიმდინარე ანგარიში
+page 3 595.2760000000001x351.89
+TEXT:Intermediary Bank
+Account With Institution
+Beneficiary
+Account
+Tel
+E-Mail
+BANK DETAILS FOR TRANSFERS IN
+EURO
+IN FAVOUR OF
+CUSTOMER OF JSC BANK OF GEORGIA
+Commerzbank, Frankfurt, Germany; SWIFT: COBADEFF
+Bank of Georgia, SWIFT: BAGAGE22; 29a Gagarin street, Tbilisi 0160, Georgia
+NNLE NIKO KVARATSKHELIAS SAKHELOBIS PHONDI
+GE93BG0000000533757447
+(+995 32) 2 444 444
+welcome@bog.ge
+სტანდარტული მიმდინარე ანგარიში
