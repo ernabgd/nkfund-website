@@ -20,7 +20,7 @@ body_ka: |-
   >
   > — წერს წალენჯიხელი პედაგოგი თეა ქარჩავა ტერენტი გრანელისადმი მიძღვნილ ღონისძიებაზე, სადაც გამარჯვებული სტიპენდიანტი გამოვლინდა.
 body_en: |-
-  Saba Kalandia, a young man from Tsalenjikha, was awarded the scholarship. “It is a great honour for me that Nico’s Fund funds the Terenti Graneli Scholarship. Nico is a great motivation for me,” says Saba Kalandia.
+  Saba Kalandia, a young man from Tsalenjikha, was awarded the scholarship. “It is a great honour for me that Nico’s Fund finances the Terenti Graneli Scholarship. Nico is a great motivation for me,” says Saba Kalandia.
 
   > “Tears and smiles of gratitude showed on people’s faces at the same time… then came applause, and once again talk of Nico’s light.”
   >
