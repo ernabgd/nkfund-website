@@ -6,3 +6,9 @@ _site/
 *.log
 _materials/
 out/
+
+# Re-include icon folders: the global gitignore has "Icon?" (macOS Icon\r files), which on a
+# case-insensitive Mac also matches "icons/".
+!icons/
+!**/icons/
+!**/icons/**
