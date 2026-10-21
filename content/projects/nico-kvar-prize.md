@@ -5,7 +5,7 @@ title_en: The Nico Kvar Prize
 summary_ka: ნიკო კვარაცხელიას სახელობის პრიზი — The Nico Kvar Prize — პირველად Hack Days Georgia 2023-ზე გადაეცა. პრიზი 2024 და 2025 წლების ჰაკათონების გამარჯვებულებისთვისაც გამოცხადდა.
 summary_en: The Nico Kvar Prize, named after Nico Kvaratskhelia, was first awarded at Hack Days Georgia 2023. It was also announced for the winners of the 2024 and 2025 hackathons.
 date: "2023-12-22"
-event_date: ""
+event_date: "2025-11"
 category: technology
 order: 10
 cover: /assets/facebook/2025-11-12-112566158405959_845101748485924-1.jpg
@@ -34,5 +34,5 @@ body_en: |-
 
   [More on Facebook](https://www.facebook.com/1137265305936232/posts/845101748485924)
 draft: false
-featured: false
+featured: true
 ---

@@ -26,7 +26,7 @@ body_en: |-
   >
   > — Levan Kvaratskhelia, teacher at the public school in the village of Jgali
 draft: false
-featured: true
+featured: false
 legacy:
   wix_item_id: 00000000-0000-0000-0000-000000000001
   wix_created: "2022-12-18T18:55:59.039Z"
