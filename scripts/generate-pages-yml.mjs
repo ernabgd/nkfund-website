@@ -62,6 +62,8 @@ function itemFields(kind) {
               values: [
                 { name: "scholarship", label: "სტიპენდია / Scholarship" },
                 { name: "technology", label: "ტექნოლოგიები / Technologies" },
+                { name: "education", label: "განათლება / Education" },
+                { name: "sport", label: "სპორტი / Sport" },
               ],
             },
             description: "ახალი კატეგორიის დასამატებლად საჭიროა დეველოპერი (data/ui.yml → categories). / A new category needs a developer (data/ui.yml → categories).",

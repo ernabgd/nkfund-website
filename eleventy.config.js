@@ -207,10 +207,10 @@ export default function (eleventyConfig) {
     },
   });
 
-  // Size and edge colour of every uploaded image (src/assets/uploads/**): lets templates keep small covers at
+  // Size and edge colour of every uploaded or imported image (src/assets/uploads/**, src/assets/facebook/**): lets templates keep small covers at
   // their natural width instead of upscaling them, and fill the letterbox of "whole image" covers with the
   // picture's own edge colour.
-  eleventyConfig.addGlobalData("imageMeta", () => imageMeta("src/assets/uploads"));
+  eleventyConfig.addGlobalData("imageMeta", async () => ({ ...(await imageMeta("src/assets/uploads")), ...(await imageMeta("src/assets/facebook")) }));
 
   // Gallery links (lightbox and no-JS link): an optimised ≤ 1800 px WebP instead of the raw upload.
   eleventyConfig.addAsyncFilter("lightboxSrc", async (src) => {

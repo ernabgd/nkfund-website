@@ -87,6 +87,8 @@ class="media{% if class %} {{ class }}{% endif %}{% if crop == 'none' %} media--
   {%- if item.cover %}
   {%- set boxRatio = 4 / 3 if class == "mini" else 1.6 %}
   <div {{ mediaAttrs(item, "", "", boxRatio) }}>{{ img(item.cover, item | loc("cover_alt", lang), sizes | scaleSizes(imageMeta[item.cover], boxRatio, item.cover_crop), widths) }}</div>
+  {%- else %}
+  <div class="media media--placeholder" aria-hidden="true"><svg><use href="#mark"/></svg></div>
   {%- endif %}
   <div class="card__body">
     {{ meta(item, lang) }}

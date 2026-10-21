@@ -298,6 +298,10 @@ content:
               label: სტიპენდია / Scholarship
             - name: technology
               label: ტექნოლოგიები / Technologies
+            - name: education
+              label: განათლება / Education
+            - name: sport
+              label: სპორტი / Sport
         description: ახალი კატეგორიის დასამატებლად საჭიროა დეველოპერი (data/ui.yml → categories). / A new category needs a developer (data/ui.yml → categories).
       - name: summary_ka
         label: მოკლე აღწერა / Summary — ქართულად / Georgian
@@ -1226,6 +1230,12 @@ content:
               - name: technology
                 label: ტექნოლოგიები (categories.technology)
                 component: t
+              - name: education
+                label: განათლება (categories.education)
+                component: t
+              - name: sport
+                label: სპორტი (categories.sport)
+                component: t
           - name: home
             label: მთავარი გვერდი / Home page
             type: object
@@ -1243,7 +1253,7 @@ content:
                 label: ნიკოს ოჯახისა და მეგობრების მიერ (home.stat_founded_note)
                 component: t
               - name: stat_projects
-                label: დაფინანსებული პროექტი (home.stat_projects)
+                label: პროექტი და ინიციატივა (home.stat_projects)
                 component: t
           - name: join
             label: ბლოკი „შემოგვიერთდი“ / “Join us” block

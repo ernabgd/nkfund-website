@@ -28,6 +28,8 @@ pageKey: projects
         <span class="row__index" aria-hidden="true">{{ "0" if loop.index < 10 }}{{ loop.index }}</span>
         {%- if item.cover %}
         <div {{ m.mediaAttrs(item, "row__media") }}>{{ m.img(item.cover, item | loc("cover_alt", lang), "(min-width: 1200px) 340px, (min-width: 760px) 260px, calc(100vw - 72px)" | scaleSizes(imageMeta[item.cover], (4 / 3), item.cover_crop), "480,800,1200") }}</div>
+        {%- else %}
+        <div class="media media--placeholder row__media" aria-hidden="true"><svg><use href="#mark"/></svg></div>
         {%- endif %}
         <div class="row__body">
           {{ m.meta(item, lang, true) }}

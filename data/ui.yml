@@ -131,6 +131,12 @@ categories:
   technology:
     ka: ტექნოლოგიები
     en: Technology
+  education:
+    ka: განათლება
+    en: Education
+  sport:
+    ka: სპორტი
+    en: Sport
 home:
   quote_heading:
     ka: ნიკოს სიტყვები
@@ -145,8 +151,8 @@ home:
     ka: ნიკოს ოჯახისა და მეგობრების მიერ
     en: by Nico’s family and friends
   stat_projects:
-    ka: დაფინანსებული პროექტი
-    en: Projects funded
+    ka: პროექტი და ინიციატივა
+    en: Projects and initiatives
 join:
   heading:
     ka: შემოგვიერთდი

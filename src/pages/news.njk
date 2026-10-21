@@ -42,6 +42,8 @@ pageKey: news
         </div>
         {%- if item.cover %}
         <div {{ m.mediaAttrs(item, "nrow__media") }}>{{ m.img(item.cover, item | loc("cover_alt", lang), "(min-width: 1000px) 320px, (min-width: 760px) calc(100vw - 240px), calc(100vw - 72px)" | scaleSizes(imageMeta[item.cover], (4 / 3), item.cover_crop), "480,800,1200") }}</div>
+        {%- else %}
+        <div class="media media--placeholder nrow__media" aria-hidden="true"><svg><use href="#mark"/></svg></div>
         {%- endif %}
       </li>
       {%- endfor %}

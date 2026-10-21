@@ -232,6 +232,10 @@ button { font: inherit; color: inherit; }
 /* "Whole image" covers (cover_crop: none): graphics with text near the edges are never cut; the letterbox takes
    the picture's own edge colour (computed at build time). */
 .media--whole { background: var(--media-bg, var(--sand)); }
+/* Project or news item without a photo: the nkfund. mark on the brand blue, same frame as a photo. */
+.media--placeholder { display: grid; place-items: center; background: radial-gradient(120% 90% at 30% 20%, #1d63bd 0%, var(--blue) 45%, var(--blue-deep) 100%); color: #fff; }
+.media--placeholder svg { width: clamp(44px, 26%, 120px); height: auto; aspect-ratio: 70 / 72; opacity: .92; fill: currentColor; }
+
 .media--whole img, .gallery__link.media--whole img { object-fit: contain; }
 @media (prefers-reduced-motion: no-preference) {
   .media img { transition: transform 1.2s var(--ease-out); }
