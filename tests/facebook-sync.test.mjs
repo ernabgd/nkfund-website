@@ -7,7 +7,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-import { syncFacebook, imageUrls, titleFrom, parseArgs, GRAPH_VERSION } from "../scripts/facebook-sync.mjs";
+import { syncFacebook, imageUrls, titleFrom, parseArgs, isAutomaticPost, GRAPH_VERSION } from "../scripts/facebook-sync.mjs";
 import { parseFrontMatter, stringifyFrontMatter } from "../scripts/lib/frontmatter.mjs";
 import { health } from "../scripts/ci/facebook-health.mjs";
 
@@ -197,4 +197,11 @@ test("helpers", () => {
   assert.deepEqual(imageUrls({ full_picture: "https://x/y.jpg" }), ["https://x/y.jpg"]);
   assert.equal(imageUrls({ attachments: { data: [{ subattachments: { data: [1, 2, 3].map((n) => ({ media: { image: { src: `https://x/${n}.jpg` } } })) } }] } }).length, 1, "first image only");
   assert.deepEqual(imageUrls({ attachments: { data: [{ media: { image: { src: "http://insecure" } } }] } }), []);
+});
+
+test("Facebook's automatic posts start hidden, real posts start visible", () => {
+  assert.equal(isAutomaticPost("With Iza Omadze – I just got recognized as one of their top fans! 🎉"), true);
+  assert.equal(isAutomaticPost("Nico Kvaratskhelia Fund updated their cover photo."), true);
+  assert.equal(isAutomaticPost("ნიკო კვარაცხელიას სახელობის ფონდი ნიკოლოზობას გილოცავთ"), false);
+  assert.equal(isAutomaticPost(""), false, "photo-only posts stay visible");
 });

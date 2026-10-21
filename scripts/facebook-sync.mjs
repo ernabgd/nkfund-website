@@ -75,6 +75,19 @@ function localDay(date) {
 const safeId = (id) => String(id).replace(/[^A-Za-z0-9_-]/g, "-");
 
 /** First non-empty line, trimmed to ~80 characters (CMS list label only); photo-only posts get a dated label. */
+/** Facebook's own automatic posts (badges, profile/cover photo changes) start hidden; editors can still tick them. */
+const AUTOMATIC_POST = [
+  /recogni[sz]ed as one of (their|its) top fans/i,
+  /\btop fan\b/i,
+  /updated (their|its|his|her) (cover photo|profile picture|profile photo)/i,
+  /changed (their|its|his|her) (cover photo|profile picture|profile photo)/i,
+  /(გარეკანის|ყდის) ფოტო განაახლა|განაახლა (გარეკანის|ყდის) ფოტო/,
+  /პროფილის (ფოტო|სურათი) განაახლა|განაახლა პროფილის (ფოტო|სურათი)/,
+];
+export function isAutomaticPost(message = "") {
+  return AUTOMATIC_POST.some((re) => re.test(String(message)));
+}
+
 export function titleFrom(message = "", date = null) {
   const line = String(message).split(/\r?\n/).map((l) => l.trim()).find(Boolean) || "";
   if (!line) return date ? `ფოტო / Photo · ${localDay(date)}` : "ფოტო / Photo";
@@ -282,7 +295,7 @@ export async function syncFacebook(o = {}) {
       id,
       date: created.toISOString(),
       link,
-      show: true,
+      show: !isAutomaticPost(message),
       title: titleFrom(message, created),
       images,
     };

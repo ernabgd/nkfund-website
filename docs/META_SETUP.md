@@ -68,9 +68,9 @@ There are three short steps: a **short user key**, then a **60-day user key**, t
 
 1. Go back to the **Graph API Explorer**.
 2. Paste the **60-day user key** into the **Access Token** box. Replace what's there.
-3. In the query box, type `me/accounts` and click **Submit**.
+3. In the query box, type `112566158405959?fields=id,name,access_token` (or `me/accounts`) and click **Submit**.
 4. The answer lists the Pages you manage. Find the Fund's Page and note two values:
-   - **`id`**: this is **`FB_PAGE_ID`**. Most likely it is `100089583201087`, the number in the Page's address. If the two differ, use the `id` shown here.
+   - **`id`**: this is **`FB_PAGE_ID`**. For this Page it is **`112566158405959`** (confirmed 21 Oct 2026). It is *not* `100089583201087`, the number in the Page's web address: that is the Page's profile number, which the Graph API does not accept.
    - **`access_token`**: this is **`FB_PAGE_TOKEN`**.
 
    Meta says a Page token obtained from a long-lived user token **does not expire**. ([Meta: Long-lived tokens](https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived/))
@@ -121,6 +121,8 @@ The daily job only fetches **recent** posts. The first run should fetch **everyt
 
 ---
 
+> **Status (21 Oct 2026):** connected. App "nkfund website" (App ID 1792577828327945, in development mode) under the Facebook account that admins the Page; `FB_PAGE_ID` = 112566158405959; `FB_PAGE_TOKEN` saved in GitHub. The first full import brought in 49 posts (January 2023 – June 2026). Facebook's automatic posts (for example "top fan" badges) are imported hidden.
+
 ## What breaks the token, and how to reconnect
 
 The Page token doesn't expire by date, but **it stops working** if any of these happens to **the person who created it**:
@@ -148,7 +150,7 @@ Meta's own documentation says tokens can become invalid "under certain condition
 
 | Problem | Fix |
 |---|---|
-| `me/accounts` returns an empty list | You didn't select the Page in the Facebook pop-up in 3a, or you aren't a full-control admin. Redo 3a and choose the Page. |
+| `me/accounts` returns an empty list | First check the Page was ticked: click **Generate Access Token → Edit settings** (not "Continue") and make sure the Fund's Page is ticked. If it is ticked and the list is *still* empty (this happened on 21 Oct 2026), skip `me/accounts`: with the 60-day user key in the Explorer, run **`112566158405959?fields=id,name,access_token`** instead and copy that `access_token`. |
 | Error about **`pages_read_user_content`** | The import also asked for posts written by visitors. Add `pages_read_user_content` in 3a as well, redo 3b–3c and update the secret. |
 | Error **"(#10) … permission"** | `pages_read_engagement` is missing from the token. Redo Part 3 with both permissions. |
 | A post shows on the website but shouldn't | Untick **Show on website** in Pages CMS. The next import doesn't re-tick it. |
